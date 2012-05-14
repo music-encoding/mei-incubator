@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- added by and -->
+<?xml-model href="http://mei-incubator.googlecode.com/svn/layout/mei-Layout.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="http://mei-incubator.googlecode.com/svn/layout/mei-Layout.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" xml:id="m-812666de-0208-4d96-974d-4ce0e651008c" meiversion="2012">
+  <meiHead xml:id="m-7d80b08b-0a25-4c6d-b467-d29248478e40">
+    <fileDesc xml:id="m-62ab326c-35df-4a09-b1ea-e15737689aba">
+      <titleStmt xml:id="m-e4303545-25d3-4842-9c8c-5e20bc321870">
+        <title xml:id="m-7f9e672c-c117-4b8c-a6fb-debf42f50ff5"/>
+      </titleStmt>
+      <pubStmt xml:id="m-e76d1454-4d6c-4a86-9d82-bd8aef5363b2">
+        <date xml:id="m-f6364e6f-39cd-40b9-9c60-725ed36246cf">Mon May 14 16:53:16 2012</date>
+      </pubStmt>
+    </fileDesc>
+    <encodingDesc xml:id="m-aa80d5d1-6e51-40c5-8bec-d5fda27fcb0f">
+      <projectDesc xml:id="m-4bf6fdfb-e13b-44f3-afaa-dc7f464a7f8c">
+        <p xml:id="m-00d65cc8-a96e-4a8c-887d-e3649c3be352">Encoded with Aruspix version 2.0.0 beta</p>
+      </projectDesc>
+    </encodingDesc>
+  </meiHead>
+  <music xml:id="m-af78867a-e69e-44d4-9065-92b6f1863de4">
+    <layouts xml:id="m-e53df136-242e-4058-bec7-7d2334bf3196">
+      <layout xml:id="m-e5bbac7b-ef67-445d-a933-38f722e878a6">
+        <!--Coordinates needs to be corrected-->
+        <page xml:id="m-23b38246-9273-41fb-ae97-fc23edadb842">
+          <system xml:id="m-3308a159-edd1-461d-a233-a50b9e843b90" ulx="0" uly="1720">
+            <laidOutStaff xml:id="m-be359b9e-ce62-45b2-84cc-53d2b3bb3aa0" ulx="0" uly="1600">
+              <laidOutLayer xml:id="m-e349b588-1616-4854-ac27-047fe3082b2b">
+                <laidOutElement xml:id="m-827634df-f889-4f10-8168-d920864a5806" ulx="203" target="m-e24c4d75-f770-49a8-b187-dad3662c212f"/>
+                <laidOutElement xml:id="m-1a2b3342-32f5-4cdc-84c6-bb2129311af6" ulx="236" target="m-d31ca6b3-6567-4446-be40-3edc03bb24c1"/>
+                <laidOutElement xml:id="m-0ddadede-5c60-4bd5-a6a4-ee36193ab284" ulx="264" target="m-ba304bb3-f450-49a7-a42d-3bf517075186"/>
+                <laidOutElement xml:id="m-89a3c60c-83d1-45ae-85d2-202a95e2e103" ulx="298" target="m-ab02f299-1819-436d-8c5d-86b3ea849e9b"/>
+                <laidOutElement xml:id="m-cc6a00df-6ddd-4b51-84ef-514c2347df99" ulx="335" target="m-52decd25-792a-45bc-b5b9-6fd6647f3aef"/>
+                <laidOutElement xml:id="m-ad55084b-f8e6-4ee8-8002-f402fae3109b" ulx="379" target="m-478ed622-59cc-4360-a7d9-dbf390284458"/>
+                <laidOutElement xml:id="m-744a75fb-96d0-49ab-803f-325f19c99e9b" ulx="421" target="m-da9600f0-6d45-4390-8e28-cd6dfcb48eec"/>
+                <laidOutElement xml:id="m-30c8ecc6-f2cf-4f6d-83a2-b09ee22380ab" ulx="467" target="m-c7d96542-229f-46f9-b818-f7dbdff5537b"/>
+                <laidOutElement xml:id="m-132383d2-b722-4165-9420-a5cdf6943c8b" ulx="507" target="m-cc740d55-10a7-4ef5-8a38-1352f35002c0"/>
+                <laidOutElement xml:id="m-26c6f530-b911-470c-8ce6-5d04ecb65a94" ulx="533" target="m-e63c5907-4093-4f5b-9100-c2ee3fd674b4"/>
+                <laidOutElement xml:id="m-3ecbc680-06bd-494f-a4dc-06b5de7f3de5" ulx="557" target="m-ef1843f4-0050-43f6-9a30-83b7ef92d01b"/>
+                <laidOutElement xml:id="m-0db07537-8320-45b0-a80f-089a76a8e43c" ulx="597" target="m-e450f1d5-3b99-486b-b84b-3adcdd746500"/>
+                <laidOutElement xml:id="m-3a74f7f8-c6cf-41ec-a6cc-a3824fcaa322" ulx="635" target="m-018c131a-6faa-4d19-8c24-a43eefbc3aeb"/>
+                <laidOutElement xml:id="m-dcc32c64-f668-47b5-ac45-3664e181e182" ulx="675" target="m-681e8b56-206f-4dbc-b0e5-277d30c44071"/>
+                <laidOutElement xml:id="m-203ee198-edb0-47fd-97df-097abdefbe5d" ulx="705" target="m-ba39f218-d55d-4c9e-a78f-9b03fb41bcbb"/>
+                <laidOutElement xml:id="m-3d0db64b-155a-4613-80f7-27b0076cb3ae" ulx="724" target="m-eafb9a8d-dc6e-457b-a793-f9e9eb8fe2f6"/>
+                <laidOutElement xml:id="m-ec309528-7a16-4120-ad64-05963b773329" ulx="758" target="m-985b429f-b0fd-45c2-b5d2-873d15b1fa51"/>
+                <laidOutElement xml:id="m-3b65a9a5-75d4-4d43-8e6d-46aab5c20e81" ulx="801" target="m-5657b0c4-bcf6-4741-9db2-8ccedbec9e5d"/>
+                <laidOutElement xml:id="m-460ce727-422d-4755-a28e-a3267a51e226" ulx="829" target="m-c0c45d9c-7b60-431f-b107-4add61c85775"/>
+                <laidOutElement xml:id="m-58b6851e-dca7-42af-895a-507d18dfa600" ulx="853" target="m-a87fe292-7e75-4998-8dff-dbf063f1236d"/>
+                <laidOutElement xml:id="m-c583f422-f0ba-479a-bbf3-4f87bbd04a8f" ulx="897" target="m-a951f496-7db0-43f9-a710-aea2bb8c905c"/>
+                <laidOutElement xml:id="m-2eab5728-0cd5-4698-b3b5-7f0b20961af9" ulx="929" target="m-18032569-89e4-4ac0-a214-082be8c1f79c"/>
+                <laidOutElement xml:id="m-a9f8dac1-6b39-4f0b-bfc1-98ea87c56554" ulx="985" target="m-be24e7dd-b086-4f4e-b9c9-15b3282bdb20"/>
+                <laidOutElement xml:id="m-7eacd1dd-b6b1-4c1b-9b63-868de63a2c43" ulx="1023" target="m-b768a91e-a246-4a67-ab1b-a0f801fd2882"/>
+                <laidOutElement xml:id="m-ec8e53c7-504b-413b-bc13-a64180b48cdd" ulx="1057" target="m-04906103-18df-4a9b-bdeb-fa63f9acf14f"/>
+              </laidOutLayer>
+            </laidOutStaff>
+            <laidOutStaff xml:id="m-218f7fc9-28c6-4ade-9260-e206e75c289e" ulx="0" uly="1440">
+              <laidOutLayer xml:id="m-4a2e8ff6-4351-468f-9e90-4fcb3e2647bc">
+                <laidOutElement xml:id="m-e2a60a6d-1586-4feb-a9a6-e0be1ab0215f" ulx="38" target="m-2fa568f3-f270-4e96-84ef-22d1dfa70263"/>
+                <laidOutElement xml:id="m-38979e69-5497-423a-8186-947813f7a419" ulx="78" target="m-8756dfea-c000-41c8-b3c5-a18210e56919"/>
+                <laidOutElement xml:id="m-edac68ac-b8c4-4ef6-8eba-349a1cf7bf35" ulx="116" target="m-653dc44b-0523-491c-a52e-e614ac63f99f"/>
+                <laidOutElement xml:id="m-6627a2c0-0310-44f0-9930-179199c60357" ulx="144" target="m-50153357-7333-418e-b936-af5e572a4fe0"/>
+                <laidOutElement xml:id="m-de4f7fa3-ff76-46e1-a862-5ddbef87576b" ulx="170" target="m-9bf829c6-fd10-4ecc-ab84-e004fbac0f8b"/>
+                <laidOutElement xml:id="m-b7d2b2b1-b317-437c-a1d8-5bb1af0a6d68" ulx="212" target="m-c3087db7-c97c-43fd-b455-41da4cf755cc"/>
+                <laidOutElement xml:id="m-b6338f99-2ddb-412d-bc0f-7c417d12433f" ulx="256" target="m-01360cb5-f3d0-40fb-b5ae-c97f455960d6"/>
+                <laidOutElement xml:id="m-5a0e0239-27b1-4cf1-ad71-3faeb190819e" ulx="282" target="m-e289e2ea-daef-4bb0-a74d-caa9f1043fda"/>
+                <laidOutElement xml:id="m-9684a296-cad8-4a6b-beeb-404db5b157ab" ulx="304" target="m-59e56773-6799-43f0-bf22-2a00cb4b40ec"/>
+                <laidOutElement xml:id="m-9ae8ee71-46ad-47fe-8825-e2638a2f33b3" ulx="344" target="m-76f827ef-2e2a-4d77-8341-1dafcf94ef80"/>
+                <laidOutElement xml:id="m-597d55ff-9227-495b-a68b-863c626506ed" ulx="374" target="m-5c929b50-c0fb-42b5-955d-74fe8a849599"/>
+                <laidOutElement xml:id="m-cd38a4f9-e65f-4f88-9daf-7d31f7369050" ulx="402" target="m-e9d533de-7039-4d3a-bb06-0c1c1fc0c054"/>
+                <laidOutElement xml:id="m-10148995-64b3-4de3-9cce-9bcf4a864060" ulx="438" target="m-c0e175d8-0433-4dc0-8a91-f2724e6f067f"/>
+                <laidOutElement xml:id="m-b058aa59-7d25-430d-9f71-f52497a4e8c7" ulx="466" target="m-b024663b-e8d1-4642-bf32-ec7fc26f3d01"/>
+                <laidOutElement xml:id="m-1119cf62-03a3-42ec-9e37-dc726ed3dfa6" ulx="488" target="m-8716e43d-9f3d-407b-9ee2-8e05a3635601"/>
+                <laidOutElement xml:id="m-584281fe-4ab2-4543-947a-2eff57f92b70" ulx="516" target="m-afc5da36-8e2a-4695-a413-31337f0492e6"/>
+                <laidOutElement xml:id="m-2d5fc114-dfb5-4a32-8b34-c8c7b64fff5e" ulx="540" target="m-d34395a5-1038-4584-a0e6-2c951cef4ddc"/>
+                <laidOutElement xml:id="m-6fb95c02-c3d9-4e5d-a225-1ed2f04a8003" ulx="566" target="m-97fe73f0-4969-409f-babd-73661c42746d"/>
+                <laidOutElement xml:id="m-d2a30c5e-7967-4adb-9834-0fed2aea45c2" ulx="590" target="m-22b50720-26a7-47be-bf35-6d8fdef17d6d"/>
+                <laidOutElement xml:id="m-f998545c-8bf4-4b30-90a0-8b4cabb5fff6" ulx="616" target="m-41a64f1d-3061-41bb-859e-8169a57d9cd8"/>
+                <laidOutElement xml:id="m-01609f44-8de8-4534-b797-d2304a152995" ulx="656" target="m-04c4e79d-4a3c-42ca-bd41-45140b777eaa"/>
+                <laidOutElement xml:id="m-32bc5631-59d8-4edb-80f3-c56ee1e1631e" ulx="700" target="m-07f63fa0-5e6e-4411-8cc6-56a291714b8d"/>
+                <laidOutElement xml:id="m-2c7ea398-19ec-46f8-92c2-da22b0121c27" ulx="756" target="m-b05dfd74-4667-4bc7-adb9-889c4568c4d3"/>
+                <laidOutElement xml:id="m-b2721a6a-e299-446a-8031-bbcbd3e6f1c2" ulx="784" target="m-9f8168af-4a07-44b9-8015-0a5dd743fc73"/>
+                <laidOutElement xml:id="m-3bdc3045-cf2d-496d-b69c-8708bec8f26f" ulx="806" target="m-02a82dbf-9aa1-46d3-8bd4-f10a1f19e576"/>
+                <laidOutElement xml:id="m-991d6928-bfc9-4ba9-b3fd-8f373065a8f3" ulx="842" target="m-2ed2af5c-1243-48fe-a38a-91197dd8f7f5"/>
+                <laidOutElement xml:id="m-dfed8738-4ed9-434a-8c89-00468d822b21" ulx="884" target="m-d462962d-9dce-4f79-8341-1df0f00f7516"/>
+                <laidOutElement xml:id="m-07a9370b-2d02-442a-aca0-8ba6f03bb2c6" ulx="928" target="m-4e1c2983-1ba5-48ef-99d5-590f213e368b"/>
+                <laidOutElement xml:id="m-a308002c-3a97-414f-91cf-787816fda006" ulx="956" target="m-6fce68c9-8086-44bb-98f9-d170d1a56743"/>
+                <laidOutElement xml:id="m-d1dd8c1b-03db-46a1-bace-747efeebb25d" ulx="978" target="m-239f3cc2-de55-4fe4-b01a-b84bc7212b22"/>
+                <laidOutElement xml:id="m-cb09deeb-ff3e-4b30-ba5c-90188d1ae2da" ulx="1026" target="m-300310d9-4510-45d6-a060-9ae83235e04a"/>
+                <laidOutElement xml:id="m-69ae79ce-3b8e-4789-aa49-e3bc080044bd" ulx="1070" target="m-6e737cde-096f-4fdd-94c4-e25cc5ba507b"/>
+              </laidOutLayer>
+            </laidOutStaff>
+            <laidOutStaff xml:id="m-742db67d-fcf9-4e3d-a1be-442f3845a921" ulx="0" uly="1240">
+              <laidOutLayer xml:id="m-c3b866b9-5425-4c1a-abe2-bbfb9f42684f">
+                <laidOutElement xml:id="m-c21a2fa5-6779-4a38-94e3-db1a65839b9d" ulx="35" target="m-f2f70289-c8a6-4c93-aadd-ededea5f360b"/>
+                <laidOutElement xml:id="m-851844a6-8590-4d60-ac27-e531a0be0b41" ulx="77" target="m-cd5e8810-3ee1-46a9-9d36-8248da7f9c37"/>
+                <laidOutElement xml:id="m-e1164ee5-7bc9-442e-95ed-b21e35f7e4c7" ulx="101" target="m-b5b4593c-5274-4090-a202-fd3084c8e3a5"/>
+                <laidOutElement xml:id="m-8f955ff3-9f37-4d0e-81cf-120781a14826" ulx="121" target="m-448b5b95-3bb8-456f-89b9-55fe16347f85"/>
+                <laidOutElement xml:id="m-355cb2b4-32ff-4694-91e5-f54dc9f84a70" ulx="167" target="m-77a72a55-6186-48b7-b2b2-a4ad63310cd0"/>
+                <laidOutElement xml:id="m-5e7acdb1-107b-4849-ab1c-3dcbf8539372" ulx="207" target="m-4b159b78-fc96-4d1a-a330-62be0e1d3b71"/>
+                <laidOutElement xml:id="m-9d6c3264-f0cb-44fb-a669-1201b6454aed" ulx="245" target="m-3b663d8d-c94b-46b8-8e0e-e7f82905431e"/>
+                <laidOutElement xml:id="m-81a1636e-8530-4cd1-92dd-7a4753d61057" ulx="271" target="m-b767429e-42b1-4b27-b402-a058a2309a2d"/>
+                <laidOutElement xml:id="m-9b8a64ec-459e-4d04-9199-f876bbbaf0fd" ulx="291" target="m-40ad7ba3-8720-497a-8429-704c052d26d0"/>
+                <laidOutElement xml:id="m-86769e3c-70b1-48b5-99f2-59a29aeea960" ulx="331" target="m-2bbec198-06e5-4e41-80f4-70af1b1e6915"/>
+                <laidOutElement xml:id="m-93e28c29-6ca2-408e-9cb0-7142a529c3f6" ulx="363" target="m-b7f412de-fcbb-48b5-a0a5-3158d5f4cdbe"/>
+                <laidOutElement xml:id="m-9de36b35-5227-48ce-aa48-5ad9f28de02d" ulx="399" target="m-d94de1d3-aa54-43c3-9e8f-5a4d36795a8d"/>
+                <laidOutElement xml:id="m-dc7bdb67-0f85-46d5-aaeb-9c268eb4309f" ulx="435" target="m-63bd884e-25c2-4fbf-821c-b972298ad68b"/>
+                <laidOutElement xml:id="m-d1d5e3a2-76c5-4e2d-925a-56aab1084769" ulx="455" target="m-61ed70f8-dcc5-47f4-bb3f-e450beba1976"/>
+                <laidOutElement xml:id="m-810f05e6-26cd-414b-93c1-44e6a9955f5b" ulx="473" target="m-5745c01e-6eca-4fc7-8374-d86f6d1aaf29"/>
+                <laidOutElement xml:id="m-d696e20f-4381-429c-9436-315571b2f3be" ulx="493" target="m-aa3f6475-3bb0-4ecd-a491-a5e3685525ec"/>
+                <laidOutElement xml:id="m-13f66f87-26f6-44ac-97c7-e54fdb07655a" ulx="539" target="m-40f40bb5-f1be-4e24-80bd-2fcc2beb6b4c"/>
+                <laidOutElement xml:id="m-33d641c9-ef80-4785-a399-34abc00f2bee" ulx="565" target="m-87b9dd4b-efba-48e0-9280-1c93d8683e86"/>
+                <laidOutElement xml:id="m-50d58681-e55d-45c4-9f5f-bad089354f83" ulx="579" target="m-290af01b-00fb-4c4c-b878-de79fb42c6f5"/>
+                <laidOutElement xml:id="m-ad363f67-36cd-44f5-a884-14efed283ff3" ulx="615" target="m-f425678c-6cfb-47ff-b2d3-ccfb80c6b7e9"/>
+                <laidOutElement xml:id="m-3d056e62-8cc2-438f-8179-944a6ff031b1" ulx="651" target="m-625a4b69-ad00-4e5f-b306-03f9d1ef6312"/>
+                <laidOutElement xml:id="m-3b204f05-0140-4087-acca-e5374226496e" ulx="682" target="m-90e5710a-3495-4d91-91ce-1ff0653ad484"/>
+                <laidOutElement xml:id="m-eac9de8a-c1de-42ab-b4c3-b85c38d282ae" ulx="722" target="m-834422e5-573b-47b6-8468-1ceef34b57b4"/>
+                <laidOutElement xml:id="m-25937fcf-dc3f-4994-a717-c8bbfa2f9216" ulx="743" target="m-3f62719a-5701-4869-a784-4b65a7350e8a"/>
+                <laidOutElement xml:id="m-fcb2eed3-85db-4975-8db4-82576fb07979" ulx="764" target="m-a888224f-56c1-48fc-9539-97c82f06494a"/>
+                <laidOutElement xml:id="m-83933194-cc2f-4eca-9f23-ce222bbf9c49" ulx="795" target="m-865b55e1-ff97-41be-958d-a4d737a03f67"/>
+                <laidOutElement xml:id="m-f6d966e8-d329-4663-979a-603cca8d8527" ulx="825" target="m-6e33fafe-e560-445e-8271-642cc80a9b7b"/>
+                <laidOutElement xml:id="m-76192905-7b0d-4286-b20c-88624a281118" ulx="867" target="m-f7a1357d-fb00-45dc-9ab6-be22511cc8d3"/>
+                <laidOutElement xml:id="m-ee84e73f-0deb-4f20-aa65-0d702341e7ed" ulx="911" target="m-e9e1ea9f-7137-4bed-9f3a-7428a35c2a3a"/>
+                <laidOutElement xml:id="m-a3ea1adc-fc1b-4cf8-811c-239ab2e8f047" ulx="951" target="m-ce7dd988-a093-4461-94ff-aba78075f6e5"/>
+                <laidOutElement xml:id="m-b4f76b50-4d71-47a2-ba3b-eeb15ac6fd06" ulx="977" target="m-67225506-43a2-4af7-a792-eda6333d2fd4"/>
+                <laidOutElement xml:id="m-820ae67b-bf1c-43bb-ab85-ddecbe0d1477" ulx="1001" target="m-e508c38c-93cf-45ac-a8a6-075baa714d24"/>
+                <laidOutElement xml:id="m-98fd45ab-8815-4e85-b2cd-a0197f9b6f5e" ulx="1037" target="m-60478981-214c-4310-b11f-d4bf488ca29d"/>
+                <laidOutElement xml:id="m-b3fb9143-0422-46e1-b5ed-906559786c3a" ulx="1071" target="m-7177087d-2213-43aa-8b27-c544281a9ddd"/>
+              </laidOutLayer>
+            </laidOutStaff>
+            <laidOutStaff xml:id="m-18e1f00d-1a99-4d33-9b42-d07887afb1a4" ulx="0" uly="1040">
+              <laidOutLayer xml:id="m-e4907c7f-21ed-4686-8adb-fe56bf74ab19">
+                <laidOutElement xml:id="m-37230139-5267-420b-be8b-216e2028631a" ulx="35" target="m-9247ba60-9fd8-4adb-8874-47d5f3df8120"/>
+                <laidOutElement xml:id="m-cec4b2ef-3ec7-46b6-9418-92d0634b6242" ulx="83" target="m-828ad2e0-8af5-4b11-adbf-b7b8992aa97e"/>
+                <laidOutElement xml:id="m-8b4c91fd-6f6b-4bcf-8019-5a7f10dae68b" ulx="123" target="m-7290c2b2-d1f8-447c-8d66-d3ee7e7fc460"/>
+                <laidOutElement xml:id="m-b5a22436-d8b3-496b-9a10-b3f7fa908f38" ulx="171" target="m-c5f5942f-2ce4-4335-8729-096b64602669"/>
+                <laidOutElement xml:id="m-42e5f5fd-fee0-41b5-8a72-1fb57a8e95f4" ulx="215" target="m-7bfdf662-2a0c-4447-8968-cdd2fb91e914"/>
+                <laidOutElement xml:id="m-f013bd0f-de3e-4347-a349-c19ea5ec22a4" ulx="241" target="m-c941820f-d8de-483f-9e32-feec7f53f897"/>
+                <laidOutElement xml:id="m-a1d886bc-3889-4c6c-abc7-c400e7da8a38" ulx="265" target="m-168804ba-5465-4fb9-86c1-095c2eb154e6"/>
+                <laidOutElement xml:id="m-3d70322f-7df9-4ec9-a4b6-51cc4a0b40d5" ulx="303" target="m-13af95d2-cd2a-41f4-b8c5-7eb54315a1ae"/>
+                <laidOutElement xml:id="m-999fa45b-45c9-4d14-91fc-ef65d62735cd" ulx="347" target="m-6f2d1ee7-a568-49e2-a73d-721e645d2069"/>
+                <laidOutElement xml:id="m-e2edebcc-9ad8-45c8-93a7-f9ea03c4f624" ulx="379" target="m-cc918007-8a77-4334-bee8-1b3f2a4c3fd1"/>
+                <laidOutElement xml:id="m-2fdb010c-c477-4b32-8150-e0d2f09766cc" ulx="423" target="m-6b1feb31-0a25-4a85-94c6-9512ceef82c1"/>
+                <laidOutElement xml:id="m-fc6c47ee-77e4-45ec-ae21-d8e53a3e01a1" ulx="469" target="m-a4fda95c-f920-44e3-a578-320ec5d0c530"/>
+                <laidOutElement xml:id="m-934813bc-471a-484a-a71e-8e92f9593697" ulx="515" target="m-759f7b12-5f2d-4b85-b96b-1184bf4eb8b9"/>
+                <laidOutElement xml:id="m-4a084261-9b15-486c-a34c-25668d08580c" ulx="559" target="m-5be5916f-f394-44d0-9d2f-d68912538b21"/>
+                <laidOutElement xml:id="m-5fa4fbde-5008-48b5-93f4-624cd3fa4b48" ulx="603" target="m-5add5f86-d6bc-4983-a64d-98a1ba14151b"/>
+                <laidOutElement xml:id="m-25de1ccc-c6b6-440f-b693-1b59124452e7" ulx="647" target="m-491533c2-9a1d-4b13-8e20-e6181232cf8f"/>
+                <laidOutElement xml:id="m-e77c93db-2de9-4529-83e4-37496f4e2994" ulx="691" target="m-76f70ed1-0588-4480-80c5-1af0fec7c4e5"/>
+                <laidOutElement xml:id="m-8462a134-4943-4d31-a36f-108d00afe535" ulx="719" target="m-6e251533-a8f6-4c14-a280-bf2222cd00a2"/>
+                <laidOutElement xml:id="m-f85fc48d-09c3-44b3-b7c5-0207edcb4c51" ulx="751" target="m-867c870d-1b7b-4547-9e71-11eaae31977f"/>
+                <laidOutElement xml:id="m-163583bb-9fd5-46f8-857c-421e4a51405c" ulx="791" target="m-fd2edf7d-52b9-42c7-80af-c22286681abf"/>
+                <laidOutElement xml:id="m-f8d54050-e955-453e-afff-46b565aa7492" ulx="817" target="m-2a801099-15be-44e2-8948-5b0241189ccd"/>
+                <laidOutElement xml:id="m-c54b2dff-2a54-4029-8346-a768f3ca22ac" ulx="837" target="m-c0643db0-4bd2-4491-a6f5-20b84aaa4075"/>
+                <laidOutElement xml:id="m-1c4a663b-c944-4912-8f51-a99fcdd79ba2" ulx="879" target="m-486b41a7-2de4-4bf8-b577-87f990859b7e"/>
+                <laidOutElement xml:id="m-6da9dae9-1257-4728-bab8-b9d5d3e34bbd" ulx="905" target="m-2bf12ee4-422e-4b2c-9466-13e717ab341e"/>
+                <laidOutElement xml:id="m-ef47ca49-1c12-43d9-9363-97931f87e6b9" ulx="931" target="m-e200bb5d-29c7-4b58-ae26-4f310a6d2372"/>
+                <laidOutElement xml:id="m-c43739aa-ffc6-4fe8-ba20-12586ad1fb46" ulx="977" target="m-76ab6fbf-146f-4dee-8bd4-440d2d5b6635"/>
+                <laidOutElement xml:id="m-685498fe-5409-4f70-ae49-02e98d95795c" ulx="1021" target="m-d6c10728-67c5-4acf-bd3d-1d7d7aea93d5"/>
+                <laidOutElement xml:id="m-3bb0d630-3136-48a7-88e5-fbfc55fc6d99" ulx="1066" target="m-4b0aacb4-5c4d-4a20-92b6-5be0c1140145"/>
+              </laidOutLayer>
+            </laidOutStaff>
+            <laidOutStaff xml:id="m-4920104a-8361-499c-b2d2-d51abe7dc2f2" ulx="0" uly="840">
+              <laidOutLayer xml:id="m-a85c8d81-e7cd-45b8-ab2a-17b51d0bd55d">
+                <laidOutElement xml:id="m-b4f46aa3-a2b5-4218-a079-def31102e9b7" ulx="32" target="m-be70e203-6984-4800-8347-6034db3824eb"/>
+                <laidOutElement xml:id="m-22597cac-59d0-4bbd-ba41-de9c37d5e1a5" ulx="70" target="m-809fdd21-f297-4bf2-aac8-e48c5483eb0f"/>
+                <laidOutElement xml:id="m-5fc8ed0b-8c5b-41d0-995f-59d899f61dc3" ulx="110" target="m-e3239482-23f3-49fa-91a3-988c38fa0165"/>
+                <laidOutElement xml:id="m-61170062-3055-48c6-8166-20d0263f1a5f" ulx="152" target="m-4335b89b-4581-48ff-8a80-926e1c3a5f87"/>
+                <laidOutElement xml:id="m-a37b259f-9b37-428c-a9c1-b8f0e52407df" ulx="198" target="m-3292c1ee-4d83-4d13-9e80-9fa53f835b49"/>
+                <laidOutElement xml:id="m-113fa081-8d26-4c6e-ba55-027d7d168ec5" ulx="242" target="m-05107c43-85db-4136-8c16-d06a7763912c"/>
+                <laidOutElement xml:id="m-57e7a04f-2c47-46f6-ab36-75c667877044" ulx="274" target="m-c3a7afeb-7324-4134-b028-6c16b6341ef4"/>
+                <laidOutElement xml:id="m-3cd14ddc-20cd-4c99-bb77-774fce90414b" ulx="306" target="m-6caf6449-8fbf-4119-a4eb-875877d52da3"/>
+                <laidOutElement xml:id="m-9525debe-2b17-49fc-9603-ff8c42204f2a" ulx="346" target="m-c2b65190-ebfc-49c6-b15c-ab63fe87d35a"/>
+                <laidOutElement xml:id="m-95d18c09-7d9c-473b-8c6c-5e73f0d700b2" ulx="370" target="m-6351d826-e399-4c2f-a66c-3e753667b6ce"/>
+                <laidOutElement xml:id="m-57bfd139-4eae-4ce3-98b5-c602de4318bc" ulx="386" target="m-3a59319c-39a6-4aa8-b4a7-ee4b4d988fc2"/>
+                <laidOutElement xml:id="m-7cade2cb-e514-4e2b-b7f8-c1cd478375c3" ulx="420" target="m-7bb7230f-d0a0-4661-b6be-ce705f1fb863"/>
+                <laidOutElement xml:id="m-b462b357-fbeb-4eed-a2e9-d35dd56cd107" ulx="454" target="m-80e7f5f1-2719-467c-ae34-ccf4a67f680e"/>
+                <laidOutElement xml:id="m-6f8a337d-2d70-46cc-aacc-fb89c88d8c06" ulx="496" target="m-ac635a57-fc43-4556-82f7-58d226bbedfc"/>
+                <laidOutElement xml:id="m-db461c44-20ad-4d18-9153-4f6dd710c4c2" ulx="522" target="m-fd3ab271-2361-4bdd-9f9e-1ad9a6f78079"/>
+                <laidOutElement xml:id="m-ff2d0fd6-e2c7-4808-b283-bc45f45b640a" ulx="572" target="m-a6d41eaf-ebf5-4d0a-b690-089338a22d54"/>
+                <laidOutElement xml:id="m-01b02446-6b58-4606-977c-def7cffcfaae" ulx="598" target="m-5997e7db-f5ff-4ab4-8a4c-0a2ab375febc"/>
+                <laidOutElement xml:id="m-fbecc411-6caa-4428-a162-b71060655671" ulx="622" target="m-266b4b5d-2ae0-46c4-9a3c-927df2051be0"/>
+                <laidOutElement xml:id="m-a9a8c7da-1c3f-40be-8cba-1dcc5234d909" ulx="650" target="m-18492c23-15db-4d40-a414-387d1746ce04"/>
+                <laidOutElement xml:id="m-6219b932-ccaf-4cfa-9f86-365a4592ba99" ulx="672" target="m-9c7ea366-9e75-4aa7-ace2-a8e28bb260e5"/>
+                <laidOutElement xml:id="m-3559d552-fa5f-4445-9184-0ef585e623d7" ulx="716" target="m-504993eb-be46-4f7f-a2cf-6595b229d965"/>
+                <laidOutElement xml:id="m-d7aa83f3-a067-448c-884a-311b2146aa95" ulx="764" target="m-7b048867-f0c3-452e-9aab-a13b5991ea06"/>
+                <laidOutElement xml:id="m-5156c11e-cc6c-4672-9932-2bb845c5110f" ulx="816" target="m-22808ab2-e667-4268-ad9b-44521b95b603"/>
+                <laidOutElement xml:id="m-d6734938-c173-4de1-bd45-b21c03d3d2c1" ulx="868" target="m-3ec1fcdd-b896-4289-b190-e5d27f578964"/>
+                <laidOutElement xml:id="m-4d8ba907-b5ff-4507-bd98-bcd4f3f66ce0" ulx="912" target="m-b787fb78-3a19-4416-8497-404dcf289548"/>
+                <laidOutElement xml:id="m-b551c50c-e3e8-4319-9d64-5dcb6819c5af" ulx="942" target="m-f77c064f-3b68-49cf-9ff1-4932db1ba571"/>
+                <laidOutElement xml:id="m-b4f9d098-9df9-4794-8113-5aa67fd28c10" ulx="1000" target="m-3ab9641f-001a-4a39-9632-f80495f97267"/>
+                <laidOutElement xml:id="m-d607c63b-ca06-4675-a149-2502ede6165f" ulx="1040" target="m-261143a9-02e9-4050-a843-fe274e419c0d"/>
+                <laidOutElement xml:id="m-90dfb30a-77b8-4a82-b15a-1e677956ecd9" ulx="1068" target="m-5e0fd043-abde-4d97-a5af-43fff65314d1"/>
+              </laidOutLayer>
+            </laidOutStaff>
+            <laidOutStaff xml:id="m-6567d53e-e4b4-4664-8cb1-3716fa768448" ulx="0" uly="640">
+              <laidOutLayer xml:id="m-5b156b6b-de3e-4e22-8e20-60736d583a5b">
+                <laidOutElement xml:id="m-d4e5fde3-d88c-45be-911f-4437ad2c23f0" ulx="29" target="m-2d54ffe0-2045-49fa-bd5b-68191ac87838"/>
+                <laidOutElement xml:id="m-70adbf91-6ab5-4f0e-99a6-184a86ad5304" ulx="63" target="m-b8e80952-ff2d-46f5-8c10-b015a66e762a"/>
+                <laidOutElement xml:id="m-6743222d-2217-470d-be18-94714bc1a69c" ulx="89" target="m-0558e880-a440-4974-b70f-be35d61e6cb3"/>
+                <laidOutElement xml:id="m-d726a2d5-3f0c-4c31-9ece-42d76a595f3d" ulx="145" target="m-52ad0bab-2c93-4c51-a6e7-1aec021a2139"/>
+                <laidOutElement xml:id="m-50efaeb6-6885-4503-8805-729e8c027646" ulx="184" target="m-89e6de13-f249-4187-82fc-672e6025924c"/>
+                <laidOutElement xml:id="m-c3030ac1-71bf-4d69-8ebe-9967385e20aa" ulx="213" target="m-f6b6b947-5c1d-4446-899c-07705f40cd08"/>
+                <laidOutElement xml:id="m-7d436bc6-93c9-4d71-ac42-cfa2c2119830" ulx="237" target="m-97fce993-72e4-4820-8ecd-ca3860492087"/>
+                <laidOutElement xml:id="m-5c5e5fab-c79a-4f8a-aa61-f272b90e78b8" ulx="277" target="m-444db6e8-f69e-4c0e-b0fa-aad0b93930e1"/>
+                <laidOutElement xml:id="m-b320210b-d308-4667-bda3-ead8dafd4a1c" ulx="317" target="m-36588ea8-e018-4191-b8e0-67d4aff0a9ae"/>
+                <laidOutElement xml:id="m-502ea655-0ad0-449e-82c2-c865f7591b03" ulx="355" target="m-179db9d5-c240-4db7-91b7-4e851ce88aab"/>
+                <laidOutElement xml:id="m-b46e1dcc-270e-460e-aa8a-654381ed3cd3" ulx="397" target="m-f5dd849d-f425-4709-b70c-513a6cf68792"/>
+                <laidOutElement xml:id="m-91a7e4ea-c9bb-4791-9fa1-704f1d2be180" ulx="443" target="m-6b5a3255-5fe7-4b98-81bb-ba036e851ffc"/>
+                <laidOutElement xml:id="m-4f52de9e-93c6-4101-9e75-73b778a48221" ulx="489" target="m-4628c586-a65e-4bba-a0f4-730303250773"/>
+                <laidOutElement xml:id="m-225c7621-dd24-4995-a7fd-64e126abd38b" ulx="533" target="m-31d082e9-de8e-4298-bf98-12c269efe5c4"/>
+                <laidOutElement xml:id="m-b83159a3-8b79-4104-8864-34331d2f39f3" ulx="573" target="m-6c39b9b9-e775-4449-9c8f-b5dd1b6c6b6f"/>
+                <laidOutElement xml:id="m-ad612480-420f-4bfc-ab38-d8d214791d87" ulx="613" target="m-06120f52-cda0-48bb-bec8-18d1b72df0c5"/>
+                <laidOutElement xml:id="m-706262fc-929c-403c-8059-cab4a338387a" ulx="639" target="m-f0a9cd4d-cad8-4990-ad25-dd2f1908eb51"/>
+                <laidOutElement xml:id="m-de174f8a-30f1-4f11-870d-a7b5bba0c5e8" ulx="661" target="m-e9b8eb94-533f-45d1-ae3e-ed74bb841294"/>
+                <laidOutElement xml:id="m-7003280c-c84d-4fb7-9fbf-e6616119de1e" ulx="699" target="m-e8a87fdb-9be7-4864-beb8-bce0f2d306f4"/>
+                <laidOutElement xml:id="m-f426d875-de98-4dca-871d-72126d6a8b9c" ulx="743" target="m-4c5bac8d-990a-4161-b5c1-6ab993447418"/>
+                <laidOutElement xml:id="m-5f721b42-ac58-4087-9721-7c7286d8fcff" ulx="771" target="m-312fe2a7-b7a6-479c-ae61-ceebef46c7bd"/>
+                <laidOutElement xml:id="m-7477661c-1caf-4360-984d-1ca63d38951b" ulx="795" target="m-9dab2af2-8876-4be2-94e8-b44623f3b316"/>
+                <laidOutElement xml:id="m-6189779d-8c90-47b0-8ebd-8a0a6b355d9a" ulx="823" target="m-5f856262-ce7a-4bc6-84f8-7e2f93bcde9f"/>
+                <laidOutElement xml:id="m-c9f53ef1-5f03-4962-a57c-1b20be9d1ef5" ulx="867" target="m-7d903719-ad64-470d-8312-758394df449f"/>
+                <laidOutElement xml:id="m-3ccee4d6-c390-4a3e-9c6e-c9bd7545898a" ulx="911" target="m-c276e699-42e6-4e92-b86c-33bb96ea741b"/>
+                <laidOutElement xml:id="m-d5851c30-2d8c-4fe1-acab-43e206443ba3" ulx="957" target="m-11f9a099-c5ea-46f9-bf27-ef26bbcef39d"/>
+                <laidOutElement xml:id="m-81b398ac-5764-405c-9593-b3e652226767" ulx="1001" target="m-cc24d6a4-da7b-4f1c-a8f1-de6a72fb77d5"/>
+                <laidOutElement xml:id="m-0e11efd4-23ab-4e26-a48b-b939f5fb2c0b" ulx="1039" target="m-929c021e-6748-47ad-9a79-28678b446c52"/>
+                <laidOutElement xml:id="m-b0c9fc8c-f780-42e1-8fd1-0d289ea28784" ulx="1065" target="m-4113b85d-e1d5-4726-bcbe-e324d67b148a"/>
+              </laidOutLayer>
+            </laidOutStaff>
+            <laidOutStaff xml:id="m-a6579d64-b2dc-4052-9836-a78736d1373f" ulx="0" uly="460">
+              <laidOutLayer xml:id="m-8b529006-d689-4224-b5ea-cfbf2f99c98a">
+                <laidOutElement xml:id="m-6b1fc98e-7b50-48b6-a5ff-aeb094f20397" ulx="29" target="m-0367cae0-87fb-415b-8917-04fb09bd2983"/>
+                <laidOutElement xml:id="m-b1241914-924f-4898-97cf-759bad0fca79" ulx="61" target="m-b222312a-51ed-49cb-8b07-6bf26fb8dc65"/>
+                <laidOutElement xml:id="m-c1c1d63c-403e-4b0c-b1a2-668b647d1e8a" ulx="89" target="m-d35f1cd8-632c-4a0b-878f-f726e63a40c7"/>
+                <laidOutElement xml:id="m-45754191-e1fd-4044-9086-84cec12a8187" ulx="137" target="m-6eb1fee7-6876-48ff-ac85-a8cc980dc241"/>
+                <laidOutElement xml:id="m-969df355-d576-4a2f-9bc9-1a33e313f1d4" ulx="187" target="m-a32348f1-4c4f-4b4c-9244-5f38f60569bf"/>
+                <laidOutElement xml:id="m-1e6c0e75-5805-4d8e-8801-83382e707cdc" ulx="233" target="m-5e19fcac-f850-48be-b9a4-dd3fdb75076e"/>
+                <laidOutElement xml:id="m-eba3904d-947a-4054-a8c1-cd0ea578af56" ulx="259" target="m-dba9f8e4-db8a-4e13-bd47-1f71c8f576ed"/>
+                <laidOutElement xml:id="m-41b0a5b1-11d9-451f-941e-eb43c7a3759e" ulx="281" target="m-3743f103-4386-448d-af7f-604c870d5eb5"/>
+                <laidOutElement xml:id="m-fbe32521-f26e-4d7e-99ed-ba676bc6edb4" ulx="323" target="m-fa82b44b-08ba-43f8-8c32-b249597366c9"/>
+                <laidOutElement xml:id="m-0a030e57-9fbc-4b21-8ddd-0a8f3a33eb7a" ulx="355" target="m-ad406240-13d4-4193-9e54-03a89f2abb40"/>
+                <laidOutElement xml:id="m-175c4773-23aa-467c-8989-e86ad31f7cb4" ulx="381" target="m-765ffcda-d87c-4780-ab19-81b5f9e296be"/>
+                <laidOutElement xml:id="m-386d51e8-caf9-4806-9e66-ef0a1e9fbd0b" ulx="437" target="m-b11c9106-aaf1-4f7c-892b-b00f0e253794"/>
+                <laidOutElement xml:id="m-d159caaf-a41d-4790-bf32-e581ac4bd92d" ulx="483" target="m-f5811012-c095-4e84-bf15-3be6a5a9836a"/>
+                <laidOutElement xml:id="m-9bd1472c-3a6d-4519-b97f-0fe5f701d588" ulx="527" target="m-220c0c2a-54d6-4334-9602-e8ea2c6b519a"/>
+                <laidOutElement xml:id="m-2ca26fa5-cd0b-4736-a794-56da4f1cd75b" ulx="555" target="m-86d8ea99-baf4-4fb4-a2cd-826b82f1bf76"/>
+                <laidOutElement xml:id="m-7904f6be-3782-413e-bf87-9ac08ca81bad" ulx="577" target="m-4fead37a-15ce-4371-86f6-868819662e2d"/>
+                <laidOutElement xml:id="m-e19b57b8-9dfe-4a0f-8060-5b24b9090b23" ulx="619" target="m-6739e41c-1166-40c2-ad87-a5a1fb7b0c83"/>
+                <laidOutElement xml:id="m-be493cf2-cd48-40c8-afe5-63e8c849cd5f" ulx="655" target="m-68fa31e8-6c4f-4d8e-8c01-9c3d9124af1d"/>
+                <laidOutElement xml:id="m-5fd18349-0b84-4ef3-a011-0e6608f100ab" ulx="697" target="m-e7aa0b43-79f4-417c-b185-fb2be615c510"/>
+                <laidOutElement xml:id="m-246248ec-92b2-483d-a0da-c12dd4f13592" ulx="737" target="m-f5655ec0-b71e-4843-821a-9cf0c4b9cf6b"/>
+                <laidOutElement xml:id="m-796dd037-209b-40e7-98fe-9064d27371b2" ulx="777" target="m-8a78bea4-5e71-4f2b-8b4f-1179677a8742"/>
+                <laidOutElement xml:id="m-d52b6447-89f8-4804-8d37-8ddb0fa8acf4" ulx="801" target="m-4e7997fa-4ec6-4952-a46d-542f804e2135"/>
+                <laidOutElement xml:id="m-ae1ac2de-f906-41ec-925b-896fe349fe47" ulx="823" target="m-7c27c5f4-5be2-417b-8624-0f02d7c1921b"/>
+                <laidOutElement xml:id="m-bc32c9a6-6c61-4505-9737-7d5f69649b81" ulx="865" target="m-4f950635-28d3-479f-8433-15a5b511c124"/>
+                <laidOutElement xml:id="m-983f858a-f1f1-4d4a-98d9-513048b85e5f" ulx="899" target="m-0479e613-d800-4f7f-9917-229cd812bd55"/>
+                <laidOutElement xml:id="m-8850c7b0-05b9-454b-a79a-d964ccae154a" ulx="927" target="m-76c0db56-5714-452c-994d-0b07b9ff4c43"/>
+                <laidOutElement xml:id="m-b85bb82c-ea18-4da9-b546-435c978bf12e" ulx="953" target="m-b82298b2-4eb3-44a2-8576-4d65712d4504"/>
+                <laidOutElement xml:id="m-842da586-d126-411b-b3a6-4f7c78479211" ulx="975" target="m-7d21133b-52d4-425b-aacb-1de8a11d756a"/>
+                <laidOutElement xml:id="m-dee050cf-1c1f-4a91-b7af-35b4bdd6f1ac" ulx="1021" target="m-97686d41-66b2-4aa1-8ae0-c7acc9953140"/>
+                <laidOutElement xml:id="m-2f937fb9-ec9d-4ea3-874e-8315a5906d24" ulx="1063" target="m-07f13a8c-f1d0-4105-9b5c-23a76e086109"/>
+              </laidOutLayer>
+            </laidOutStaff>
+            <laidOutStaff xml:id="m-4d276ea6-0df2-4394-8058-d9864076933b" ulx="0" uly="260">
+              <laidOutLayer xml:id="m-e8dc8335-9e81-4457-9048-3c2e4ed91305">
+                <laidOutElement xml:id="m-dbe61c35-54b5-46a1-9fab-b15e70256beb" ulx="26" target="m-96679afb-f1ee-4ea8-b933-02d447ca2808"/>
+                <laidOutElement xml:id="m-7ba9379b-730b-4019-a20c-660cf2208ecb" ulx="70" target="m-c953cc7c-f062-45e3-8f17-bef4c8c1bc0a"/>
+                <laidOutElement xml:id="m-62172af0-2005-46b2-97bb-9151e575659e" ulx="94" target="m-2a4aae1f-efdb-4408-8d56-1534f9787acd"/>
+                <laidOutElement xml:id="m-339e6874-7330-4df1-9fae-560a8c582943" ulx="114" target="m-dc8df145-9825-4b58-aae3-31670f7bfe15"/>
+                <laidOutElement xml:id="m-d6ee4f79-9ee4-4ba2-8152-327ff025123e" ulx="160" target="m-d083ba58-f1dd-4e6e-9ee3-0a9dc550372d"/>
+                <laidOutElement xml:id="m-90955e16-10db-4852-9845-165148b8e8c7" ulx="212" target="m-70d5c24a-5632-4a9f-8fb4-910d9bf1b563"/>
+                <laidOutElement xml:id="m-234bc1bd-784d-4624-90a7-3e170484220b" ulx="240" target="m-b1bef89e-dd50-4d20-b834-8836fb44cfc8"/>
+                <laidOutElement xml:id="m-ef7c9b40-fb05-41ee-bab7-9b4253be79c6" ulx="264" target="m-d3bf2d0c-50cf-4e2f-8a41-9abfbd029657"/>
+                <laidOutElement xml:id="m-732e5721-0e74-461c-8142-31d661e125e5" ulx="316" target="m-af458e9f-3ed6-4a04-9663-8b44b0d3fbba"/>
+                <laidOutElement xml:id="m-e6de0236-3118-40ed-992f-0051f05cc528" ulx="368" target="m-2e740f85-9c8a-40a7-bfc5-383ca3df12a2"/>
+                <laidOutElement xml:id="m-14d12eba-4e66-48d8-bced-8c3a83686949" ulx="396" target="m-7fccbb3f-ee95-45a1-aa1c-1f12025b9ed4"/>
+                <laidOutElement xml:id="m-4548ac45-ae56-4acc-b245-b4f7d25e73e1" ulx="420" target="m-604ae3d8-ea69-445a-b35a-8aa925cc7b27"/>
+                <laidOutElement xml:id="m-4d72a1ca-44ea-4b67-bf1a-ba2bccef1a5d" ulx="458" target="m-31e9b095-d546-4aa5-93bc-00353be8179d"/>
+                <laidOutElement xml:id="m-13cca171-232d-4aa0-a2ed-6ba9eba56c2d" ulx="502" target="m-8b10d791-358c-4c8d-99b5-cfe4f416cb50"/>
+                <laidOutElement xml:id="m-bc60f648-5436-4828-a508-89120ec2fef1" ulx="550" target="m-60e7b8a6-8577-44c3-b8c6-3f4b3b4ff698"/>
+                <laidOutElement xml:id="m-ec18aa4a-6610-471d-91cb-a99e938cb91a" ulx="604" target="m-901b531e-220c-43c9-be16-3c5227b3bf83"/>
+                <laidOutElement xml:id="m-6ca84da7-f5a6-419b-add9-f372f5007f32" ulx="650" target="m-10025fb7-dbdd-4abd-bd1d-e51fe3f8183f"/>
+                <laidOutElement xml:id="m-80921262-178a-439f-a2e2-50d94ccc4622" ulx="678" target="m-bc5609d7-199d-47ff-85a3-c6c5236c618f"/>
+                <laidOutElement xml:id="m-89d61059-67fc-4332-bd25-94b83a52e57d" ulx="702" target="m-18bb2bf2-b7db-4a60-a5af-abbf576200c3"/>
+                <laidOutElement xml:id="m-79992fc6-d395-4253-9af6-9438062f8ea5" ulx="736" target="m-4e62ce48-cbef-4761-9965-9a31b6836a3c"/>
+                <laidOutElement xml:id="m-0239e586-e5b4-4ee0-a999-599f53fb9fd7" ulx="776" target="m-1cbf8ab0-b65e-46b4-a98f-95ae73c2ad54"/>
+                <laidOutElement xml:id="m-fdb84611-6eeb-467f-ace1-3b4e366a00f4" ulx="800" target="m-101eb711-49f8-4dfd-8465-74c0b959e57b"/>
+                <laidOutElement xml:id="m-90043189-6704-4aab-914f-06d0300bb7e9" ulx="824" target="m-e6bb8a0f-6256-43ab-a9a7-8a9464156499"/>
+                <laidOutElement xml:id="m-4ed14946-7fb1-4bf4-a68b-01d7d08f8e9c" ulx="860" target="m-314860a0-d43f-4192-8909-002e592e74b4"/>
+                <laidOutElement xml:id="m-a3a9fcb3-15b8-4cf3-bd3f-e118828cc1fc" ulx="900" target="m-330a89ed-4296-4954-9596-b5035083c165"/>
+              </laidOutLayer>
+            </laidOutStaff>
+          </system>
+        </page>
+      </layout>
+    </layouts>
+    <body xml:id="m-f7d4e4f9-fc6f-4e95-ac60-33fff2fd1eeb">
+      <mdiv xml:id="m-a6a9b628-1b2f-4cce-8e70-010fafe15edf">
+        <score xml:id="m-76ff2cbd-fa48-4b2d-96ed-f158f95d24b8">
+          <section xml:id="m-2b81cacd-de87-4e41-9364-06513192e73c">
+            <staff xml:id="m-590588c1-de64-4cee-9d1c-9b5b1568183c">
+              <layer xml:id="m-82a3bf7f-10d7-4211-8328-85b86e5ae902">
+                <clef xml:id="m-e24c4d75-f770-49a8-b187-dad3662c212f" line="4" shape="C"/>
+                <mensur xml:id="m-d31ca6b3-6567-4446-be40-3edc03bb24c1" sign="C"/>
+                <mensur xml:id="m-ba304bb3-f450-49a7-a42d-3bf517075186"/>
+                <note xml:id="m-ab02f299-1819-436d-8c5d-86b3ea849e9b" pname="b" oct="3" dur="minima"/>
+                <note xml:id="m-52decd25-792a-45bc-b5b9-6fd6647f3aef" pname="b" oct="3" dur="minima"/>
+                <note xml:id="m-478ed622-59cc-4360-a7d9-dbf390284458" pname="d" oct="4" dur="minima"/>
+                <note xml:id="m-da9600f0-6d45-4390-8e28-cd6dfcb48eec" pname="d" oct="4" dur="semibrevis"/>
+                <note xml:id="m-c7d96542-229f-46f9-b818-f7dbdff5537b" pname="e" oct="4" dur="minima"/>
+                <note xml:id="m-cc740d55-10a7-4ef5-8a38-1352f35002c0" pname="c" oct="4" dur="minima"/>
+                <dot xml:id="m-e63c5907-4093-4f5b-9100-c2ee3fd674b4"/>
+                <note xml:id="m-ef1843f4-0050-43f6-9a30-83b7ef92d01b" pname="c" oct="4" dur="semiminima"/>
+                <note xml:id="m-e450f1d5-3b99-486b-b84b-3adcdd746500" pname="c" oct="4" dur="minima"/>
+                <note xml:id="m-018c131a-6faa-4d19-8c24-a43eefbc3aeb" pname="b" oct="3" dur="minima"/>
+                <note xml:id="m-681e8b56-206f-4dbc-b0e5-277d30c44071" pname="a" oct="3" dur="minima"/>
+                <dot xml:id="m-ba39f218-d55d-4c9e-a78f-9b03fb41bcbb"/>
+                <note xml:id="m-eafb9a8d-dc6e-457b-a793-f9e9eb8fe2f6" pname="a" oct="3" dur="semiminima"/>
+                <mensur xml:id="m-985b429f-b0fd-45c2-b5d2-873d15b1fa51" sign="C"/>
+                <note xml:id="m-5657b0c4-bcf6-4741-9db2-8ccedbec9e5d" pname="g" oct="3" dur="semibrevis"/>
+                <rest xml:id="m-c0c45d9c-7b60-431f-b107-4add61c85775" dur="minima"/>
+                <note xml:id="m-a87fe292-7e75-4998-8dff-dbf063f1236d" pname="g" oct="3" dur="minima"/>
+                <note xml:id="m-a951f496-7db0-43f9-a710-aea2bb8c905c" pname="b" oct="3" dur="semiminima"/>
+                <note xml:id="m-18032569-89e4-4ac0-a214-082be8c1f79c" pname="b" oct="3" dur="semiminima"/>
+                <note xml:id="m-be24e7dd-b086-4f4e-b9c9-15b3282bdb20" pname="d" oct="4" dur="semiminima"/>
+                <note xml:id="m-b768a91e-a246-4a67-ab1b-a0f801fd2882" pname="d" oct="4" dur="semiminima"/>
+                <custos xml:id="m-04906103-18df-4a9b-bdeb-fa63f9acf14f" pname="b" oct="3"/>
+                <clef xml:id="m-2fa568f3-f270-4e96-84ef-22d1dfa70263" line="4" shape="C"/>
+                <note xml:id="m-8756dfea-c000-41c8-b3c5-a18210e56919" pname="b" oct="3" dur="minima"/>
+                <note xml:id="m-653dc44b-0523-491c-a52e-e614ac63f99f" pname="g" oct="3" dur="minima"/>
+                <accid xml:id="m-50153357-7333-418e-b936-af5e572a4fe0" accid="s"/>
+                <note xml:id="m-9bf829c6-fd10-4ecc-ab84-e004fbac0f8b" pname="f" oct="3" dur="semiminima"/>
+                <note xml:id="m-c3087db7-c97c-43fd-b455-41da4cf755cc" pname="g" oct="3" dur="semiminima"/>
+                <note xml:id="m-01360cb5-f3d0-40fb-b5ae-c97f455960d6" pname="d" oct="4" dur="semiminima"/>
+                <dot xml:id="m-e289e2ea-daef-4bb0-a74d-caa9f1043fda"/>
+                <note xml:id="m-59e56773-6799-43f0-bf22-2a00cb4b40ec" pname="d" oct="4" dur="fusa"/>
+                <note xml:id="m-76f827ef-2e2a-4d77-8341-1dafcf94ef80" pname="e" oct="4" dur="semibrevis"/>
+                <rest xml:id="m-5c929b50-c0fb-42b5-955d-74fe8a849599" dur="semiminima"/>
+                <note xml:id="m-e9d533de-7039-4d3a-bb06-0c1c1fc0c054" pname="g" oct="3" dur="semiminima"/>
+                <note xml:id="m-c0e175d8-0433-4dc0-8a91-f2724e6f067f" pname="g" oct="3" dur="fusa"/>
+                <note xml:id="m-b024663b-e8d1-4642-bf32-ec7fc26f3d01" pname="a" oct="3" dur="fusa"/>
+                <note xml:id="m-8716e43d-9f3d-407b-9ee2-8e05a3635601" pname="b" oct="3" dur="fusa"/>
+                <note xml:id="m-afc5da36-8e2a-4695-a413-31337f0492e6" pname="c" oct="4" dur="fusa"/>
+                <note xml:id="m-d34395a5-1038-4584-a0e6-2c951cef4ddc" pname="d" oct="4" dur="fusa"/>
+                <note xml:id="m-97fe73f0-4969-409f-babd-73661c42746d" pname="c" oct="4" dur="fusa"/>
+                <note xml:id="m-22b50720-26a7-47be-bf35-6d8fdef17d6d" pname="b" oct="3" dur="fusa"/>
+                <note xml:id="m-41a64f1d-3061-41bb-859e-8169a57d9cd8" pname="a" oct="3" dur="fusa"/>
+                <note xml:id="m-04c4e79d-4a3c-42ca-bd41-45140b777eaa" pname="g" oct="3" dur="minima"/>
+                <note xml:id="m-07f63fa0-5e6e-4411-8cc6-56a291714b8d" pname="a" oct="3" dur="minima"/>
+                <note xml:id="m-b05dfd74-4667-4bc7-adb9-889c4568c4d3" pname="g" oct="3" dur="semiminima"/>
+                <dot xml:id="m-9f8168af-4a07-44b9-8015-0a5dd743fc73"/>
+                <note xml:id="m-02a82dbf-9aa1-46d3-8bd4-f10a1f19e576" pname="f" oct="3" dur="fusa"/>
+                <note xml:id="m-2ed2af5c-1243-48fe-a38a-91197dd8f7f5" pname="e" oct="3" dur="minima"/>
+                <note xml:id="m-d462962d-9dce-4f79-8341-1df0f00f7516" pname="d" oct="3" dur="semiminima"/>
+                <note xml:id="m-4e1c2983-1ba5-48ef-99d5-590f213e368b" pname="d" oct="4" dur="semiminima"/>
+                <dot xml:id="m-6fce68c9-8086-44bb-98f9-d170d1a56743"/>
+                <note xml:id="m-239f3cc2-de55-4fe4-b01a-b84bc7212b22" pname="c" oct="4" dur="fusa"/>
+                <note xml:id="m-300310d9-4510-45d6-a060-9ae83235e04a" pname="b" oct="3" dur="semiminima"/>
+                <custos xml:id="m-6e737cde-096f-4fdd-94c4-e25cc5ba507b" pname="c" oct="4"/>
+                <clef xml:id="m-f2f70289-c8a6-4c93-aadd-ededea5f360b" line="4" shape="C"/>
+                <note xml:id="m-cd5e8810-3ee1-46a9-9d36-8248da7f9c37" pname="c" oct="4" dur="semiminima"/>
+                <dot xml:id="m-b5b4593c-5274-4090-a202-fd3084c8e3a5"/>
+                <note xml:id="m-448b5b95-3bb8-456f-89b9-55fe16347f85" pname="b" oct="3" dur="fusa"/>
+                <note xml:id="m-77a72a55-6186-48b7-b2b2-a4ad63310cd0" pname="a" oct="3" dur="minima"/>
+                <note xml:id="m-4b159b78-fc96-4d1a-a330-62be0e1d3b71" pname="a" oct="3" dur="semiminima"/>
+                <note xml:id="m-3b663d8d-c94b-46b8-8e0e-e7f82905431e" pname="d" oct="4" dur="semiminima"/>
+                <dot xml:id="m-b767429e-42b1-4b27-b402-a058a2309a2d"/>
+                <note xml:id="m-40ad7ba3-8720-497a-8429-704c052d26d0" pname="c" oct="4" dur="fusa"/>
+                <note xml:id="m-2bbec198-06e5-4e41-80f4-70af1b1e6915" pname="c" oct="4" dur="minima"/>
+                <note xml:id="m-b7f412de-fcbb-48b5-a0a5-3158d5f4cdbe" pname="b" oct="3" dur="semiminima"/>
+                <note xml:id="m-d94de1d3-aa54-43c3-9e8f-5a4d36795a8d" pname="c" oct="4" dur="semibrevis"/>
+                <rest xml:id="m-63bd884e-25c2-4fbf-821c-b972298ad68b" dur="brevis"/>
+                <rest xml:id="m-61ed70f8-dcc5-47f4-bb3f-e450beba1976" dur="semibrevis"/>
+                <rest xml:id="m-5745c01e-6eca-4fc7-8374-d86f6d1aaf29" dur="minima"/>
+                <note xml:id="m-aa3f6475-3bb0-4ecd-a491-a5e3685525ec" pname="d" oct="4" dur="minima"/>
+                <note xml:id="m-40f40bb5-f1be-4e24-80bd-2fcc2beb6b4c" pname="c" oct="4" dur="minima"/>
+                <dot xml:id="m-87b9dd4b-efba-48e0-9280-1c93d8683e86"/>
+                <note xml:id="m-290af01b-00fb-4c4c-b878-de79fb42c6f5" pname="b" oct="3" dur="semiminima"/>
+                <note xml:id="m-f425678c-6cfb-47ff-b2d3-ccfb80c6b7e9" pname="a" oct="3" dur="minima"/>
+                <note xml:id="m-625a4b69-ad00-4e5f-b306-03f9d1ef6312" pname="c" oct="4" dur="minima"/>
+                <note xml:id="m-90e5710a-3495-4d91-91ce-1ff0653ad484" pname="d" oct="4" dur="minima"/>
+                <rest xml:id="m-834422e5-573b-47b6-8468-1ceef34b57b4" dur="minima"/>
+                <rest xml:id="m-3f62719a-5701-4869-a784-4b65a7350e8a" dur="brevis"/>
+                <mensur xml:id="m-a888224f-56c1-48fc-9539-97c82f06494a" sign="O" dot="true"/>
+                <mensur xml:id="m-865b55e1-ff97-41be-958d-a4d737a03f67"/>
+                <note xml:id="m-6e33fafe-e560-445e-8271-642cc80a9b7b" pname="b" oct="3" dur="minima"/>
+                <note xml:id="m-f7a1357d-fb00-45dc-9ab6-be22511cc8d3" pname="d" oct="4" dur="minima"/>
+                <note xml:id="m-e9e1ea9f-7137-4bed-9f3a-7428a35c2a3a" pname="c" oct="4" dur="minima"/>
+                <note xml:id="m-ce7dd988-a093-4461-94ff-aba78075f6e5" pname="b" oct="3" dur="minima"/>
+                <dot xml:id="m-67225506-43a2-4af7-a792-eda6333d2fd4"/>
+                <note xml:id="m-e508c38c-93cf-45ac-a8a6-075baa714d24" pname="b" oct="3" dur="semiminima"/>
+                <note xml:id="m-60478981-214c-4310-b11f-d4bf488ca29d" pname="g" oct="3" dur="minima"/>
+                <custos xml:id="m-7177087d-2213-43aa-8b27-c544281a9ddd" pname="b" oct="3"/>
+                <clef xml:id="m-9247ba60-9fd8-4adb-8874-47d5f3df8120" line="4" shape="C"/>
+                <note xml:id="m-828ad2e0-8af5-4b11-adbf-b7b8992aa97e" pname="b" oct="3" dur="minima"/>
+                <note xml:id="m-7290c2b2-d1f8-447c-8d66-d3ee7e7fc460" pname="d" oct="4" dur="minima"/>
+                <note xml:id="m-c5f5942f-2ce4-4335-8729-096b64602669" pname="c" oct="4" dur="minima"/>
+                <note xml:id="m-7bfdf662-2a0c-4447-8968-cdd2fb91e914" pname="b" oct="3" dur="minima"/>
+                <dot xml:id="m-c941820f-d8de-483f-9e32-feec7f53f897"/>
+                <note xml:id="m-168804ba-5465-4fb9-86c1-095c2eb154e6" pname="b" oct="3" dur="semiminima"/>
+                <note xml:id="m-13af95d2-cd2a-41f4-b8c5-7eb54315a1ae" pname="g" oct="3" dur="minima"/>
+                <rest xml:id="m-6f2d1ee7-a568-49e2-a73d-721e645d2069" dur="semibrevis"/>
+                <note xml:id="m-cc918007-8a77-4334-bee8-1b3f2a4c3fd1" pname="d" oct="4" dur="minima"/>
+                <note xml:id="m-6b1feb31-0a25-4a85-94c6-9512ceef82c1" pname="d" oct="4" dur="minima"/>
+                <note xml:id="m-a4fda95c-f920-44e3-a578-320ec5d0c530" pname="d" oct="4" dur="minima"/>
+                <note xml:id="m-759f7b12-5f2d-4b85-b96b-1184bf4eb8b9" pname="f" oct="4" dur="minima"/>
+                <note xml:id="m-5be5916f-f394-44d0-9d2f-d68912538b21" pname="f" oct="4" dur="semiminima"/>
+                <note xml:id="m-5add5f86-d6bc-4983-a64d-98a1ba14151b" pname="f" oct="4" dur="minima"/>
+                <note xml:id="m-491533c2-9a1d-4b13-8e20-e6181232cf8f" pname="f" oct="4" dur="semiminima"/>
+                <note xml:id="m-76f70ed1-0588-4480-80c5-1af0fec7c4e5" pname="d" oct="4" dur="minima"/>
+                <dot xml:id="m-6e251533-a8f6-4c14-a280-bf2222cd00a2"/>
+                <note xml:id="m-867c870d-1b7b-4547-9e71-11eaae31977f" pname="a" oct="3" dur="fusa"/>
+                <note xml:id="m-fd2edf7d-52b9-42c7-80af-c22286681abf" pname="b" oct="3" dur="semiminima"/>
+                <dot xml:id="m-2a801099-15be-44e2-8948-5b0241189ccd"/>
+                <note xml:id="m-c0643db0-4bd2-4491-a6f5-20b84aaa4075" pname="b" oct="3" dur="fusa"/>
+                <note xml:id="m-486b41a7-2de4-4bf8-b577-87f990859b7e" pname="d" oct="4" dur="semibrevis"/>
+                <dot xml:id="m-2bf12ee4-422e-4b2c-9466-13e717ab341e"/>
+                <note xml:id="m-e200bb5d-29c7-4b58-ae26-4f310a6d2372" pname="d" oct="4" dur="minima"/>
+                <note xml:id="m-76ab6fbf-146f-4dee-8bd4-440d2d5b6635" pname="d" oct="4" dur="minima"/>
+                <note xml:id="m-d6c10728-67c5-4acf-bd3d-1d7d7aea93d5" pname="d" oct="4" dur="minima"/>
+                <custos xml:id="m-4b0aacb4-5c4d-4a20-92b6-5be0c1140145" pname="f" oct="4"/>
+                <clef xml:id="m-be70e203-6984-4800-8347-6034db3824eb" line="4" shape="C"/>
+                <note xml:id="m-809fdd21-f297-4bf2-aac8-e48c5483eb0f" pname="f" oct="4" dur="minima"/>
+                <note xml:id="m-e3239482-23f3-49fa-91a3-988c38fa0165" pname="f" oct="4" dur="semiminima"/>
+                <note xml:id="m-4335b89b-4581-48ff-8a80-926e1c3a5f87" pname="f" oct="4" dur="minima"/>
+                <note xml:id="m-3292c1ee-4d83-4d13-9e80-9fa53f835b49" pname="f" oct="4" dur="semiminima"/>
+                <note xml:id="m-05107c43-85db-4136-8c16-d06a7763912c" pname="d" oct="4" dur="minima"/>
+                <dot xml:id="m-c3a7afeb-7324-4134-b028-6c16b6341ef4"/>
+                <note xml:id="m-6caf6449-8fbf-4119-a4eb-875877d52da3" pname="c" oct="4" dur="semiminima"/>
+                <note xml:id="m-c2b65190-ebfc-49c6-b15c-ab63fe87d35a" pname="a" oct="3" dur="semiminima"/>
+                <dot xml:id="m-6351d826-e399-4c2f-a66c-3e753667b6ce"/>
+                <note xml:id="m-3a59319c-39a6-4aa8-b4a7-ee4b4d988fc2" pname="a" oct="3" dur="semiminima"/>
+                <mensur xml:id="m-7bb7230f-d0a0-4661-b6be-ce705f1fb863" sign="C"/>
+                <note xml:id="m-80e7f5f1-2719-467c-ae34-ccf4a67f680e" pname="g" oct="3" dur="semibrevis"/>
+                <rest xml:id="m-ac635a57-fc43-4556-82f7-58d226bbedfc" dur="semiminima"/>
+                <note xml:id="m-fd3ab271-2361-4bdd-9f9e-1ad9a6f78079" pname="g" oct="3" dur="semiminima"/>
+                <note xml:id="m-a6d41eaf-ebf5-4d0a-b690-089338a22d54" pname="b" oct="3" dur="minima"/>
+                <dot xml:id="m-5997e7db-f5ff-4ab4-8a4c-0a2ab375febc"/>
+                <note xml:id="m-266b4b5d-2ae0-46c4-9a3c-927df2051be0" pname="a" oct="3" dur="semiminima"/>
+                <accid xml:id="m-18492c23-15db-4d40-a414-387d1746ce04" accid="s"/>
+                <note xml:id="m-9c7ea366-9e75-4aa7-ace2-a8e28bb260e5" pname="g" oct="3" dur="semiminima"/>
+                <note xml:id="m-504993eb-be46-4f7f-a2cf-6595b229d965" pname="a" oct="3" dur="semiminima"/>
+                <note xml:id="m-7b048867-f0c3-452e-9aab-a13b5991ea06" pname="b" oct="3" dur="minima"/>
+                <note xml:id="m-22808ab2-e667-4268-ad9b-44521b95b603" pname="b" oct="3" dur="minima"/>
+                <note xml:id="m-3ec1fcdd-b896-4289-b190-e5d27f578964" pname="c" oct="4" dur="minima"/>
+                <rest xml:id="m-b787fb78-3a19-4416-8497-404dcf289548" dur="semiminima"/>
+                <note xml:id="m-f77c064f-3b68-49cf-9ff1-4932db1ba571" pname="d" oct="4" dur="semiminima"/>
+                <note xml:id="m-3ab9641f-001a-4a39-9632-f80495f97267" pname="e" oct="4" dur="minima"/>
+                <rest xml:id="m-261143a9-02e9-4050-a843-fe274e419c0d" dur="minima"/>
+                <custos xml:id="m-5e0fd043-abde-4d97-a5af-43fff65314d1" pname="e" oct="4"/>
+                <clef xml:id="m-2d54ffe0-2045-49fa-bd5b-68191ac87838" line="4" shape="C"/>
+                <rest xml:id="m-b8e80952-ff2d-46f5-8c10-b015a66e762a" dur="semiminima"/>
+                <note xml:id="m-0558e880-a440-4974-b70f-be35d61e6cb3" pname="e" oct="4" dur="semiminima"/>
+                <note xml:id="m-52ad0bab-2c93-4c51-a6e7-1aec021a2139" pname="e" oct="4" dur="minima"/>
+                <rest xml:id="m-89e6de13-f249-4187-82fc-672e6025924c" dur="semibrevis"/>
+                <rest xml:id="m-f6b6b947-5c1d-4446-899c-07705f40cd08" dur="minima"/>
+                <note xml:id="m-97fce993-72e4-4820-8ecd-ca3860492087" pname="f" oct="4" dur="semibrevis"/>
+                <note xml:id="m-444db6e8-f69e-4c0e-b0fa-aad0b93930e1" pname="f" oct="4" dur="semiminima"/>
+                <note xml:id="m-36588ea8-e018-4191-b8e0-67d4aff0a9ae" pname="d" oct="4" dur="semiminima"/>
+                <note xml:id="m-179db9d5-c240-4db7-91b7-4e851ce88aab" pname="d" oct="4" dur="semibrevis"/>
+                <note xml:id="m-f5dd849d-f425-4709-b70c-513a6cf68792" pname="b" oct="3" dur="semiminima"/>
+                <note xml:id="m-6b5a3255-5fe7-4b98-81bb-ba036e851ffc" pname="b" oct="3" dur="minima"/>
+                <note xml:id="m-4628c586-a65e-4bba-a0f4-730303250773" pname="b" oct="3" dur="semiminima"/>
+                <note xml:id="m-31d082e9-de8e-4298-bf98-12c269efe5c4" pname="b" oct="3" dur="minima"/>
+                <note xml:id="m-6c39b9b9-e775-4449-9c8f-b5dd1b6c6b6f" pname="c" oct="4" dur="minima"/>
+                <note xml:id="m-06120f52-cda0-48bb-bec8-18d1b72df0c5" pname="d" oct="4" dur="semiminima"/>
+                <dot xml:id="m-f0a9cd4d-cad8-4990-ad25-dd2f1908eb51"/>
+                <note xml:id="m-e9b8eb94-533f-45d1-ae3e-ed74bb841294" pname="d" oct="4" dur="fusa"/>
+                <note xml:id="m-e8a87fdb-9be7-4864-beb8-bce0f2d306f4" pname="d" oct="4" dur="minima"/>
+                <rest xml:id="m-4c5bac8d-990a-4161-b5c1-6ab993447418" dur="minima"/>
+                <note xml:id="m-312fe2a7-b7a6-479c-ae61-ceebef46c7bd" pname="c" oct="4" dur="minima"/>
+                <dot xml:id="m-9dab2af2-8876-4be2-94e8-b44623f3b316"/>
+                <note xml:id="m-5f856262-ce7a-4bc6-84f8-7e2f93bcde9f" pname="c" oct="4" dur="semiminima"/>
+                <note xml:id="m-7d903719-ad64-470d-8312-758394df449f" pname="a" oct="3" dur="minima"/>
+                <note xml:id="m-c276e699-42e6-4e92-b86c-33bb96ea741b" pname="b" oct="3" dur="minima"/>
+                <note xml:id="m-11f9a099-c5ea-46f9-bf27-ef26bbcef39d" pname="c" oct="4" dur="minima"/>
+                <note xml:id="m-cc24d6a4-da7b-4f1c-a8f1-de6a72fb77d5" pname="d" oct="4" dur="semibrevis"/>
+                <rest xml:id="m-929c021e-6748-47ad-9a79-28678b446c52" dur="brevis"/>
+                <custos xml:id="m-4113b85d-e1d5-4726-bcbe-e324d67b148a" pname="d" oct="4"/>
+                <clef xml:id="m-0367cae0-87fb-415b-8917-04fb09bd2983" line="4" shape="C"/>
+                <rest xml:id="m-b222312a-51ed-49cb-8b07-6bf26fb8dc65" dur="semiminima"/>
+                <note xml:id="m-d35f1cd8-632c-4a0b-878f-f726e63a40c7" pname="d" oct="4" dur="semiminima"/>
+                <note xml:id="m-6eb1fee7-6876-48ff-ac85-a8cc980dc241" pname="e" oct="4" dur="semiminima"/>
+                <note xml:id="m-a32348f1-4c4f-4b4c-9244-5f38f60569bf" pname="c" oct="4" dur="semiminima"/>
+                <note xml:id="m-5e19fcac-f850-48be-b9a4-dd3fdb75076e" pname="d" oct="4" dur="semiminima"/>
+                <dot xml:id="m-dba9f8e4-db8a-4e13-bd47-1f71c8f576ed"/>
+                <note xml:id="m-3743f103-4386-448d-af7f-604c870d5eb5" pname="d" oct="4" dur="fusa"/>
+                <note xml:id="m-fa82b44b-08ba-43f8-8c32-b249597366c9" pname="e" oct="4" dur="minima"/>
+                <rest xml:id="m-ad406240-13d4-4193-9e54-03a89f2abb40" dur="semiminima"/>
+                <note xml:id="m-765ffcda-d87c-4780-ab19-81b5f9e296be" pname="b" oct="3" dur="semiminima"/>
+                <note xml:id="m-b11c9106-aaf1-4f7c-892b-b00f0e253794" pname="e" oct="4" dur="semiminima"/>
+                <note xml:id="m-f5811012-c095-4e84-bf15-3be6a5a9836a" pname="c" oct="4" dur="semiminima"/>
+                <note xml:id="m-220c0c2a-54d6-4334-9602-e8ea2c6b519a" pname="d" oct="4" dur="semiminima"/>
+                <dot xml:id="m-86d8ea99-baf4-4fb4-a2cd-826b82f1bf76"/>
+                <note xml:id="m-4fead37a-15ce-4371-86f6-868819662e2d" pname="d" oct="4" dur="fusa"/>
+                <note xml:id="m-6739e41c-1166-40c2-ad87-a5a1fb7b0c83" pname="e" oct="4" dur="semiminima"/>
+                <note xml:id="m-68fa31e8-6c4f-4d8e-8c01-9c3d9124af1d" pname="a" oct="3" dur="semiminima"/>
+                <note xml:id="m-e7aa0b43-79f4-417c-b185-fb2be615c510" pname="d" oct="4" dur="semiminima"/>
+                <note xml:id="m-f5655ec0-b71e-4843-821a-9cf0c4b9cf6b" pname="d" oct="4" dur="semiminima"/>
+                <note xml:id="m-8a78bea4-5e71-4f2b-8b4f-1179677a8742" pname="c" oct="4" dur="semiminima"/>
+                <dot xml:id="m-4e7997fa-4ec6-4952-a46d-542f804e2135"/>
+                <note xml:id="m-7c27c5f4-5be2-417b-8624-0f02d7c1921b" pname="c" oct="4" dur="fusa"/>
+                <note xml:id="m-4f950635-28d3-479f-8433-15a5b511c124" pname="b" oct="3" dur="semibrevis"/>
+                <rest xml:id="m-0479e613-d800-4f7f-9917-229cd812bd55" dur="semiminima"/>
+                <note xml:id="m-76c0db56-5714-452c-994d-0b07b9ff4c43" pname="c" oct="4" dur="semiminima"/>
+                <dot xml:id="m-b82298b2-4eb3-44a2-8576-4d65712d4504"/>
+                <note xml:id="m-7d21133b-52d4-425b-aacb-1de8a11d756a" pname="c" oct="4" dur="fusa"/>
+                <note xml:id="m-97686d41-66b2-4aa1-8ae0-c7acc9953140" pname="a" oct="3" dur="semiminima"/>
+                <custos xml:id="m-07f13a8c-f1d0-4105-9b5c-23a76e086109" pname="a" oct="3"/>
+                <clef xml:id="m-96679afb-f1ee-4ea8-b933-02d447ca2808" line="4" shape="C"/>
+                <note xml:id="m-c953cc7c-f062-45e3-8f17-bef4c8c1bc0a" pname="a" oct="3" dur="semiminima"/>
+                <dot xml:id="m-2a4aae1f-efdb-4408-8d56-1534f9787acd"/>
+                <note xml:id="m-dc8df145-9825-4b58-aae3-31670f7bfe15" pname="d" oct="4" dur="fusa"/>
+                <note xml:id="m-d083ba58-f1dd-4e6e-9ee3-0a9dc550372d" pname="d" oct="4" dur="semiminima"/>
+                <note xml:id="m-70d5c24a-5632-4a9f-8fb4-910d9bf1b563" pname="d" oct="4" dur="semiminima"/>
+                <dot xml:id="m-b1bef89e-dd50-4d20-b834-8836fb44cfc8"/>
+                <note xml:id="m-d3bf2d0c-50cf-4e2f-8a41-9abfbd029657" pname="c" oct="4" dur="fusa"/>
+                <note xml:id="m-af458e9f-3ed6-4a04-9663-8b44b0d3fbba" pname="b" oct="3" dur="semiminima"/>
+                <note xml:id="m-2e740f85-9c8a-40a7-bfc5-383ca3df12a2" pname="d" oct="4" dur="semiminima"/>
+                <dot xml:id="m-7fccbb3f-ee95-45a1-aa1c-1f12025b9ed4"/>
+                <note xml:id="m-604ae3d8-ea69-445a-b35a-8aa925cc7b27" pname="d" oct="4" dur="fusa"/>
+                <note xml:id="m-31e9b095-d546-4aa5-93bc-00353be8179d" pname="d" oct="4" dur="semibrevis"/>
+                <note xml:id="m-8b10d791-358c-4c8d-99b5-cfe4f416cb50" pname="g" oct="3" dur="semibrevis"/>
+                <note xml:id="m-60e7b8a6-8577-44c3-b8c6-3f4b3b4ff698" pname="g" oct="3" dur="minima"/>
+                <note xml:id="m-901b531e-220c-43c9-be16-3c5227b3bf83" pname="a" oct="3" dur="minima"/>
+                <note xml:id="m-10025fb7-dbdd-4abd-bd1d-e51fe3f8183f" pname="b" oct="3" dur="semiminima"/>
+                <dot xml:id="m-bc5609d7-199d-47ff-85a3-c6c5236c618f"/>
+                <note xml:id="m-18bb2bf2-b7db-4a60-a5af-abbf576200c3" pname="a" oct="3" dur="semifusa"/>
+                <note xml:id="m-4e62ce48-cbef-4761-9965-9a31b6836a3c" pname="g" oct="3" dur="semifusa"/>
+                <note xml:id="m-1cbf8ab0-b65e-46b4-a98f-95ae73c2ad54" pname="a" oct="3" dur="semiminima"/>
+                <dot xml:id="m-101eb711-49f8-4dfd-8465-74c0b959e57b"/>
+                <note xml:id="m-e6bb8a0f-6256-43ab-a9a7-8a9464156499" pname="a" oct="3" dur="fusa"/>
+                <note xml:id="m-314860a0-d43f-4192-8909-002e592e74b4" pname="g" oct="3" dur="longa"/>
+                <barLine xml:id="m-330a89ed-4296-4954-9596-b5035083c165"/>
+              </layer>
+            </staff>
+          </section>
+        </score>
+      </mdiv>
+    </body>
+  </music>
+</mei>
