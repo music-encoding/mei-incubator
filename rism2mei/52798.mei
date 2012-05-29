@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" xmlns:marc="http://www.loc.gov/MARC21/slim"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.music-encoding.org/ns/mei http://music-encoding.org/mei/schemata/2010-05/xsd/mei-all.xsd">
+	<meihead>
+		<filedesc>
+			<titlestmt>
+				<title type="uniform">Diokletianus, V (7), Coro, orch</title>
+				<title type="diplomatic">[score 1, title page:] Diokletianus / Oper in 4 Aufzügen. Text v.
+					Dr. P. / Albert Kuhn. Musik v. P. Basilius / Breitenbach. MCMXIV.</title>
+				<respstmt>
+					<persname>Breitenbach, Basilius</persname>
+				</respstmt>
+				<respstmt>
+					<persname>Kuhn, Albert</persname>
+					<resp>lyricist</resp>
+				</respstmt>
+				<respstmt>
+					<persname>Stöckler, Jos.</persname>
+					<resp>conductor</resp>
+				</respstmt>
+				<respstmt>
+					<persname>Vetter, Pirmin</persname>
+					<resp>scribe</resp>
+				</respstmt>
+				<respstmt>
+					<persname>Grosse</persname>
+					<resp>scribe</resp>
+				</respstmt>
+			</titlestmt>
+			<pubstmt>
+				<respstmt>
+					<corpname>Swiss RISM Office<identifier type="MarcOrganizationCode">CH-BeSRO</identifier>
+					</corpname>
+				</respstmt>
+				<date>2010-09-07</date>
+				<identifier type="rism_id">00000403004913</identifier>
+			</pubstmt>
+			<notesstmt>
+				<annot n="500" type="general">Die Partituren und die Klavierauszüge enthalten zu Beginn ein
+					Personenverzeichnis und am Schluss folgende Zusammenstellungen: "Solo-Personal",
+					"Besetzung der einzelnen Nummen", "Wiederkehrende Motive, Personen oder Situationen
+					kennzeichnend."</annot>
+				<annot n="500" type="general">Autographe Bemerkungen zur Entstehungszeit der verschiedenen
+					Nummern vergleiche CH E Mw 116,6 Seite 2</annot>
+				<annot n="500" type="general">Vermerk am Schluss von Klavierauszug 3: "8.Dez. 1913. / Jos.
+					Stöckler, Dir."</annot>
+				<annot n="500" type="general">Kopien (Matritzen) aller Vokalstimmen und der Stimmen von vl 1
+					und vl 2 (geschrieben in Gries 1924 für die Sarner Aufführung) vergleiche CH E
+					640,1b</annot>
+				<annot n="500" type="general">4 handschriftliche und 2 gedruckte Textbücher vergleiche CH E
+					639</annot>
+				<annot n="525" type="supplementary_material">Gedruckte Textbücher, Theaterzettel und
+					Zeitungsberichte (Obwaldner Volksfreund) der Sarner Aufführung vergleiche CH E
+					640,1b</annot>
+				<annot n="594" type="scoring">Solo voice: 1013; Additional solo voice: Mezzo-S; Additional
+					solo voice: Bariton; Choir voice: 1111; Strings: 11111; Woodwinds: 2222; Brasses: 222;
+					Plucked instruments: arp; Precussion: tamb; Precussion: timp; Precussion: tamburino;
+					Precussion: tam-tam</annot>
+				<annot n="595" type="roles">Chor des Volkes</annot>
+				<annot n="595" type="roles">Pankratius</annot>
+				<annot n="595" type="roles">Nearchus</annot>
+				<annot n="595" type="roles">Sebastianus</annot>
+				<annot n="595" type="roles">Chor des Volkes</annot>
+				<annot n="595" type="roles">Chor des Volkes</annot>
+				<annot n="595" type="roles">Sebastianus</annot>
+				<annot n="595" type="roles">Chor des Volkes</annot>
+				<annot n="595" type="roles">Chor der Soldaten</annot>
+				<annot n="595" type="roles">Praetorianer</annot>
+				<annot n="595" type="roles">Pankratius</annot>
+				<annot n="595" type="roles">Soldaten</annot>
+				<annot n="595" type="roles">Chor des Volkes</annot>
+				<annot n="595" type="roles">Chor des Volkes</annot>
+				<annot n="595" type="roles">Chor des Volkes</annot>
+				<annot n="595" type="roles">Pontifex Maximus (B)</annot>
+				<annot n="595" type="roles">Centurio der Prätorianer (B)</annot>
+				<annot n="595" type="roles">Marzellinus (B)</annot>
+				<annot n="595" type="roles">Primus (Mezzo-S)</annot>
+				<annot n="595" type="roles">Diokletianus (Sprechrolle)</annot>
+			</notesstmt>
+			<sourcedesc>
+				<source>
+					<pubstmt>
+						<geogname>[s.l.]</geogname>
+						<respstmt>
+							<name>[s.n.]</name>
+						</respstmt>
+						<date>1915</date>
+						<geogname/>
+						<respstmt>
+							<name/>
+						</respstmt>
+					</pubstmt>
+					<physdesc>
+						<extent>41 parts: 6, 3, 4, 8, 2, 1, 1, 6; 10, 10, 10, 15, 9, 9; 3, 5, 6; 4, 4; 37, 37,
+							37, 37, 37; 32, 32, 35, 35, 35, 35, 34, 34; 28, 28, 28, 28, 32, 32, 32; 2,
+							2p.</extent>
+						<dimensions>32 x 25 cm</dimensions>
+					</physdesc>
+					<notesstmt>
+						<annot type="material_set">Material 3</annot>
+						<annot n="590" type="parts">Solo: S (Pankratius), Mezzo-S (Primus), T (Nearchus),
+							Bariton (Sebastianus), B (Marzellinus), B (Centurio), B (Pontifex maximus),
+							Sprechrolle (Diokletianus); Coro (Chor des Volkes): S, A, T 1, T 2, B 1, B 2; Coro
+							(Chor der Praetorianer): A, T, B; Coro (Chor der Kohorte des Sebastianus): T, B; vl 1,
+							2, vla, vlc, b; fl 1, 2, ob 1, 2, cl 1 in Bb, 2 in Bb, fag 1, 2; cor 1 in F, 2 in F, 3
+							in F, tr 1 in C, 2 in C, trb 1, 2; timp and tamb, tamburino</annot>
+						<annot n="593" type="source_type">Manuscript</annot>
+					</notesstmt>
+				</source>
+				<source>
+					<pubstmt/>
+					<physdesc>
+						<extent>1 score: 457p. 1 short score (piano score): 134p.</extent>
+						<dimensions/>
+					</physdesc>
+					<notesstmt>
+						<annot type="material_set">Material 1</annot>
+						<annot n="593" type="source_type">Autograph</annot>
+					</notesstmt>
+				</source>
+				<source>
+					<pubstmt/>
+					<physdesc>
+						<extent>2 scores: 453, 427p 2 short scores (piano score): 125, 133p. 46 parts: 6, 3, 9,
+							1, 1, 2, 6; 15, 13, 14, 14, 12, 12, 10, 12, 13, 14, 14, 14, 7, 13, 14, 11, 9, 11, 13,
+							13, 13, 11; 2, 3, 3, 2, 5, 7, 6, 6, 6, 6, 8, 6, 6; 4, 3; 11p.</extent>
+						<dimensions>34 x 26 cm</dimensions>
+					</physdesc>
+					<notesstmt>
+						<annot type="material_set">Material 2</annot>
+						<annot n="590" type="parts">Solo: S (Pankratius), Mezzo-S (Primus), T (Nearchus),
+							Bariton (Sebastian), B (Centurio), B (Pontifex Maximus), B (Marzellinus), Sprechrolle
+							(Diokletianus); Coro (Chor des Volkes): S 1 (3x), S 1 and 2 (2x), A 1 and 2 (3x), T 1
+							(2x), T 2 (3x), B 1 (4x), B2 (5x); Coro (Chor der Praetorianer): A (4x), T (2x), B
+							(7x); Coro (Chor der Kohorte des Sebastianus): T, B; arp</annot>
+						<annot n="593" type="source_type">Manuscript</annot>
+					</notesstmt>
+				</source>
+				<source>
+					<pubstmt/>
+					<physdesc>
+						<extent>25 parts: 34, 34, 34, 34, 34, 34, 34, 34; 29, 29, 32, 32, 32, 32, 31, 31; 29,
+							29, 29, 27, 26, 26, 26; 23, 4p.</extent>
+						<dimensions>34 x 26 cm</dimensions>
+					</physdesc>
+					<notesstmt>
+						<annot type="material_set">Material 4</annot>
+						<annot n="590" type="parts">vl 1 (2x), vl 2 (2x), vla, vlc (2x), b; fl 1, fl 2, ob 1, ob
+							2, cl 1, cl 2, fg 1, fg 2; cor 1, cor 2, cor 3, tr 1, tr 2, trb 1, trb 2; timp and
+							tamb, tamburino</annot>
+						<annot n="593" type="source_type">Manuscript</annot>
+					</notesstmt>
+				</source>
+			</sourcedesc>
+		</filedesc>
+		<profiledesc>
+			<creation>
+				<p>Text author: Kuhn, Albert</p>
+				<p>Conductor: Stöckler, Jos.</p>
+				<p>Copyist: Vetter, [Pirmin]</p>
+				<p>Copyist: Grosse</p>
+			</creation>
+			<classification>
+				<classcode xml:id="RISM_Keyword"/>
+				<classcode xml:id="RISM_Place"/>
+				<classcode xml:id="RISM_Role"/>
+				<classcode xml:id="RISM_Liturgical_Feast"/>
+				<keywords>
+					<term n="650" classcode="RISM_Keyword">Operas</term>
+					<term n="653" classcode="RISM_Role">Chor des Volkes</term>
+					<term n="653" classcode="RISM_Role">Pankratius</term>
+					<term n="653" classcode="RISM_Role">Nearchus</term>
+					<term n="653" classcode="RISM_Role">Sebastianus</term>
+					<term n="653" classcode="RISM_Role">Chor des Volkes</term>
+					<term n="653" classcode="RISM_Role">Chor des Volkes</term>
+					<term n="653" classcode="RISM_Role">Sebastianus</term>
+					<term n="653" classcode="RISM_Role">Chor des Volkes</term>
+					<term n="653" classcode="RISM_Role">Chor der Soldaten</term>
+					<term n="653" classcode="RISM_Role">Praetorianer</term>
+					<term n="653" classcode="RISM_Role">Pankratius</term>
+					<term n="653" classcode="RISM_Role">Soldaten</term>
+					<term n="653" classcode="RISM_Role">Chor des Volkes</term>
+					<term n="653" classcode="RISM_Role">Chor des Volkes</term>
+					<term n="653" classcode="RISM_Role">Chor des Volkes</term>
+					<term n="653" classcode="RISM_Role">Pontifex Maximus (B)</term>
+					<term n="653" classcode="RISM_Role">Centurio der Prätorianer (B)</term>
+					<term n="653" classcode="RISM_Role">Marzellinus (B)</term>
+					<term n="653" classcode="RISM_Role">Primus (Mezzo-S)</term>
+					<term n="653" classcode="RISM_Role">Diokletianus (Sprechrolle)</term>
+				</keywords>
+			</classification>
+			<eventlist>
+				<event n="518">First performance date: 21.2.1914</event>
+				<event n="518">Performance date: 15.2.1925 Sarnen</event>
+				<event n="518">Performance date: 19.2.1925 Sarnen</event>
+				<event n="518">Performance date: 22.2.1925 Sarnen</event>
+				<event n="518">Performance date: 23.2.1925 Sarnen</event>
+			</eventlist>
+		</profiledesc>
+	</meihead>
+	<music>
+		<body>
+			<mdiv>
+				<score>
+					<section n="1.1.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">Vorspiel Andante con moto (Tonbild aus dem Leben
+									Diokletians.)</tempo>
+								<dir staff="1"/>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.10.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">No.9. Duett Andante</tempo>
+								<dir staff="1">O Vater wird sind in enger Kerkerhaft</dir>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.11.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">No.10. Lied der Soldaten des Sebastianus. Vivo</tempo>
+								<dir staff="1">Auf ins Feld uns gehört die Welt</dir>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.12.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">IV.Akt. No.11. Melodram. Allegro moderato</tempo>
+								<dir staff="1"/>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.13.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">No.12. Marsch und Chor Solenne</tempo>
+								<dir staff="1"/>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.13.2">
+						<staff n="1">
+							<layer>
+								<tempo staff="1"/>
+								<dir staff="1">Heil soweit die Meere den Erdball umkreisen</dir>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.14.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">No.13a. Entreact und Chor. Maestoso</tempo>
+								<dir staff="1"/>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.14.2">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">Mit ruhiger nicht zu langsamer Bewegung</tempo>
+								<dir staff="1">Suscepit Israel puerum suum</dir>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.15.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">No.13b. Finale. Largo</tempo>
+								<dir staff="1">O Herr Gott Israels sei du gepriesen</dir>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.2.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">No. 1 Introduction. (Siegesfeier in Rom.) Maestoso</tempo>
+								<dir staff="1">Jo Triumph</dir>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.3.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">No.2. Quartett Gemächlich</tempo>
+								<dir staff="1">O Vater sei liebend gegrüßt</dir>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.4.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">No.3. Recitativ und Arie. Andante</tempo>
+								<dir staff="1">Was sinnest du und blickst ins Weite</dir>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.4.2">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">Arie Andante grazioso</tempo>
+								<dir staff="1">Sieh Freund mir ist es Luft</dir>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.5.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">No.4. Finale. Moderato</tempo>
+								<dir staff="1">Erklinget brausend Feierklänge</dir>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.6.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">II.Akt. No.5. Entreact und Chor</tempo>
+								<dir staff="1"/>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.6.2">
+						<staff n="1">
+							<layer>
+								<tempo staff="1"/>
+								<dir staff="1">In paradisum deducant te angeli in tuo</dir>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.7.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">No.6. Quintett und Chor Moderato</tempo>
+								<dir staff="1">Gib heil'ger Vater mir den Segen</dir>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.7.2">
+						<staff n="1">
+							<layer>
+								<tempo staff="1"/>
+								<dir staff="1">Aus unsres Elends Tiefen rufen wir</dir>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.8.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">No.7. Finale. Risoluto</tempo>
+								<dir staff="1">Gebt Raum hinweg</dir>
+							</layer>
+						</staff>
+					</section>
+					<section n="1.9.1">
+						<staff n="1">
+							<layer>
+								<tempo staff="1">Akt III. No.8. Lied und Schwertertanz der Prätorianer. Allegro
+									risoluto</tempo>
+								<dir staff="1">An des Niles befruchtetem Strande</dir>
+							</layer>
+						</staff>
+					</section>
+				</score>
+			</mdiv>
+		</body>
+	</music>
+</mei>
