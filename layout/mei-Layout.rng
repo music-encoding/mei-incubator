@@ -3,7 +3,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.music-encoding.org/ns/mei"><!--
-Schema generated from ODD source 2012-09-19T18:11:04Z. 
+Schema generated from ODD source 2012-09-25T22:07:08Z. 
 Edition: 2012
 Edition Location: http://www.tei-c.org/Vault/P5//
 
@@ -15172,6 +15172,7 @@ Suggested values include: 1] plaineAndEasie; 2] humdrumKern</a:documentation>
          <ref name="att.visualoffset.vo.attributes"/>
          <ref name="att.visualoffset2.ho.attributes"/>
          <ref name="att.staffident.attributes"/>
+         <ref name="att.typed.attributes"/>
          <ref name="att.laidoutDef.log.attributes"/>
          <ref name="att.laidoutDef.vis.attributes"/>
          <empty/>
@@ -15190,6 +15191,7 @@ Suggested values include: 1] plaineAndEasie; 2] humdrumKern</a:documentation>
             </choice>
          </zeroOrMore>
          <ref name="att.common.attributes"/>
+         <ref name="att.pointing.attributes"/>
          <ref name="att.coordinated.attributes"/>
          <ref name="att.staffident.attributes"/>
          <ref name="att.layerident.attributes"/>

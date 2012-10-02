@@ -25,6 +25,9 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc>
+        <change n="3" when="2012-09-25">
+            <desc>Adding att.pointing laidOutLayer</desc>
+        </change>
         <change n="2" when="2012-09-19">
             <desc>Adding  att.scoreDef.vis to page and system</desc>
         </change>
@@ -356,6 +359,7 @@
             <memberOf key="att.visualoffset.vo"/>
             <memberOf key="att.visualoffset2.ho"/>
             <memberOf key="att.staffident"/>
+            <memberOf key="att.typed"/>
             <memberOf key="att.laidoutDef.log"/>
             <memberOf key="att.laidoutDef.vis"/>
             <memberOf key="model.laidOutStaffLike"/>
@@ -383,6 +387,7 @@
           </desc>
           <classes>
             <memberOf key="att.common"/>
+            <memberOf key="att.pointing"/>
             <memberOf key="att.coordinated"/>
             <memberOf key="att.staffident"/>
             <memberOf key="att.layerident"/>
