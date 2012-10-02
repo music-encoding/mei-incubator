@@ -25,7 +25,10 @@
       </sourceDesc>
     </fileDesc>
     <revisionDesc>
-      <change n="1" when="2012-02-22">
+        <change n="2" when="2012-09-19">
+            <desc>Adding  att.scoreDef.vis to page and system</desc>
+        </change>
+        <change n="1" when="2012-02-22">
         <desc>Initial setup of the layout tree.</desc>
       </change>
     </revisionDesc>
@@ -310,8 +313,9 @@
         </elementSpec>
         
         <elementSpec ident="page" module="MEI.layout" mode="add">
-          <desc>layout - </desc>
+          <desc>page - </desc>
           <classes>
+            <memberOf key="att.scoreDef.vis"/>
             <memberOf key="att.common"/>
             <memberOf key="att.pageRef"/>
             <memberOf key="model.pageLike"/>
@@ -326,6 +330,7 @@
         <elementSpec ident="system" module="MEI.layout" mode="add">
           <desc>system - </desc>
           <classes>
+            <memberOf key="att.scoreDef.vis"/>
             <memberOf key="att.common"/>
             <memberOf key="att.systemRef"/>
             <memberOf key="att.coordinated"/>
