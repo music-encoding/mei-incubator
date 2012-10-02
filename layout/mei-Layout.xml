@@ -4,492 +4,505 @@
 <?xml-model href="tei_odds.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 
 <TEI xmlns:rng="http://relaxng.org/ns/structure/1.0"
-  xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns="http://www.tei-c.org/ns/1.0">
-  <teiHeader>
-    <fileDesc>
-      <titleStmt>
-        <title>Music Encoding Initiative Guidelines – Proposal for a Layout Tree</title>
-        <respStmt>
-          <resp>Authored by</resp>
-          <name xml:id="BWB">Benjamin Wolff Bohl</name>
-          <name xml:id="JK">Johannes Kepper</name>
-          <name xml:id="LP">Laurent Pugin</name>
-          <name xml:id="TW">Thomas Weber</name>
-        </respStmt>
-      </titleStmt>
-      <publicationStmt>
-        <p/>
-      </publicationStmt>
-      <sourceDesc>
-        <p/>
-      </sourceDesc>
-    </fileDesc>
-    <revisionDesc>
-        <change n="3" when="2012-09-25">
-            <desc>Adding att.pointing laidOutLayer</desc>
-        </change>
-        <change n="2" when="2012-09-19">
-            <desc>Adding  att.scoreDef.vis to page and system</desc>
-        </change>
-        <change n="1" when="2012-02-22">
-        <desc>Initial setup of the layout tree.</desc>
-      </change>
-    </revisionDesc>
-  </teiHeader>
-  <text>
-    <front>
-      <divGen type="toc"/>
-    </front>
-    <body>
-      <schemaSpec ident="mei" start="mei meiHead meiCorpus music"
-        ns="http://www.music-encoding.org/ns/mei">
-        <moduleRef key="MEI"/>
-        <moduleRef key="MEI.shared"/>
-        <moduleRef key="MEI.header"/>
-        <moduleRef key="MEI.cmn"/>
-        <moduleRef key="MEI.mensural"/>
-        <moduleRef key="MEI.neumes"/>
-        <moduleRef key="MEI.analysis"/>
-        <moduleRef key="MEI.cmnOrnaments"/>
-        <moduleRef key="MEI.corpus"/>
-        <moduleRef key="MEI.critapp"/>
-        <moduleRef key="MEI.edittrans"/>
-        <moduleRef key="MEI.facsimile"/>
-        <moduleRef key="MEI.figtable"/>
-        <moduleRef key="MEI.harmony"/>
-        <moduleRef key="MEI.linkalign"/>
-        <moduleRef key="MEI.lyrics"/>
-        <moduleRef key="MEI.midi"/>
-        <moduleRef key="MEI.namesdates"/>
-        <moduleRef key="MEI.performance"/>
-        <moduleRef key="MEI.ptrref"/>
-        <moduleRef key="MEI.tablature"/>
-        <moduleRef key="MEI.text"/>
-        <moduleRef key="MEI.usersymbols"/>
+    xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Music Encoding Initiative Guidelines – Proposal for a Layout Tree</title>
+                <respStmt>
+                    <resp>Authored by</resp>
+                    <name xml:id="BWB">Benjamin Wolff Bohl</name>
+                    <name xml:id="JK">Johannes Kepper</name>
+                    <name xml:id="LP">Laurent Pugin</name>
+                    <name xml:id="TW">Thomas Weber</name>
+                    <name xml:id="AH">Andrew Hankinson</name>
+                </respStmt>
+            </titleStmt>
+            <publicationStmt>
+                <p/>
+            </publicationStmt>
+            <sourceDesc>
+                <p/>
+            </sourceDesc>
+        </fileDesc>
+        <revisionDesc>
+            <change n="4" when="2012-10-02">
+                <desc>Adding att.surface to page</desc>
+            </change>
+            <change n="3" when="2012-09-25">
+                <desc>Adding att.pointing laidOutLayer</desc>
+            </change>
+            <change n="2" when="2012-09-19">
+                <desc>Adding att.scoreDef.vis to page and system</desc>
+            </change>
+            <change n="1" when="2012-02-22">
+                <desc>Initial setup of the layout tree.</desc>
+            </change>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <front>
+            <divGen type="toc"/>
+        </front>
+        <body>
+            <schemaSpec ident="mei" start="mei meiHead meiCorpus music"
+                ns="http://www.music-encoding.org/ns/mei">
+                <moduleRef key="MEI"/>
+                <moduleRef key="MEI.shared"/>
+                <moduleRef key="MEI.header"/>
+                <moduleRef key="MEI.cmn"/>
+                <moduleRef key="MEI.mensural"/>
+                <moduleRef key="MEI.neumes"/>
+                <moduleRef key="MEI.analysis"/>
+                <moduleRef key="MEI.cmnOrnaments"/>
+                <moduleRef key="MEI.corpus"/>
+                <moduleRef key="MEI.critapp"/>
+                <moduleRef key="MEI.edittrans"/>
+                <moduleRef key="MEI.facsimile"/>
+                <moduleRef key="MEI.figtable"/>
+                <moduleRef key="MEI.harmony"/>
+                <moduleRef key="MEI.linkalign"/>
+                <moduleRef key="MEI.lyrics"/>
+                <moduleRef key="MEI.midi"/>
+                <moduleRef key="MEI.namesdates"/>
+                <moduleRef key="MEI.performance"/>
+                <moduleRef key="MEI.ptrref"/>
+                <moduleRef key="MEI.tablature"/>
+                <moduleRef key="MEI.text"/>
+                <moduleRef key="MEI.usersymbols"/>
 
 
-        <!-- Customizations -->
+                <!-- Customizations -->
 
 
-        <moduleSpec ident="MEI.layout" mode="add">
-          <desc/>
-        </moduleSpec>
-        
-        <classSpec ident="model.layoutsLike" type="model" module="MEI.layout" mode="add">
-          <desc>Collects layoutslike elements.</desc>
-        </classSpec>
-        
-        <classSpec ident="model.layoutLike" type="model" module="MEI.layout" mode="add">
-          <desc>Collects layoutlike elements.</desc>
-        </classSpec>
-        
-        <classSpec ident="model.pageLike" type="model" module="MEI.layout" mode="add">
-          <desc>Collects pagelike elements.</desc>
-        </classSpec>
-        
-        <classSpec ident="model.systemLike" type="model" module="MEI.layout" mode="add">
-          <desc>Collects systemlike elements.</desc>
-        </classSpec>
-        
-        <classSpec ident="model.laidOutStaffLike" type="model" module="MEI.layout" mode="add">
-          <desc>Collects laidoutstafflike elements.</desc>
-        </classSpec>
-        
-        <classSpec ident="model.laidOutLayerLike" type="model" module="MEI.layout" mode="add">
-          <desc>Collects laidoutlayerlike elements.</desc>
-        </classSpec>
-        
-        <classSpec ident="model.laidOutElementLike" type="model" module="MEI.layout" mode="add">
-          <desc>Collects laidoutelementlike elements.</desc>
-        </classSpec>
-        
-        <classSpec ident="model.mbLike" type="model" module="MEI.layout" mode="add">
-          <desc>Collects mblike elements.</desc>
-        </classSpec>
-        
-        <classSpec ident="att.pageRef" module="MEI.layout" type="atts" mode="add">
-          <desc>attributes to point to a pb</desc>
-          <attList>
-            <attDef ident="pbrefs" usage="opt">
-              <desc>contains a list of pbs that are referenced.</desc>
-              <datatype>
-                <rng:list>
-                  <rng:oneOrMore>
-                    <rng:ref name="data.URI"/>
-                  </rng:oneOrMore>
-                </rng:list>
-              </datatype>
-            </attDef>
-          </attList>
-        </classSpec>
-        
-        <classSpec ident="att.systemRef" module="MEI.layout" type="atts" mode="add">
-          <desc>attributes to point to a sb</desc>
-          <attList>
-            <attDef ident="sbrefs" usage="opt">
-              <desc>contains a list of sbs that are referenced.</desc>
-              <datatype>
-                <rng:list>
-                  <rng:oneOrMore>
-                    <rng:ref name="data.URI"/>
-                  </rng:oneOrMore>
-                </rng:list>
-              </datatype>
-            </attDef>
-          </attList>
-        </classSpec>
-        
-        <classSpec ident="att.measureRef" module="MEI.layout" type="atts" mode="add">
-          <desc>attributes to point to a measure</desc>
-          <attList>
-            <attDef ident="measureref" usage="opt">
-              <desc>contains a reference to a measure.</desc>
-              <datatype>
-                <rng:ref name="data.URI"/>
-              </datatype>
-            </attDef>
-          </attList>
-        </classSpec>
-        
-        <classSpec ident="att.barline" module="MEI.layout" type="atts" mode="add">
-          <desc>attributes to define barlines</desc>
-          <attList>
-            <attDef ident="barline" usage="req">
-              <desc>Indicates if the element describes the beginning or end of a measure. 
-                If a //mb/@barline="left" is pointing to a measure without a @left, there is 
-                no barline drawn by default. If a //mb/@barline="right" is pointing to a measure
-                without a @right, there is a regular barline drawn by default.
-              </desc>
-              <valList type="closed">
-                <valItem ident="left">
-                  <desc>The element describes the left barline of a measure</desc>
-                </valItem>
-                <valItem ident="right">
-                  <desc>The element describes the right barline of a measure</desc>
-                </valItem>
-                <!--
+                <moduleSpec ident="MEI.layout" mode="add">
+                    <desc/>
+                </moduleSpec>
+
+                <classSpec ident="model.layoutsLike" type="model" module="MEI.layout" mode="add">
+                    <desc>Collects layoutslike elements.</desc>
+                </classSpec>
+
+                <classSpec ident="model.layoutLike" type="model" module="MEI.layout" mode="add">
+                    <desc>Collects layoutlike elements.</desc>
+                </classSpec>
+
+                <classSpec ident="model.pageLike" type="model" module="MEI.layout" mode="add">
+                    <desc>Collects pagelike elements.</desc>
+                </classSpec>
+
+                <classSpec ident="model.systemLike" type="model" module="MEI.layout" mode="add">
+                    <desc>Collects systemlike elements.</desc>
+                </classSpec>
+
+                <classSpec ident="model.laidOutStaffLike" type="model" module="MEI.layout"
+                    mode="add">
+                    <desc>Collects laidoutstafflike elements.</desc>
+                </classSpec>
+
+                <classSpec ident="model.laidOutLayerLike" type="model" module="MEI.layout"
+                    mode="add">
+                    <desc>Collects laidoutlayerlike elements.</desc>
+                </classSpec>
+
+                <classSpec ident="model.laidOutElementLike" type="model" module="MEI.layout"
+                    mode="add">
+                    <desc>Collects laidoutelementlike elements.</desc>
+                </classSpec>
+
+                <classSpec ident="model.mbLike" type="model" module="MEI.layout" mode="add">
+                    <desc>Collects mblike elements.</desc>
+                </classSpec>
+
+                <classSpec ident="att.pageRef" module="MEI.layout" type="atts" mode="add">
+                    <desc>attributes to point to a pb</desc>
+                    <attList>
+                        <attDef ident="pbrefs" usage="opt">
+                            <desc>contains a list of pbs that are referenced.</desc>
+                            <datatype>
+                                <rng:list>
+                                    <rng:oneOrMore>
+                                        <rng:ref name="data.URI"/>
+                                    </rng:oneOrMore>
+                                </rng:list>
+                            </datatype>
+                        </attDef>
+                    </attList>
+                </classSpec>
+
+                <classSpec ident="att.surface" module="MEI.layout" type="atts" mode="add">
+                    <desc>attributes to point to a surface</desc>
+                    <attList>
+                        <attDef ident="surface" usage="opt">
+                            <desc>contains a reference to a surface element</desc>
+                            <datatype>
+                               <rng:ref name="data.URI"/>
+                            </datatype>
+                        </attDef>
+                    </attList>
+                </classSpec>
+
+
+                <classSpec ident="att.systemRef" module="MEI.layout" type="atts" mode="add">
+                    <desc>attributes to point to a sb</desc>
+                    <attList>
+                        <attDef ident="sbrefs" usage="opt">
+                            <desc>contains a list of sbs that are referenced.</desc>
+                            <datatype>
+                                <rng:list>
+                                    <rng:oneOrMore>
+                                        <rng:ref name="data.URI"/>
+                                    </rng:oneOrMore>
+                                </rng:list>
+                            </datatype>
+                        </attDef>
+                    </attList>
+                </classSpec>
+
+                <classSpec ident="att.measureRef" module="MEI.layout" type="atts" mode="add">
+                    <desc>attributes to point to a measure</desc>
+                    <attList>
+                        <attDef ident="measureref" usage="opt">
+                            <desc>contains a reference to a measure.</desc>
+                            <datatype>
+                                <rng:ref name="data.URI"/>
+                            </datatype>
+                        </attDef>
+                    </attList>
+                </classSpec>
+
+                <classSpec ident="att.barline" module="MEI.layout" type="atts" mode="add">
+                    <desc>attributes to define barlines</desc>
+                    <attList>
+                        <attDef ident="barline" usage="req">
+                            <desc>Indicates if the element describes the beginning or end of a
+                                measure. If a //mb/@barline="left" is pointing to a measure without
+                                a @left, there is no barline drawn by default. If a
+                                //mb/@barline="right" is pointing to a measure without a @right,
+                                there is a regular barline drawn by default. </desc>
+                            <valList type="closed">
+                                <valItem ident="left">
+                                    <desc>The element describes the left barline of a measure</desc>
+                                </valItem>
+                                <valItem ident="right">
+                                    <desc>The element describes the right barline of a
+                                        measure</desc>
+                                </valItem>
+                                <!--
                   Is this useful?
                   <valItem ident="both">
                   <desc>on the staff, i.e., traditional placement</desc>
                 </valItem>-->
-              </valList>
-            </attDef>
-          </attList>
-        </classSpec>
-        
-        <classSpec ident="att.ignore" module="MEI.layout" type="atts" mode="add">
-          <desc>attributes that indicate whether an element should be rendered or not.</desc>
-          <attList>
-            <attDef ident="ignored" usage="opt">
-              <desc>Indicates whether the referenced element should be included or omitted
-                from the rendering.
-              </desc>
-              <datatype>
-                <rng:ref name="data.BOOLEAN"/>
-              </datatype>
-            </attDef>
-          </attList>
-        </classSpec>
-        
-        <classSpec ident="att.layoutOffsets" module="MEI.layout" type="atts" mode="add">
-          <desc>gathers all offsets relevant for layout purposes</desc>
-          <classes>
-            <memberOf key="att.visualoffset.ho"/>
-            <memberOf key="att.visualoffset.vo"/>
-            <memberOf key="att.visualoffset2.ho"/>
-            <memberOf key="att.visualoffset2.vo"/>
-          </classes>
-        </classSpec>
-        
-        <classSpec ident="att.laidOutStaffident" module="MEI.layout" type="atts">
-          <desc>Attributes for identifying the staff on which a laidOutElement should be drawn</desc>
-          <attList>
-            <attDef ident="laidoutstaff" usage="mwa">
-              <desc>signifies the staff on which a laidOutElement should be drawn. Mandatory when applicable.</desc>
-              <datatype>
-                <rng:list>
-                  <rng:oneOrMore>
-                    <rng:data type="positiveInteger"/>
-                  </rng:oneOrMore>
-                </rng:list>
-              </datatype>
-            </attDef>
-          </attList>
-        </classSpec>
-        
-        <classSpec ident="att.layout" module="MEI.layout" type="atts">
-          <desc>attributes that refer to a layout element.</desc>
-          <attList>
-            <attDef ident="ignored" usage="opt">
-              <desc>references a layout element.
-              </desc>
-              <datatype>
-                <rng:list>
-                  <rng:oneOrMore>
-                    <rng:ref name="data.URI"/>
-                  </rng:oneOrMore>
-                </rng:list>
-              </datatype>
-            </attDef>
-          </attList>
-        </classSpec>
-        
-        <classSpec ident="att.laidoutDef.log" module="MEI.layout" type="atts">
-          <desc>
-            Logical domain attributes for laidOutStaff and laidOutLayer, according to staffDef / layerDef.
-          </desc>
-          <classes>
-            <memberOf key="att.cleffing.log"/>
-            <memberOf key="att.keySigs.log"/>
-            <memberOf key="att.meters.log"/>
-            <memberOf key="att.transposition"/>
-          </classes>
-        </classSpec>
-        
-        <classSpec ident="att.laidoutDef.vis" type="atts" mode="add">
-          <desc>
-            Visual domain attributes for laidOutStaff and laidOutLayer, according to staffDef / layerDef.
-          </desc>
-          <classes>
-            <memberOf key="att.staffDef.vis"/>
-          </classes>
-        </classSpec>
-        
-        <elementSpec ident="music" module="MEI.shared" mode="change">
-          <desc>― Contains a single musical text of any kind, whether unitary or composite, for
-            example, an etude, opera, song cycle, symphony, or anthology of piano solos.</desc>
-          <classes>
-            <memberOf key="att.common"/>
-            <memberOf key="att.declaring"/>
-            <memberOf key="att.meiversion"/>
-          </classes>
-          <content>
-            <rng:zeroOrMore>
-              <rng:ref name="model.alignLike"/>
-            </rng:zeroOrMore>
-            <rng:zeroOrMore>
-              <rng:ref name="model.facsimileLike"/>
-            </rng:zeroOrMore>
-            <!-- Added model.layoutsLike -->
-            <rng:optional>
-              <rng:ref name="model.layoutsLike"/>
-            </rng:optional>
-            <rng:zeroOrMore>
-              <rng:ref name="model.performanceLike"/>
-            </rng:zeroOrMore>
-            <rng:ref name="macro.musicPart"/>
-          </content>
-        </elementSpec>
-        
-        <elementSpec ident="layouts" module="MEI.layout" mode="add">
-          <desc>layouts - Container element for layout elements</desc>
-          <classes>
-            <memberOf key="att.common"/>
-            <memberOf key="model.layoutsLike"/>
-          </classes>
-          <content>
-            <rng:zeroOrMore>
-              <rng:ref name="model.layoutLike"/>
-            </rng:zeroOrMore>
-          </content>
-        </elementSpec>
-        
-        <elementSpec ident="layout" module="MEI.layout" mode="add">
-          <desc>layout - 
-          
-            The @type attribute should be used to indicate the purpose of this layout. 
-            Recommended values are 'transcription' and 'rendering'.
-          </desc>
-          <classes>
-            <memberOf key="att.common"/>
-            <memberOf key="att.declaring"/>
-            <memberOf key="att.source"/>
-            <memberOf key="att.typed"/>
-            <!-- @source only available when MEI.critapp loaded. Means that all rdgs from that source should be used -->
-            <memberOf key="model.layoutLike"/>
-          </classes>
-          <content>
-            <rng:zeroOrMore>
-              <rng:ref name="model.pageLike"/>
-            </rng:zeroOrMore>
-          </content>
-        </elementSpec>
-        
-        <elementSpec ident="page" module="MEI.layout" mode="add">
-          <desc>page - </desc>
-          <classes>
-            <memberOf key="att.scoreDef.vis"/>
-            <memberOf key="att.common"/>
-            <memberOf key="att.pageRef"/>
-            <memberOf key="model.pageLike"/>
-          </classes>
-          <content>
-            <rng:zeroOrMore>
-              <rng:ref name="model.systemLike"/>
-            </rng:zeroOrMore>
-          </content>
-        </elementSpec>
-        
-        <elementSpec ident="system" module="MEI.layout" mode="add">
-          <desc>system - </desc>
-          <classes>
-            <memberOf key="att.scoreDef.vis"/>
-            <memberOf key="att.common"/>
-            <memberOf key="att.systemRef"/>
-            <memberOf key="att.coordinated"/>
-            <memberOf key="att.visualoffset.vo"/>
-            <memberOf key="att.visualoffset2.ho"/>
-            <memberOf key="model.systemLike"/>
-          </classes>
-          <content>
-            <rng:zeroOrMore>
-              <rng:ref name="model.laidOutStaffLike"/>
-            </rng:zeroOrMore>
-          </content>
-        </elementSpec>
-        
-        <elementSpec ident="laidOutStaff" module="MEI.layout" mode="add">
-          <desc>laidOutStaff - 
-          
-            @staff is used to pick a staff by its @n from the logical tree
-          </desc>
-          <classes>
-            <memberOf key="att.common"/>
-            <memberOf key="att.coordinated"/>
-            <memberOf key="att.visualoffset.vo"/>
-            <memberOf key="att.visualoffset2.ho"/>
-            <memberOf key="att.staffident"/>
-            <memberOf key="att.typed"/>
-            <memberOf key="att.laidoutDef.log"/>
-            <memberOf key="att.laidoutDef.vis"/>
-            <memberOf key="model.laidOutStaffLike"/>
-          </classes>
-          <content>
-            <rng:zeroOrMore>
-              <rng:ref name="model.laidOutLayerLike"/>
-            </rng:zeroOrMore>
-          </content>
-          <constraintSpec ident="Check_laidOutStaffn" scheme="isoschematron">
-            <constraint>
-              <sch:rule context="mei:laidOutStaff">
-                <sch:assert test="exists(@n)">A laidOutStaff needs to have an @n attribute.</sch:assert>
-                <sch:assert test="number(@n) = round(number(@n))">The n attribute must be a single
-                  integer.</sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-        
-        <elementSpec ident="laidOutLayer" module="MEI.layout" mode="add">
-          <desc>laidOutLayer - 
-          
-            @staff may be used to override the parent's @staff. 
-          </desc>
-          <classes>
-            <memberOf key="att.common"/>
-            <memberOf key="att.pointing"/>
-            <memberOf key="att.coordinated"/>
-            <memberOf key="att.staffident"/>
-            <memberOf key="att.layerident"/>
-            <memberOf key="att.laidoutDef.log"/>
-            <memberOf key="att.laidoutDef.vis"/>
-            <memberOf key="model.laidOutLayerLike"/>
-          </classes>
-          <content>
-            <rng:zeroOrMore>
-              <rng:choice>
-                <rng:ref name="model.laidOutElementLike"/>
-                <rng:ref name="model.mbLike"/>
-              </rng:choice>
-            </rng:zeroOrMore>
-          </content>
-        </elementSpec>
-        
-        <elementSpec ident="laidOutElement" module="MEI.layout" mode="add">
-          <desc>laidOutElement - 
-          
-            @target is used to point to the element in the logical tree that is described here.
-            The @staff and @layer attributes may be used to move an element to another staff or 
-            layer _in the layout tree_. 
-          </desc>
-          <classes>
-            <memberOf key="att.common"/>
-            <memberOf key="att.pointing"/>
-            <memberOf key="att.coordinated"/>
-            <memberOf key="att.ignore"/>
-            <memberOf key="att.layoutOffsets"/>
-            <memberOf key="model.laidOutElementLike"/>
-          </classes>
-        </elementSpec>
-        
-        <elementSpec ident="mb" module="MEI.layout" mode="add">
-          <desc>mb - (measure break)</desc>
-          <classes>
-            <memberOf key="att.common"/>
-            <memberOf key="att.barline"/>
-            <memberOf key="att.visualoffset.ho"/>
-            <memberOf key="att.measureRef"/>
-            <!-- possibly add an attribute with 
+                            </valList>
+                        </attDef>
+                    </attList>
+                </classSpec>
+
+                <classSpec ident="att.ignore" module="MEI.layout" type="atts" mode="add">
+                    <desc>attributes that indicate whether an element should be rendered or
+                        not.</desc>
+                    <attList>
+                        <attDef ident="ignored" usage="opt">
+                            <desc>Indicates whether the referenced element should be included or
+                                omitted from the rendering. </desc>
+                            <datatype>
+                                <rng:ref name="data.BOOLEAN"/>
+                            </datatype>
+                        </attDef>
+                    </attList>
+                </classSpec>
+
+                <classSpec ident="att.layoutOffsets" module="MEI.layout" type="atts" mode="add">
+                    <desc>gathers all offsets relevant for layout purposes</desc>
+                    <classes>
+                        <memberOf key="att.visualoffset.ho"/>
+                        <memberOf key="att.visualoffset.vo"/>
+                        <memberOf key="att.visualoffset2.ho"/>
+                        <memberOf key="att.visualoffset2.vo"/>
+                    </classes>
+                </classSpec>
+
+                <classSpec ident="att.laidOutStaffident" module="MEI.layout" type="atts">
+                    <desc>Attributes for identifying the staff on which a laidOutElement should be
+                        drawn</desc>
+                    <attList>
+                        <attDef ident="laidoutstaff" usage="mwa">
+                            <desc>signifies the staff on which a laidOutElement should be drawn.
+                                Mandatory when applicable.</desc>
+                            <datatype>
+                                <rng:list>
+                                    <rng:oneOrMore>
+                                        <rng:data type="positiveInteger"/>
+                                    </rng:oneOrMore>
+                                </rng:list>
+                            </datatype>
+                        </attDef>
+                    </attList>
+                </classSpec>
+
+                <classSpec ident="att.layout" module="MEI.layout" type="atts">
+                    <desc>attributes that refer to a layout element.</desc>
+                    <attList>
+                        <attDef ident="ignored" usage="opt">
+                            <desc>references a layout element. </desc>
+                            <datatype>
+                                <rng:list>
+                                    <rng:oneOrMore>
+                                        <rng:ref name="data.URI"/>
+                                    </rng:oneOrMore>
+                                </rng:list>
+                            </datatype>
+                        </attDef>
+                    </attList>
+                </classSpec>
+
+                <classSpec ident="att.laidoutDef.log" module="MEI.layout" type="atts">
+                    <desc> Logical domain attributes for laidOutStaff and laidOutLayer, according to
+                        staffDef / layerDef. </desc>
+                    <classes>
+                        <memberOf key="att.cleffing.log"/>
+                        <memberOf key="att.keySigs.log"/>
+                        <memberOf key="att.meters.log"/>
+                        <memberOf key="att.transposition"/>
+                    </classes>
+                </classSpec>
+
+                <classSpec ident="att.laidoutDef.vis" type="atts" mode="add">
+                    <desc> Visual domain attributes for laidOutStaff and laidOutLayer, according to
+                        staffDef / layerDef. </desc>
+                    <classes>
+                        <memberOf key="att.staffDef.vis"/>
+                    </classes>
+                </classSpec>
+
+                <elementSpec ident="music" module="MEI.shared" mode="change">
+                    <desc>― Contains a single musical text of any kind, whether unitary or
+                        composite, for example, an etude, opera, song cycle, symphony, or anthology
+                        of piano solos.</desc>
+                    <classes>
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.declaring"/>
+                        <memberOf key="att.meiversion"/>
+                    </classes>
+                    <content>
+                        <rng:zeroOrMore>
+                            <rng:ref name="model.alignLike"/>
+                        </rng:zeroOrMore>
+                        <rng:zeroOrMore>
+                            <rng:ref name="model.facsimileLike"/>
+                        </rng:zeroOrMore>
+                        <!-- Added model.layoutsLike -->
+                        <rng:optional>
+                            <rng:ref name="model.layoutsLike"/>
+                        </rng:optional>
+                        <rng:zeroOrMore>
+                            <rng:ref name="model.performanceLike"/>
+                        </rng:zeroOrMore>
+                        <rng:ref name="macro.musicPart"/>
+                    </content>
+                </elementSpec>
+
+                <elementSpec ident="layouts" module="MEI.layout" mode="add">
+                    <desc>layouts - Container element for layout elements</desc>
+                    <classes>
+                        <memberOf key="att.common"/>
+                        <memberOf key="model.layoutsLike"/>
+                    </classes>
+                    <content>
+                        <rng:zeroOrMore>
+                            <rng:ref name="model.layoutLike"/>
+                        </rng:zeroOrMore>
+                    </content>
+                </elementSpec>
+
+                <elementSpec ident="layout" module="MEI.layout" mode="add">
+                    <desc>layout - The @type attribute should be used to indicate the purpose of
+                        this layout. Recommended values are 'transcription' and 'rendering'. </desc>
+                    <classes>
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.declaring"/>
+                        <memberOf key="att.source"/>
+                        <memberOf key="att.typed"/>
+                        <!-- @source only available when MEI.critapp loaded. Means that all rdgs from that source should be used -->
+                        <memberOf key="model.layoutLike"/>
+                    </classes>
+                    <content>
+                        <rng:zeroOrMore>
+                            <rng:ref name="model.pageLike"/>
+                        </rng:zeroOrMore>
+                    </content>
+                </elementSpec>
+
+                <elementSpec ident="page" module="MEI.layout" mode="add">
+                    <desc>page - </desc>
+                    <classes>
+                        <memberOf key="att.scoreDef.vis"/>
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.pageRef"/>
+                        <memberOf key="model.pageLike"/>
+                        <memberOf key="att.surface" />
+                    </classes>
+                    <content>
+                        <rng:zeroOrMore>
+                            <rng:ref name="model.systemLike"/>
+                        </rng:zeroOrMore>
+                    </content>
+                </elementSpec>
+
+                <elementSpec ident="system" module="MEI.layout" mode="add">
+                    <desc>system - </desc>
+                    <classes>
+                        <memberOf key="att.scoreDef.vis"/>
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.systemRef"/>
+                        <memberOf key="att.coordinated"/>
+                        <memberOf key="att.visualoffset.vo"/>
+                        <memberOf key="att.visualoffset2.ho"/>
+                        <memberOf key="model.systemLike"/>
+                    </classes>
+                    <content>
+                        <rng:zeroOrMore>
+                            <rng:ref name="model.laidOutStaffLike"/>
+                        </rng:zeroOrMore>
+                    </content>
+                </elementSpec>
+
+                <elementSpec ident="laidOutStaff" module="MEI.layout" mode="add">
+                    <desc>laidOutStaff - @staff is used to pick a staff by its @n from the logical
+                        tree </desc>
+                    <classes>
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.coordinated"/>
+                        <memberOf key="att.visualoffset.vo"/>
+                        <memberOf key="att.visualoffset2.ho"/>
+                        <memberOf key="att.staffident"/>
+                        <memberOf key="att.typed"/>
+                        <memberOf key="att.laidoutDef.log"/>
+                        <memberOf key="att.laidoutDef.vis"/>
+                        <memberOf key="model.laidOutStaffLike"/>
+                    </classes>
+                    <content>
+                        <rng:zeroOrMore>
+                            <rng:ref name="model.laidOutLayerLike"/>
+                        </rng:zeroOrMore>
+                    </content>
+                    <constraintSpec ident="Check_laidOutStaffn" scheme="isoschematron">
+                        <constraint>
+                            <sch:rule context="mei:laidOutStaff">
+                                <sch:assert test="exists(@n)">A laidOutStaff needs to have an @n
+                                    attribute.</sch:assert>
+                                <sch:assert test="number(@n) = round(number(@n))">The n attribute
+                                    must be a single integer.</sch:assert>
+                            </sch:rule>
+                        </constraint>
+                    </constraintSpec>
+                </elementSpec>
+
+                <elementSpec ident="laidOutLayer" module="MEI.layout" mode="add">
+                    <desc>laidOutLayer - @staff may be used to override the parent's @staff. </desc>
+                    <classes>
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.pointing"/>
+                        <memberOf key="att.coordinated"/>
+                        <memberOf key="att.staffident"/>
+                        <memberOf key="att.layerident"/>
+                        <memberOf key="att.laidoutDef.log"/>
+                        <memberOf key="att.laidoutDef.vis"/>
+                        <memberOf key="model.laidOutLayerLike"/>
+                    </classes>
+                    <content>
+                        <rng:zeroOrMore>
+                            <rng:choice>
+                                <rng:ref name="model.laidOutElementLike"/>
+                                <rng:ref name="model.mbLike"/>
+                            </rng:choice>
+                        </rng:zeroOrMore>
+                    </content>
+                </elementSpec>
+
+                <elementSpec ident="laidOutElement" module="MEI.layout" mode="add">
+                    <desc>laidOutElement - @target is used to point to the element in the logical
+                        tree that is described here. The @staff and @layer attributes may be used to
+                        move an element to another staff or layer _in the layout tree_. </desc>
+                    <classes>
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.pointing"/>
+                        <memberOf key="att.coordinated"/>
+                        <memberOf key="att.ignore"/>
+                        <memberOf key="att.layoutOffsets"/>
+                        <memberOf key="model.laidOutElementLike"/>
+                    </classes>
+                </elementSpec>
+
+                <elementSpec ident="mb" module="MEI.layout" mode="add">
+                    <desc>mb - (measure break)</desc>
+                    <classes>
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.barline"/>
+                        <memberOf key="att.visualoffset.ho"/>
+                        <memberOf key="att.measureRef"/>
+                        <!-- possibly add an attribute with 
               <datatype>
                 <rng:ref name="data.BARRENDITION"/>
               </datatype>
               to mb?
             -->
-            <memberOf key="model.mbLike"/>
-          </classes>
-        </elementSpec>
-        
-        <!-- Changes to preexisting elements -->
-        
-        <elementSpec ident="pb" module="MEI.shared" mode="change">
-          <desc>(page break) ― An empty formatting element that forces text to begin on a new
-            page.<!-- The n
+                        <memberOf key="model.mbLike"/>
+                    </classes>
+                </elementSpec>
+
+                <!-- Changes to preexisting elements -->
+
+                <elementSpec ident="pb" module="MEI.shared" mode="change">
+                    <desc>(page break) ― An empty formatting element that forces text to begin on a
+                        new
+                        page.<!-- The n
         attribute should be used to record the page number displayed in the source. It need not be
         an integer, e.g., 'iv', or 'p17-3'. The logical page number can be calculated by counting
         previous &lt;pb&gt; ancestor elements. When used in a score context, a page break implies an
         accompanying system break. This element is modelled on an element in the Text Encoding
         Initiative (TEI).--></desc>
-          <classes mode="change">
-            <memberOf key="att.common"/>
-            <memberOf key="att.facsimile"/>
-            <memberOf key="att.pointing"/>
-            <memberOf key="att.source"/>
-            <memberOf key="att.pb.anl"/>
-            <memberOf key="att.pb.ges"/>
-            <memberOf key="att.pb.log"/>
-            <memberOf key="att.pb.vis"/>
-            <memberOf key="model.pbLike"/>
-            <memberOf key="att.layout" mode="add"/>
-          </classes>
-          <content>
-            <rng:ref name="macro.metaLike.page"/>
-          </content>
-        </elementSpec>
-        
-        <elementSpec ident="sb" module="MEI.shared" mode="change">
-          <desc>(system break) ― An empty formatting element that forces musical notation to begin on a
-            new
-            line.<!-- Do not confuse this element with the &lt;lb&gt; element, which performs a similar
+                    <classes mode="change">
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.facsimile"/>
+                        <memberOf key="att.pointing"/>
+                        <memberOf key="att.source"/>
+                        <memberOf key="att.pb.anl"/>
+                        <memberOf key="att.pb.ges"/>
+                        <memberOf key="att.pb.log"/>
+                        <memberOf key="att.pb.vis"/>
+                        <memberOf key="model.pbLike"/>
+                        <memberOf key="att.layout" mode="add"/>
+                    </classes>
+                    <content>
+                        <rng:ref name="macro.metaLike.page"/>
+                    </content>
+                </elementSpec>
+
+                <elementSpec ident="sb" module="MEI.shared" mode="change">
+                    <desc>(system break) ― An empty formatting element that forces musical notation
+                        to begin on a new
+                        line.<!-- Do not confuse this element with the &lt;lb&gt; element, which performs a similar
         function in prose.--></desc>
-          <classes mode="change">
-            <memberOf key="att.common"/>
-            <memberOf key="att.facsimile"/>
-            <memberOf key="att.source"/>
-            <memberOf key="att.sb.log"/>
-            <memberOf key="att.sb.vis"/>
-            <memberOf key="att.sb.ges"/>
-            <memberOf key="att.sb.anl"/>
-            <memberOf key="model.milestoneLike.music"/>
-            <memberOf key="att.layout" mode="add"/>
-          </classes>
-          <content>
-            <rng:optional>
-              <rng:ref name="custos"/>
-            </rng:optional>
-          </content>
-        </elementSpec>
-        
-      </schemaSpec>
-    </body>
-  </text>
+                    <classes mode="change">
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.facsimile"/>
+                        <memberOf key="att.source"/>
+                        <memberOf key="att.sb.log"/>
+                        <memberOf key="att.sb.vis"/>
+                        <memberOf key="att.sb.ges"/>
+                        <memberOf key="att.sb.anl"/>
+                        <memberOf key="model.milestoneLike.music"/>
+                        <memberOf key="att.layout" mode="add"/>
+                    </classes>
+                    <content>
+                        <rng:optional>
+                            <rng:ref name="custos"/>
+                        </rng:optional>
+                    </content>
+                </elementSpec>
+
+            </schemaSpec>
+        </body>
+    </text>
 </TEI>

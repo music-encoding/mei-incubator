@@ -3,7 +3,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.music-encoding.org/ns/mei"><!--
-Schema generated from ODD source 2012-09-25T22:07:08Z. 
+Schema generated from ODD source 2012-10-02T14:50:44Z. 
 Edition: 2012
 Edition Location: http://www.tei-c.org/Vault/P5//
 
@@ -6357,8 +6357,9 @@ Suggested values include: 1] cm; 2] mm; 3] in; 4] px; 5] pt; 6] pc</a:documentat
    </define>
    <define name="music">
       <element name="music">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">― Contains a single musical text of any kind, whether unitary or composite, for
-            example, an etude, opera, song cycle, symphony, or anthology of piano solos.</a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">― Contains a single musical text of any kind, whether unitary or
+                        composite, for example, an etude, opera, song cycle, symphony, or anthology
+                        of piano solos.</a:documentation>
          <zeroOrMore>
             <ref name="model.alignLike"/>
          </zeroOrMore>
@@ -6511,8 +6512,9 @@ Suggested values include: 1] cm; 2] mm; 3] in; 4] px; 5] pt; 6] pc</a:documentat
    </define>
    <define name="pb">
       <element name="pb">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(page break) ― An empty formatting element that forces text to begin on a new
-            page.</a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(page break) ― An empty formatting element that forces text to begin on a
+                        new
+                        page.</a:documentation>
          <ref name="macro.metaLike.page"/>
          <ref name="att.common.attributes"/>
          <ref name="att.facsimile.attributes"/>
@@ -6789,9 +6791,9 @@ Suggested values include: 1] cm; 2] mm; 3] in; 4] px; 5] pt; 6] pc</a:documentat
    </define>
    <define name="sb">
       <element name="sb">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(system break) ― An empty formatting element that forces musical notation to begin on a
-            new
-            line.</a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(system break) ― An empty formatting element that forces musical notation
+                        to begin on a new
+                        line.</a:documentation>
          <optional>
             <ref name="custos"/>
          </optional>
@@ -15005,6 +15007,17 @@ Suggested values include: 1] plaineAndEasie; 2] humdrumKern</a:documentation>
          </attribute>
       </optional>
    </define>
+   <define name="att.surface.attributes">
+      <ref name="att.surface.attribute.surface"/>
+   </define>
+   <define name="att.surface.attribute.surface">
+      <optional>
+         <attribute name="surface">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a reference to a surface element</a:documentation>
+            <ref name="data.URI"/>
+         </attribute>
+      </optional>
+   </define>
    <define name="att.systemRef.attributes">
       <ref name="att.systemRef.attribute.sbrefs"/>
    </define>
@@ -15036,16 +15049,17 @@ Suggested values include: 1] plaineAndEasie; 2] humdrumKern</a:documentation>
    </define>
    <define name="att.barline.attribute.barline">
       <attribute name="barline">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Indicates if the element describes the beginning or end of a measure. 
-                If a //mb/@barline="left" is pointing to a measure without a @left, there is 
-                no barline drawn by default. If a //mb/@barline="right" is pointing to a measure
-                without a @right, there is a regular barline drawn by default.
-              </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Indicates if the element describes the beginning or end of a
+                                measure. If a //mb/@barline="left" is pointing to a measure without
+                                a @left, there is no barline drawn by default. If a
+                                //mb/@barline="right" is pointing to a measure without a @right,
+                                there is a regular barline drawn by default. </a:documentation>
          <choice>
             <value>left</value>
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The element describes the left barline of a measure</a:documentation>
             <value>right</value>
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The element describes the right barline of a measure</a:documentation>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The element describes the right barline of a
+                                        measure</a:documentation>
          </choice>
       </attribute>
    </define>
@@ -15055,9 +15069,8 @@ Suggested values include: 1] plaineAndEasie; 2] humdrumKern</a:documentation>
    <define name="att.ignore.attribute.ignored">
       <optional>
          <attribute name="ignored">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Indicates whether the referenced element should be included or omitted
-                from the rendering.
-              </a:documentation>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Indicates whether the referenced element should be included or
+                                omitted from the rendering. </a:documentation>
             <ref name="data.BOOLEAN"/>
          </attribute>
       </optional>
@@ -15074,8 +15087,7 @@ Suggested values include: 1] plaineAndEasie; 2] humdrumKern</a:documentation>
    <define name="att.layout.attribute.ignored">
       <optional>
          <attribute name="ignored">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">references a layout element.
-              </a:documentation>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">references a layout element. </a:documentation>
             <list>
                <oneOrMore>
                   <ref name="data.URI"/>
@@ -15103,11 +15115,8 @@ Suggested values include: 1] plaineAndEasie; 2] humdrumKern</a:documentation>
    </define>
    <define name="layout">
       <element name="layout">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">layout - 
-          
-            The @type attribute should be used to indicate the purpose of this layout. 
-            Recommended values are 'transcription' and 'rendering'.
-          </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">layout - The @type attribute should be used to indicate the purpose of
+                        this layout. Recommended values are 'transcription' and 'rendering'. </a:documentation>
          <zeroOrMore>
             <ref name="model.pageLike"/>
          </zeroOrMore>
@@ -15127,6 +15136,7 @@ Suggested values include: 1] plaineAndEasie; 2] humdrumKern</a:documentation>
          <ref name="att.scoreDef.vis.attributes"/>
          <ref name="att.common.attributes"/>
          <ref name="att.pageRef.attributes"/>
+         <ref name="att.surface.attributes"/>
          <empty/>
       </element>
    </define>
@@ -15147,27 +15157,26 @@ Suggested values include: 1] plaineAndEasie; 2] humdrumKern</a:documentation>
    </define>
    <define name="laidOutStaff">
       <element name="laidOutStaff">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">laidOutStaff - 
-          
-            @staff is used to pick a staff by its @n from the logical tree
-          </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">laidOutStaff - @staff is used to pick a staff by its @n from the logical
+                        tree </a:documentation>
          <zeroOrMore>
             <ref name="model.laidOutLayerLike"/>
          </zeroOrMore>
-            
-              <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                        
+                            <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="laidOutStaff-constraint-Check_laidOutStaffn">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns="http://www.tei-c.org/ns/1.0"
                       context="mei:laidOutStaff">
-                <sch:assert test="exists(@n)">A laidOutStaff needs to have an @n attribute.</sch:assert>
-                <sch:assert test="number(@n) = round(number(@n))">The n attribute must be a single
-                  integer.</sch:assert>
-              </sch:rule>
+                                <sch:assert test="exists(@n)">A laidOutStaff needs to have an @n
+                                    attribute.</sch:assert>
+                                <sch:assert test="number(@n) = round(number(@n))">The n attribute
+                                    must be a single integer.</sch:assert>
+                            </sch:rule>
          </pattern>
-            
-          <ref name="att.common.attributes"/>
+                        
+                    <ref name="att.common.attributes"/>
          <ref name="att.coordinated.attributes"/>
          <ref name="att.visualoffset.vo.attributes"/>
          <ref name="att.visualoffset2.ho.attributes"/>
@@ -15180,10 +15189,7 @@ Suggested values include: 1] plaineAndEasie; 2] humdrumKern</a:documentation>
    </define>
    <define name="laidOutLayer">
       <element name="laidOutLayer">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">laidOutLayer - 
-          
-            @staff may be used to override the parent's @staff. 
-          </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">laidOutLayer - @staff may be used to override the parent's @staff. </a:documentation>
          <zeroOrMore>
             <choice>
                <ref name="model.laidOutElementLike"/>
@@ -15202,12 +15208,9 @@ Suggested values include: 1] plaineAndEasie; 2] humdrumKern</a:documentation>
    </define>
    <define name="laidOutElement">
       <element name="laidOutElement">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">laidOutElement - 
-          
-            @target is used to point to the element in the logical tree that is described here.
-            The @staff and @layer attributes may be used to move an element to another staff or 
-            layer _in the layout tree_. 
-          </a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">laidOutElement - @target is used to point to the element in the logical
+                        tree that is described here. The @staff and @layer attributes may be used to
+                        move an element to another staff or layer _in the layout tree_. </a:documentation>
          <empty/>
          <ref name="att.common.attributes"/>
          <ref name="att.pointing.attributes"/>
