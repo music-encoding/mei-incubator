@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_odds.rng" type="xml"?>
+<TEI xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+          <title>Music Encoding Initiative Guidelines: <title type="sub">Saint Gallen manuscript customization</title></title>
+        <respStmt>
+          <resp>Authored by</resp>
+          <name xml:id="GB">Gregory Burlet</name>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <p/>
+      </publicationStmt>
+      <sourceDesc>
+        <p/>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <divGen type="toc"/>
+    </front>
+    <body>
+      <schemaSpec ident="mei" start="mei meiHead meiCorpus music" ns="http://www.music-encoding.org/ns/mei">
+        <moduleRef key="MEI"/>
+        <moduleRef key="MEI.shared"/>
+        <moduleRef key="MEI.header"/>
+        <!--<moduleRef key="MEI.cmn"/>-->
+        <!--<moduleRef key="MEI.mensural"/>-->
+        <moduleRef key="MEI.neumes" include="syllable"/>
+        <moduleRef key="MEI.analysis"/>
+        <!--<moduleRef key="MEI.cmnOrnaments"/>-->
+        <moduleRef key="MEI.corpus"/>
+        <moduleRef key="MEI.critapp"/>
+        <moduleRef key="MEI.edittrans"/>
+        <moduleRef key="MEI.facsimile"/>
+        <moduleRef key="MEI.figtable"/>
+        <moduleRef key="MEI.harmony"/>
+        <moduleRef key="MEI.linkalign"/>
+        <moduleRef key="MEI.lyrics"/>
+        <moduleRef key="MEI.midi"/>
+        <moduleRef key="MEI.namesdates"/>
+        <moduleRef key="MEI.performance"/>
+        <moduleRef key="MEI.ptrref"/>
+        <moduleRef key="MEI.tablature"/>
+        <moduleRef key="MEI.text"/>
+        <moduleRef key="MEI.usersymbols"/>
+        <moduleRef key="MEI.saintgallen"/>
+
+        <!-- Define the new module -->
+        <moduleSpec ident="MEI.saintgallen"/>
+        
+        <elementSpec ident="neume" module="MEI.saintgallen" mode="add">
+          <gloss>Cheironomic (unpitched, staffless) Neume</gloss>
+          <desc>
+              Identifies a group of notes, which represent the relative pitches 
+              required to sing a single syllable of chant.
+          </desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.facsimile"/>
+            <memberOf key="att.typed"/>
+            <memberOf key="att.saintgallen.neume.log" />
+            <memberOf key="att.saintgallen.neume.vis" />
+            <memberOf key="att.saintgallen.neume.ges" />
+            <memberOf key="att.saintgallen.neume.anl" />
+            <memberOf key="att.saintgallen.neume" />
+            <memberOf key="model.eventLike"/>
+            <!-- Because this is now a member of the eventLike model, it can now appear
+                 as a child of the syllable element-->
+          </classes>
+          <attList>
+            <attDef ident="name" usage="opt">
+              <gloss>Neume name</gloss>
+              <desc>The name of the neume. The primary Saint Gallen neume names are compiled
+                from the list provided by Inga.
+                
+                This also accepts freeform neume names. This is used for when a neume is known by a name, but
+                it may not appear on this list.
+              </desc>
+              <valList type="semi">
+                <valItem ident="punctum"/>
+                <valItem ident="tractulus"/>
+                <valItem ident="gravis"/>
+                <valItem ident="oriscus"/>
+                <valItem ident="stropha"/>
+                <valItem ident="virga"/>
+                <valItem ident="pes"/>
+                <valItem ident="podatus"/>
+                <valItem ident="clivis"/>
+                <valItem ident="torculus"/>
+                <valItem ident="porrectus"/>
+                <valItem ident="scandicus"/>
+                <valItem ident="climacus"/>
+              </valList>
+            </attDef>
+            <attDef ident="variant" usage="opt">
+              <gloss>Neume Variant Name</gloss>
+              <desc>Used to capture a neume variant name from the primary neume names.</desc>
+            </attDef>
+          </attList>
+          <content>
+            <rng:zeroOrMore>
+              <rng:choice>
+                <rng:ref name="nc"/>
+              </rng:choice>
+            </rng:zeroOrMore>
+          </content>
+        </elementSpec>
+
+        <elementSpec ident="nc" module="MEI.saintgallen" mode="add">
+          <desc>Supplies a "neume component" to neume that allows the description of individual neume parts, e.g., a quilisma.</desc>
+          <classes>
+            <memberOf key="att.common" />
+            <memberOf key="att.saintgallen.nc" />
+            <memberOf key="model.eventLike"/>
+          </classes>
+          <attList>
+            <attDef ident="augmented" usage="opt">
+              <gloss>Augmented neume component</gloss>
+              <desc>This neume component is augmented.</desc>
+              <datatype>
+                <rng:ref name="data.BOOLEAN"/>
+              </datatype>
+            </attDef>
+            <attDef ident="diminished" usage="opt">
+              <gloss>Diminished neume component</gloss>
+              <desc>This neume component is diminished.</desc>
+              <datatype>
+                <rng:ref name="data.BOOLEAN" />
+              </datatype>
+            </attDef>
+            <attDef ident="liquescent" usage="rec">
+              <gloss>Liquescent neume component</gloss>
+              <desc>This neume component is in liquescent form. Some neume names imply that the
+                neume is in its liquescent form, e.g., a liquescent pes is often called an epiphonus
+                and a liquescent clivis is often called a cephalicus. In this case, this liquescent
+                attribute is optional but recommended.
+              </desc>
+              <datatype>
+                <rng:ref name="data.BOOLEAN"/>
+              </datatype>
+            </attDef>
+            <attDef ident="quilisma" usage="opt">
+              <desc>This neume component describes a quilisma note.</desc>
+              <datatype>
+                <rng:ref name="data.BOOLEAN" />
+              </datatype>
+            </attDef>
+          </attList>
+          <content>
+            <rng:zeroOrMore>
+              <rng:choice>
+                <rng:ref name="neume"/>
+              </rng:choice>
+            </rng:zeroOrMore>
+            <rng:zeroOrMore>
+              <rng:choice>
+                <!--Even though we don't need to store pitch information as attributes of the 
+                   note element, notes are still included to be used as start and end id
+                   references for episema elements.-->
+                <rng:ref name="note"/>
+              </rng:choice>
+            </rng:zeroOrMore>
+          </content>
+        </elementSpec>
+
+        <elementSpec ident="episema" module="MEI.saintgallen" mode="add">
+          <gloss>Episema</gloss>
+          <desc>An episema is an accent attached to a neume, which indicates that the note(s)
+            should be stressed or lengthened. The interpretation of these markings are still
+            under debate by many scholars. This element has a start and end id, which references
+            the notes within a neume that this accent affects.
+          </desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.facsimile"/>
+            <memberOf key="att.saintgallen.episema" />
+            <memberOf key="att.startendid" />
+            <memberOf key="model.eventLike" />
+          </classes>
+        </elementSpec>
+
+      </schemaSpec>
+    </body>
+  </text>
+</TEI>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" xmlns:xlink="http://www.w3.org/1999/xlink" meiversion="2013">
+    <meiHead>
+        <fileDesc>
+            <titleStmt>
+                <title>Neume test</title>
+            </titleStmt>
+            <pubStmt>
+                <respStmt>
+                    <corpName dbkey="5115204-6" authURI="http://d-nb.info/gnd" authority="GND">DDMAL</corpName>
+                </respStmt>
+            </pubStmt>
+            <seriesStmt>
+                <title>MEI Sample Collection</title>
+                <respStmt>
+                    <corpName role="publisher">MEI Project</corpName>
+                </respStmt>
+                <identifier>
+                    <ref target="http://music-encoding.org/irgendEineUnterSeite">http://music-encoding.org/irgendEineUnterSeite</ref>
+                </identifier>
+            </seriesStmt>
+        </fileDesc>
+        <encodingDesc>
+            <appInfo>
+                <application xml:id="xsl_2mei_2.2.1" version="2.2.1">
+                    <name>2mei</name>
+                    <ptr target="http://music-encoding.org/stylesheets/blubb"/>
+                </application>
+            </appInfo>
+        </encodingDesc>
+        <revisionDesc>
+            <change n="1">
+                <respStmt/>
+                <changeDesc>
+                    <p>The original MusicXML file was generated using SharpEye Music Reader 2.</p>
+                </changeDesc>
+                <date/>
+            </change>
+        </revisionDesc>
+    </meiHead>
+    <music>
+        <facsimile xml:id="m-1f2fea44-1233-4bd0-8c7b-bfea0f2c9406">
+            <surface xml:id="m-29d1a45c-b5cc-4210-a9d4-6005a8af0a80">
+                <graphic xml:id="m-bc69acaf-537e-46d0-8506-e8e3e7fdf8ef" height="3755" width="2839" unit="px" target="Neon.js/mei/csg-0390_007"/>
+                <zone xml:id="nz1" ulx="331" uly="281" lrx="365" lry="327"/>
+                <zone xml:id="nz2" ulx="474" uly="278" lrx="505" lry="309"/>
+            </surface>
+        </facsimile>
+        <body>
+            <mdiv>
+                <score>
+                    <scoreDef>
+                        <staffGrp>
+                            <staffDef xml:id="sd1" n="1" lines.visible="false"/>
+                            <!--want lines="0" but must be a positive integer-->
+                        </staffGrp>
+                    </scoreDef>
+                    <section>
+                        <staff n="1">
+                            <layer n="1">
+                                <syllable>
+                                    <syl xml:id="s1" n="1">Al</syl>
+                                    <neume xml:id="n1" facs="#nz1" name="tractulus">
+                                        <nc xml:id="nc1">
+                                            <note xml:id="note1"/>
+                                            <note xml:id="note2"/>
+                                        </nc>
+                                    </neume>
+                                </syllable>
+                                <sb n="1"/>
+                                <syllable>
+                                    <syl xml:id="s2" n="2">ve</syl>
+                                    <neume xml:id="n2" facs="#nz2" name="porrectus" variant="flexus">
+                                        <nc xml:id="nc2" augmented="true" liquescent="true">
+                                            <note xml:id="note3"/>
+                                            <note xml:id="note4"/>
+                                            <note xml:id="note5"/>
+                                            <note xml:id="note6"/>
+                                        </nc>
+                                    </neume>
+                                </syllable>
+                            </layer>
+                        </staff>
+                    </section>
+                </score>
+            </mdiv>
+        </body>
+    </music>
+</mei>
