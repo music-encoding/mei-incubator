@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_odds.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_odds.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+
+<TEI xmlns:rng="http://relaxng.org/ns/structure/1.0"
+    xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Music Encoding Initiative Guidelines – Proposal for a Page-Based MEI representation</title>
+                <respStmt>
+                    <resp>Authored by</resp>
+                    <name xml:id="LP">Laurent Pugin</name>
+                    <name xml:id="AH">Andrew Hankinson</name>
+                </respStmt>
+            </titleStmt>
+            <publicationStmt>
+                <p/>
+            </publicationStmt>
+            <sourceDesc>
+                <p/>
+            </sourceDesc>
+        </fileDesc>
+        <revisionDesc>
+            <change n="1" when="2013-08-29">
+                <desc>Initial setup of the customization.</desc>
+            </change>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <front>
+            <divGen type="toc"/>
+        </front>
+        <body>
+            <schemaSpec ident="mei" start="mei meiHead meiCorpus music"
+                ns="http://www.music-encoding.org/ns/mei">
+                <moduleRef key="MEI"/>
+                <moduleRef key="MEI.shared"/>
+                <moduleRef key="MEI.header"/>
+                <moduleRef key="MEI.cmn"/>
+                <moduleRef key="MEI.mensural"/>
+                <moduleRef key="MEI.neumes"/>
+                <moduleRef key="MEI.analysis"/>
+                <moduleRef key="MEI.cmnOrnaments"/>
+                <moduleRef key="MEI.corpus"/>
+                <moduleRef key="MEI.critapp"/>
+                <moduleRef key="MEI.edittrans"/>
+                <moduleRef key="MEI.facsimile"/>
+                <moduleRef key="MEI.figtable"/>
+                <moduleRef key="MEI.harmony"/>
+                <moduleRef key="MEI.linkalign"/>
+                <moduleRef key="MEI.lyrics"/>
+                <moduleRef key="MEI.midi"/>
+                <moduleRef key="MEI.namesdates"/>
+                <moduleRef key="MEI.performance"/>
+                <moduleRef key="MEI.ptrref"/>
+                <moduleRef key="MEI.tablature"/>
+                <moduleRef key="MEI.text"/>
+                <moduleRef key="MEI.usersymbols"/>
+
+
+                <!-- Customizations -->
+         
+                <moduleSpec ident="MEI.page-based" mode="add">
+                    <desc/>
+                </moduleSpec>
+
+                <classSpec ident="model.pageLike" type="model" module="MEI.page-based" mode="add">
+                    <desc>Collects pagelike elements.</desc>
+                </classSpec>
+
+                <classSpec ident="model.systemLike" type="model" module="MEI.page-based" mode="add">
+                    <desc>Collects systemlike elements.</desc>
+                </classSpec>
+
+                <classSpec ident="model.pgbLike" type="model" module="MEI.page-based" mode="add">
+                    <desc>Collects page-based-break-like elements.</desc>
+                    <classes>
+                        <memberOf key="model.layerPart"/>
+                    </classes>
+                </classSpec>
+
+                <classSpec ident="att.surface" module="MEI.page-based" type="atts" mode="add">
+                    <desc>attributes to point to a surface</desc>
+                    <attList>
+                        <attDef ident="surface" usage="opt">
+                            <desc>contains a reference to a surface element</desc>
+                            <datatype>
+                               <rng:ref name="data.URI"/>
+                            </datatype>
+                        </attDef>
+                    </attList>
+                </classSpec>
+
+                <classSpec ident="att.barline" module="MEI.page-based" type="atts" mode="add">
+                    <desc>attributes to define barlines</desc>
+                    <attList>
+                        <attDef ident="barline" usage="req">
+                            <desc>Indicates if the element describes the beginning or end of a
+                                measure. If a //mb/@barline="left" is pointing to a measure without
+                                a @left, there is no barline drawn by default. If a
+                                //mb/@barline="right" is pointing to a measure without a @right,
+                                there is a regular barline drawn by default. </desc>
+                            <valList type="closed">
+                                <valItem ident="left">
+                                    <desc>The element describes the left barline of a measure</desc>
+                                </valItem>
+                                <valItem ident="right">
+                                    <desc>The element describes the right barline of a
+                                        measure</desc>
+                                </valItem>
+                                <!--
+                  Is this useful?
+                  <valItem ident="both">
+                  <desc>on the staff, i.e., traditional placement</desc>
+                </valItem>-->
+                            </valList>
+                        </attDef>
+                    </attList>
+                </classSpec>
+
+                <elementSpec ident="page" module="MEI.page-based" mode="add">
+                    <desc>page - </desc>
+                    <classes>
+                        <memberOf key="att.scoreDef.vis"/>
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.pageRef"/>
+                        <memberOf key="model.pageLike"/>
+                        <memberOf key="att.surface" />
+                    </classes>
+                    <content>
+                        <rng:zeroOrMore>
+                            <rng:ref name="model.systemLike"/>
+                        </rng:zeroOrMore>
+                    </content>
+                </elementSpec>
+
+                <elementSpec ident="system" module="MEI.page-based" mode="add">
+                    <desc>system - </desc>
+                    <classes>
+                        <memberOf key="att.scoreDef.vis"/>
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.systemRef"/>
+                        <memberOf key="att.coordinated"/>
+                        <memberOf key="att.visualoffset.vo"/>
+                        <memberOf key="att.visualoffset2.ho"/>
+                        <memberOf key="model.systemLike"/>
+                    </classes>
+                    <content>
+                        <rng:zeroOrMore>
+                            <rng:ref name="model.staffLike"/>
+                        </rng:zeroOrMore>
+                    </content>
+                </elementSpec>
+
+                <elementSpec ident="measureBreak" module="MEI.page-based" mode="add">
+                    <desc>measure break</desc>
+                    <classes>
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.barline"/>
+                        <memberOf key="att.visualoffset.ho"/>
+                        <!-- possibly add an attribute with 
+              <datatype>
+                <rng:ref name="data.BARRENDITION"/>
+              </datatype>
+              to mb?
+            -->
+                        <memberOf key="model.pgbLike"/>
+                    </classes>
+                </elementSpec>
+                
+                <elementSpec ident="sectionBreak" module="MEI.page-based" mode="add">
+                    <desc>measure break</desc>
+                    <classes>
+                        <memberOf key="att.common"/>
+                        <memberOf key="model.pgbLike"/>
+                    </classes>
+                </elementSpec>
+
+                <!-- Changes to preexisting elements -->
+                
+                <classSpec ident="att.facsimile" module="MEI.facsimile" type="atts" mode="replace">
+                    <desc>Attributes that associate a feature corresponding with all or part of an image.</desc>
+                    <classes>
+                        <memberOf key="att.coordinated"></memberOf>
+                    </classes>
+                    <attList>
+                        <attDef ident="facs" usage="opt">
+                            <desc>permits the current element to reference a facsimile image or image zone which
+                                corresponds to it.</desc>
+                            <datatype>
+                                <rng:ref name="data.URIS"/>
+                            </datatype>
+                        </attDef>
+                    </attList>
+                </classSpec>
+                
+                <elementSpec ident="score" module="MEI.shared" mode="change">
+                    <desc>Full score view of the musical content.
+                        <!--Since the measure element is optional, a score may
+        consist entirely of pagebreaks, each of which points to a page image. Div elements are
+        allowed preceding and following sections of music data in order to accommodate blocks of
+        explanatory text.--></desc>
+                    <classes>
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.declaring"/>
+                        <memberOf key="att.typed"/>
+                        <memberOf key="att.score.log"/>
+                        <memberOf key="att.score.vis"/>
+                        <memberOf key="att.score.ges"/>
+                        <memberOf key="att.score.anl"/>
+                        <memberOf key="model.scoreLike"/>
+                    </classes>
+                    <content>
+                        <rng:zeroOrMore>
+                            <rng:choice>
+                                <rng:ref name="model.pageLike"/>
+                            </rng:choice>
+                        </rng:zeroOrMore>
+                    </content>
+                </elementSpec>
+            </schemaSpec>
+        </body>
+    </text>
+</TEI>
