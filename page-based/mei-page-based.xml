@@ -8,7 +8,7 @@
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>Music Encoding Initiative Guidelines – Proposal for a Page-Based MEI representation</title>
+                <title>Music Encoding Initiative Guidelines – Proposal for a Page-Based MEI representation</title>
                 <respStmt>
                     <resp>Authored by</resp>
                     <name xml:id="LP">Laurent Pugin</name>
@@ -23,6 +23,9 @@
             </sourceDesc>
         </fileDesc>
         <revisionDesc>
+            <change n="2" when="2013-09-02">
+                <desc>Fixing naming according to MEI convention and other small fixes</desc>
+            </change>
             <change n="1" when="2013-08-29">
                 <desc>Initial setup of the customization.</desc>
             </change>
@@ -58,30 +61,31 @@
                 <moduleRef key="MEI.tablature"/>
                 <moduleRef key="MEI.text"/>
                 <moduleRef key="MEI.usersymbols"/>
+				<moduleRef key="MEI.pageBased"/>
 
 
                 <!-- Customizations -->
          
-                <moduleSpec ident="MEI.page-based" mode="add">
+                <moduleSpec ident="MEI.pageBased" mode="add">
                     <desc/>
                 </moduleSpec>
 
-                <classSpec ident="model.pageLike" type="model" module="MEI.page-based" mode="add">
+                <classSpec ident="model.pageLike" type="model" module="MEI.pageBased" mode="add">
                     <desc>Collects pagelike elements.</desc>
                 </classSpec>
 
-                <classSpec ident="model.systemLike" type="model" module="MEI.page-based" mode="add">
+                <classSpec ident="model.systemLike" type="model" module="MEI.pageBased" mode="add">
                     <desc>Collects systemlike elements.</desc>
                 </classSpec>
 
-                <classSpec ident="model.pgbLike" type="model" module="MEI.page-based" mode="add">
-                    <desc>Collects page-based-break-like elements.</desc>
+                <classSpec ident="model.pgbLike" type="model" module="MEI.pageBased" mode="add">
+                    <desc>Collects pageBased-break-like elements.</desc>
                     <classes>
                         <memberOf key="model.layerPart"/>
                     </classes>
                 </classSpec>
 
-                <classSpec ident="att.surface" module="MEI.page-based" type="atts" mode="add">
+                <classSpec ident="att.surface" module="MEI.pageBased" type="atts" mode="add">
                     <desc>attributes to point to a surface</desc>
                     <attList>
                         <attDef ident="surface" usage="opt">
@@ -93,7 +97,7 @@
                     </attList>
                 </classSpec>
 
-                <classSpec ident="att.barline" module="MEI.page-based" type="atts" mode="add">
+                <classSpec ident="att.barline" module="MEI.pageBased" type="atts" mode="change">
                     <desc>attributes to define barlines</desc>
                     <attList>
                         <attDef ident="barline" usage="req">
@@ -120,9 +124,10 @@
                     </attList>
                 </classSpec>
 
-                <elementSpec ident="page" module="MEI.page-based" mode="add">
+                <elementSpec ident="page" module="MEI.pageBased" mode="add">
                     <desc>page - </desc>
                     <classes>
+						<memberOf key="att.common.anl"/>
                         <memberOf key="att.scoreDef.vis"/>
                         <memberOf key="att.common"/>
                         <memberOf key="att.pageRef"/>
@@ -136,7 +141,7 @@
                     </content>
                 </elementSpec>
 
-                <elementSpec ident="system" module="MEI.page-based" mode="add">
+                <elementSpec ident="system" module="MEI.pageBased" mode="add">
                     <desc>system - </desc>
                     <classes>
                         <memberOf key="att.scoreDef.vis"/>
@@ -154,7 +159,7 @@
                     </content>
                 </elementSpec>
 
-                <elementSpec ident="measureBreak" module="MEI.page-based" mode="add">
+                <elementSpec ident="mb" module="MEI.pageBased" mode="add">
                     <desc>measure break</desc>
                     <classes>
                         <memberOf key="att.common"/>
@@ -170,8 +175,8 @@
                     </classes>
                 </elementSpec>
                 
-                <elementSpec ident="sectionBreak" module="MEI.page-based" mode="add">
-                    <desc>measure break</desc>
+                <elementSpec ident="scb" module="MEI.pageBased" mode="add">
+                    <desc>section break</desc>
                     <classes>
                         <memberOf key="att.common"/>
                         <memberOf key="model.pgbLike"/>
