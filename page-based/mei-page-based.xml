@@ -8,11 +8,12 @@
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>Music Encoding Initiative Guidelines – Proposal for a Page-Based MEI representation</title>
+                <title>Music Encoding Initiative Guidelines – Proposal for a Page-Based MEI representation</title>
                 <respStmt>
                     <resp>Authored by</resp>
                     <name xml:id="LP">Laurent Pugin</name>
                     <name xml:id="AH">Andrew Hankinson</name>
+                    <name xml:id="PR">Perry Roland</name>
                 </respStmt>
             </titleStmt>
             <publicationStmt>
@@ -23,6 +24,13 @@
             </sourceDesc>
         </fileDesc>
         <revisionDesc>
+            <change n="3" when="2013-11-08">
+                <desc>Changing to /measure/staff organisation; adding /pages container in /mdiv;
+                    adding /page@position; changing scb to secb; </desc>
+            </change>            
+            <change n="2" when="2013-09-08">
+                <desc>Adding /staff/measure organisation and other fixes</desc>
+            </change>
             <change n="2" when="2013-09-02">
                 <desc>Fixing naming according to MEI convention and other small fixes</desc>
             </change>
@@ -63,30 +71,30 @@
                 <moduleRef key="MEI.usersymbols"/>
 				<moduleRef key="MEI.pageBased"/>
 
-
                 <!-- Customizations -->
          
                 <moduleSpec ident="MEI.pageBased" mode="add">
                     <desc/>
                 </moduleSpec>
+                
+                <classSpec ident="model.pagesLike" type="model" module="MEI.pageBased" mode="add">
+                    <desc>Collects pagesLike elements.</desc>
+                </classSpec>
 
                 <classSpec ident="model.pageLike" type="model" module="MEI.pageBased" mode="add">
-                    <desc>Collects pagelike elements.</desc>
+                    <desc>Collects pageLike elements.</desc>
                 </classSpec>
 
                 <classSpec ident="model.systemLike" type="model" module="MEI.pageBased" mode="add">
-                    <desc>Collects systemlike elements.</desc>
+                    <desc>Collects systemLike elements.</desc>
                 </classSpec>
-
-                <classSpec ident="model.pgbLike" type="model" module="MEI.pageBased" mode="add">
-                    <desc>Collects pageBased-break-like elements.</desc>
-                    <classes>
-                        <memberOf key="model.layerPart"/>
-                    </classes>
+                
+                <classSpec ident="model.scbLike" type="model" module="MEI.pageBased" mode="add">
+                    <desc>Collects scbLike (section breaks) elements.</desc>
                 </classSpec>
 
                 <classSpec ident="att.surface" module="MEI.pageBased" type="atts" mode="add">
-                    <desc>attributes to point to a surface</desc>
+                    <desc>This attribute is used to point to a surface.</desc>
                     <attList>
                         <attDef ident="surface" usage="opt">
                             <desc>contains a reference to a surface element</desc>
@@ -97,52 +105,54 @@
                     </attList>
                 </classSpec>
 
-                <classSpec ident="att.barline" module="MEI.pageBased" type="atts" mode="change">
-                    <desc>attributes to define barlines</desc>
-                    <attList>
-                        <attDef ident="barline" usage="req">
-                            <desc>Indicates if the element describes the beginning or end of a
-                                measure. If a //mb/@barline="left" is pointing to a measure without
-                                a @left, there is no barline drawn by default. If a
-                                //mb/@barline="right" is pointing to a measure without a @right,
-                                there is a regular barline drawn by default. </desc>
-                            <valList type="closed">
-                                <valItem ident="left">
-                                    <desc>The element describes the left barline of a measure</desc>
-                                </valItem>
-                                <valItem ident="right">
-                                    <desc>The element describes the right barline of a
-                                        measure</desc>
-                                </valItem>
-                                <!--
-                  Is this useful?
-                  <valItem ident="both">
-                  <desc>on the staff, i.e., traditional placement</desc>
-                </valItem>-->
-                            </valList>
-                        </attDef>
-                    </attList>
-                </classSpec>
+                <elementSpec ident="pages" module="MEI.pageBased" mode="add">
+                    <desc>A set of pages in a page-based encoding</desc>
+                    <classes>
+						<memberOf key="att.common.anl"/>
+                        <memberOf key="att.common"/>
+                        <memberOf key="att.typed"/>
+                        <memberOf key="model.pagesLike"/>
+                    </classes>
+                    <content>
+                        <rng:zeroOrMore>
+                            <rng:ref name="model.pageLike"/>
+                        </rng:zeroOrMore>
+                    </content>
+                </elementSpec>
 
                 <elementSpec ident="page" module="MEI.pageBased" mode="add">
-                    <desc>page - </desc>
+                    <desc>A page in a page-base encoding</desc>
                     <classes>
 						<memberOf key="att.common.anl"/>
                         <memberOf key="att.scoreDef.vis"/>
                         <memberOf key="att.common"/>
                         <memberOf key="att.pageRef"/>
-                        <memberOf key="model.pageLike"/>
                         <memberOf key="att.surface" />
+                        <memberOf key="model.pageLike"/>
                     </classes>
                     <content>
                         <rng:zeroOrMore>
                             <rng:ref name="model.systemLike"/>
                         </rng:zeroOrMore>
                     </content>
+                    <attList>
+                        <attDef ident="position" usage="opt">
+                            <desc>This attribute specifies whereas the positionning of the elements is absolute
+                                or relative to its parent.</desc>
+                            <valList type="closed">
+                                <valItem ident="relative">
+                                    <desc>indicates that the positionning is relative</desc>
+                                </valItem>
+                                <valItem ident="absolute">
+                                    <desc>indicates that the positionning is absolute</desc>
+                                </valItem>
+                            </valList>
+                        </attDef>
+                    </attList>   
                 </elementSpec>
 
                 <elementSpec ident="system" module="MEI.pageBased" mode="add">
-                    <desc>system - </desc>
+                    <desc>A system in a page-based encoding</desc>
                     <classes>
                         <memberOf key="att.scoreDef.vis"/>
                         <memberOf key="att.common"/>
@@ -153,38 +163,39 @@
                         <memberOf key="model.systemLike"/>
                     </classes>
                     <content>
+                        <!-- we expect a system to start with a staffGrp. It is optional, however if identical from the previous system -->
+                        <rng:optional>
+                            <rng:ref name="model.staffGrpLike"/>
+                        </rng:optional>
+                        <!-- then the actual content of a system -->
                         <rng:zeroOrMore>
-                            <rng:ref name="model.staffLike"/>
+                            <rng:choice>
+                                <!-- section are turned into milestones -->
+                                <rng:ref name="model.scbLike"/>
+                                <!-- measures for measured music -->
+                                <rng:ref name="model.measureLike"/>
+                                <!-- staves for un-measured music -->
+                                <rng:ref name="model.staffLike"/>
+                                <!-- scoreDef for redefinition -->
+                                <rng:ref name="model.scoreDefLike"/>
+                                <!-- anything else? -->
+                            </rng:choice>
                         </rng:zeroOrMore>
                     </content>
                 </elementSpec>
-
-                <elementSpec ident="mb" module="MEI.pageBased" mode="add">
-                    <desc>measure break</desc>
-                    <classes>
-                        <memberOf key="att.common"/>
-                        <memberOf key="att.barline"/>
-                        <memberOf key="att.visualoffset.ho"/>
-                        <!-- possibly add an attribute with 
-              <datatype>
-                <rng:ref name="data.BARRENDITION"/>
-              </datatype>
-              to mb?
-            -->
-                        <memberOf key="model.pgbLike"/>
-                    </classes>
-                </elementSpec>
                 
-                <elementSpec ident="scb" module="MEI.pageBased" mode="add">
-                    <desc>section break</desc>
+                <!-- because the hierarchy is flipped, &lt;section&gt; has to become a milestone -->
+                <elementSpec ident="secb" module="MEI.pageBased" mode="add">
+                    <desc>A section break milestone element</desc>
                     <classes>
                         <memberOf key="att.common"/>
-                        <memberOf key="model.pgbLike"/>
+                        <memberOf key="model.scbLike"/>
                     </classes>
                 </elementSpec>
 
                 <!-- Changes to preexisting elements -->
                 
+                <!-- Replacing att.facsimile for making it member of att.coordinated - probably not the best way to do this? -->
                 <classSpec ident="att.facsimile" module="MEI.facsimile" type="atts" mode="replace">
                     <desc>Attributes that associate a feature corresponding with all or part of an image.</desc>
                     <classes>
@@ -201,30 +212,49 @@
                     </attList>
                 </classSpec>
                 
-                <elementSpec ident="score" module="MEI.shared" mode="change">
-                    <desc>Full score view of the musical content.
-                        <!--Since the measure element is optional, a score may
-        consist entirely of pagebreaks, each of which points to a page image. Div elements are
-        allowed preceding and following sections of music data in order to accommodate blocks of
-        explanatory text.--></desc>
+                <!-- changing mdiv for adding &lt;pages&gt; a possible child -->
+                <elementSpec ident="mdiv" module="MEI.shared" mode="change">
+                    <desc>(musical division) – contains a subdivision of the body of a musical text.
+                        <!--The mdiv element may contain one or both of 2 possible views of the
+        music. The score view is the traditional full and open score while the parts view contains
+        each performer's view of the score; that is, his part. These 2 views are necessary because
+        it is not always possible or desirable to generate one from the other. The score and parts
+        elements are placed here and not directly within the body element because score and part
+        characteristics may change from mdiv to mdiv. For example, the 2nd movement of a symphony
+        may require different performing forces (and therefore different score and part layout) than
+        the other movements. The mdiv element may be recursively nested in order to represent music
+        which exhibits this kind of structure. For example, an opera is normally divided into acts,
+        which are in turn divided into scenes. This may be represented by the following markup:
+        &lt;mdiv&gt; &lt;- the opera &lt;mdiv&gt; &lt;- act I &lt;mdiv&gt; &lt;- scene i
+        &lt;mdiv&gt; &lt;- scene ii &lt;/mdiv&gt; &lt;mdiv&gt; &lt;- act II &lt;mdiv&gt; &lt;- scene
+        i &lt;mdiv&gt; &lt;- scene ii &lt;/mdiv&gt; &lt;/mdiv&gt;--></desc>
                     <classes>
                         <memberOf key="att.common"/>
                         <memberOf key="att.declaring"/>
+                        <memberOf key="att.facsimile"/>
                         <memberOf key="att.typed"/>
-                        <memberOf key="att.score.log"/>
-                        <memberOf key="att.score.vis"/>
-                        <memberOf key="att.score.ges"/>
-                        <memberOf key="att.score.anl"/>
-                        <memberOf key="model.scoreLike"/>
+                        <memberOf key="model.mdivLike"/>
                     </classes>
                     <content>
-                        <rng:zeroOrMore>
-                            <rng:choice>
-                                <rng:ref name="model.pageLike"/>
-                            </rng:choice>
-                        </rng:zeroOrMore>
+                        <rng:choice>
+                            <rng:group>
+                                <rng:optional>
+                                    <rng:ref name="model.scoreLike"/>
+                                </rng:optional>
+                                <rng:optional>
+                                    <rng:ref name="model.partsLike"/>
+                                </rng:optional>
+                                <rng:optional>
+                                    <rng:ref name="model.pagesLike"/>
+                                </rng:optional>
+                            </rng:group>
+                            <rng:zeroOrMore>
+                                <rng:ref name="model.mdivLike"/>
+                            </rng:zeroOrMore>
+                        </rng:choice>
                     </content>
                 </elementSpec>
+                
             </schemaSpec>
         </body>
     </text>
