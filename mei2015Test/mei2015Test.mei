@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- To validate against RNG -->
-<?xml-model href="mei2015Test.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="mei2015Test.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="mei2015_testing.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="mei2015_testing.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
 <!-- New meiversion and meiversion.num values -->
 <mei xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -9,18 +9,20 @@
   xml:id="edirom_source_ebf14eac-f052-4428-82f4-32fae53b9c0f" meiversion="2015"
   meiversion.num="2.2.0" xmlns:xi="http://www.w3.org/2001/XInclude">
   <meiHead>
+    <!-- more elements are now members of att.typed -->
+    <altId type="testing"/>
     <fileDesc>
       <!-- Nonfiling characters accounted for -->
       <titleStmt>
         <!-- level="a" documentation clarified -->
         <title level="a" nonfiling="4">The MEI-Datei des Autographs</title>
         <respStmt>
-          <persName role="rth" xml:id="BA" nonfiling="3">de Roland, Pierre</persName>
+          <persName role="rth" xml:id="PR" nonfiling="3">de Roland, Pierre</persName>
         </respStmt>
       </titleStmt>
       <pubStmt/>
       <sourceDesc>
-        <!-- Head now allowed in more places within header; <head> moved to MEI.shared -->
+        <!-- <head> moved to MEI.shared; now allowed in more places within header -->
         <head/>
         <head/>
         <source>
@@ -31,30 +33,36 @@
               <persName xml:id="LvB" role="cmp" dbkey="118508288" authURI="http://d-nb.info/gnd"
                 authority="GND">Ludwig van Beethoven</persName>
               <!-- value of altsym, classcode, hand, and resp must contain a valid xml:id reference -->
-              <persName role="mcp" xml:id="wr" resp="#BA">
+              <persName role="mcp" xml:id="pr" resp="#PR">
                 <subst>
+                  <handShift old="#lvb_brownInk1" new="#lvb_pencil1"/>
                   <!-- del/@rend now more constrained -->
-                  <del rend="line-through">Wenzel Rampl</del>
+                  <!-- @hand should point to hand element -->
+                  <del rend="line-through" hand="#wr_brownInk1">Wenzel Rampl</del>
                   <!-- add/@method -->
                   <add method="intraline">Wenzel Rampl</add>
+                  <!-- new 'overstrike' value allowed in @rend -->
+                  <del rend="overstrike" hand="#wr_brownInk1">Wenzel Rampl</del>
                 </subst>
               </persName>
             </respStmt>
           </titleStmt>
-          <pubStmt/>
+          <pubStmt>
+            <unpub/>
+          </pubStmt>
           <physDesc label="H2O">
             <!-- All listLike elements now allow head -->
-            <handList>
-              <head>My Hand List:</head>
-              <head/>
+            <handList type="typeA">
+              <head type="main">My Hand List</head>
+              <head type="sub">Part the First</head>
               <hand xml:id="lvb_brownInk1" medium="brown ink" resp="#LvB" initial="true"/>
               <hand xml:id="lvb_pencil1" medium="pencil" resp="#LvB"/>
               <hand xml:id="lvb_mind" medium="none" resp="#LvB"/>
               <hand xml:id="unknownPencil" medium="pencil"/>
-              <hand xml:id="wr_brownInk1" medium="brown ink" resp="#wr"/>
+              <hand xml:id="wr_brownInk1" medium="brown ink" resp="#pr"/>
             </handList>
-            <handList>
-              <head>My Other Hand List:</head>
+            <handList type="typeB">
+              <head>My Other Hand List</head>
               <label/>
               <hand/>
               <hand/>
@@ -66,8 +74,9 @@
             <soundChan num="1">monaural</soundChan>
             <soundChan/>
           </physDesc>
+          <physLoc/>
           <notesStmt>
-            <!-- Head now allowed in more places within header -->
+            <!-- <head> now allowed in more places within header -->
             <head>Allgemeine Informationen zum Manuskript</head>
             <annot>
               <head>Allgemeine Informationen zum Manuskript</head>
@@ -87,7 +96,9 @@
                     Februar 1822</bibl>).</quote> Vieles spricht dafür, dass Beethoven in seinem
                 Brief an den Verleger Schlesinger das vorliegende Autograph der Klaviersonate op.
                 111 meint, von dem uns nur noch der erste Satz erhalten ist (ein zweites,
-                vollständiges Autograph der Sonate liegt in Berlin). </p>
+                vollständiges Autograph der Sonate liegt in Berlin).</p>
+              <!-- Uncommenting the following line will cause non-conformance with new Schematron 
+                rule that disallows <head> anywhere except as first child(ren) of annot. -->
               <!--<head>Allgemeine Informationen zum Manuskript</head>-->
               <p> Dieses "erste Konzept" ist auf der ersten Seite oben von Beethoven datiert mit
                 "13ten jenner 1822" (Seite 1). Es ist stark überarbeitet, wie Beethoven in seinem
@@ -108,6 +119,8 @@
                 Sohn Maurice in Paris verlegt, was Beethoven allerdings erst ungefähr im Juli 1822
                 erfuhr. Die Korrekturen müssen also nach Mitte März und vor Juli 1822 entstanden
                 sein.</p>
+              <!-- Uncommenting the following line will cause non-conformance with new Schematron 
+                rule that disallows <head> anywhere except as first child(ren) of annot. -->
               <!--<head>Allgemeine Informationen zum Manuskript</head>-->
             </annot>
             <annot xml:lang="eng">
@@ -118,14 +131,22 @@
               <p><ref/>text here?</p>
             </annot>
             <annot>Testing, testing, testing</annot>
-            <annot><head/><p>I read a really good books: <biblList>
+            <annot>
+              <!-- Text and inline markup is still allowed. -->
+              <head/>
+              <p>I read a good book: <biblList>
                   <bibl>my book</bibl>
-                </biblList> But it took <rend rend="bold">me</rend> a looooooonnnngggg time.</p>
+                </biblList> But it took <rend rend="bold" altrend="this is what i want it to look
+                  like">me</rend> a looooooonnnngggg time.</p>
             </annot>
             <annot>
-              <!-- Uncommenting the following line will cause non-conformance with new Schematron 
-                rule that disallows <head> anywhere except as first child(ren) of annot. -->
-              <!--<p>foobar</p><head>mixed content allowed here</head>-->
+              <!-- <biblList> is now recursively nest-able. -->
+              <biblList>
+                <bibl>my book</bibl>
+                <biblList>
+                  <bibl/>
+                </biblList>
+              </biblList>
             </annot>
           </notesStmt>
         </source>
@@ -143,7 +164,7 @@
         <p>Some stuff here</p>
       </editorialDecl>
       <projectDesc>
-        <!-- Head now allowed in more places within header -->
+        <!-- <head> now allowed in more places within header -->
         <head/>
         <p>The purpose of this file is to illustrate the combination of clean MEI transcriptions
           with SVG that trace the original handwriting very closely.</p>
@@ -160,23 +181,24 @@
         <extent unit="duration" isotime="02:34:45">2 hours, 34 minutes, 45 seconds or something like
           that</extent>
         <classification>
-          <!-- Head now allowed in more places within header -->
+          <!-- <head> now allowed in more places within header -->
           <head/>
           <classCode xml:id="bwTerminology">Beethovens Werkstatt</classCode>
           <termList>
-            <!-- Head now allowed in more places within header -->
+            <!-- <head> now allowed in more places within header -->
             <head/>
             <term xml:id="bwTerm_openVariant" classcode="#bwTerminology"/>
             <label/>
             <term xml:id="bwTerm_closedVariant" classcode="#bwTerminology"/>
           </termList>
-          <termList>
+          <!-- @classcode must reference a classCode element's id -->
+          <termList classcode="#bwTerminology">
             <head/>
             <term/>
           </termList>
         </classification>
         <expressionList>
-          <!-- Head now allowed in more places within header -->
+          <!-- <head> now allowed in more places within header -->
           <head/>
           <expression>
             <titleStmt>
@@ -185,7 +207,7 @@
           </expression>
         </expressionList>
         <componentGrp>
-          <!-- Head now allowed in more places within header -->
+          <!-- <head> now allowed in more places within header -->
           <head/>
           <work>
             <titleStmt>
@@ -194,7 +216,7 @@
           </work>
         </componentGrp>
         <relationList>
-          <!-- Head now allowed in more places within header -->
+          <!-- <head> now allowed in more places within header -->
           <head/>
           <relation rel="isSummarizationOf"/>
         </relationList>
@@ -202,8 +224,14 @@
     </workDesc>
   </meiHead>
   <music meiversion="2015">
+    <facsimile>
+      <surface>
+        <zone/>
+      </surface>
+    </facsimile>
     <performance>
-      <recording begin="00:00:00.00" end="00:03:10.00" betype="time" startid="#t00.1">
+      <!-- <timeline> eliminated; <recording> revamped to behave more like <facsimile> -->
+      <recording begin="00:00:00.00" end="00:03:10.00" betype="time" startid="#t1">
         <avFile target="http://example.com/path/to/audio/recording" xml:id="audio1.wav"/>
         <avFile target="http://example.com/path/to/audio/recording" xml:id="audio1.mp3"/>
         <when xml:id="t1" absolute="00:00:01.915291666"/>
@@ -224,11 +252,30 @@
       </recording>
     </performance>
     <front>
-      <!-- titlePage now allows semantic (as opposed to presentational) markup-->
+      <!-- titlePage now allows presentational and semantic markup -->
       <titlePage>
         <p/>
+        <lg>
+          <l/>
+        </lg>
+        <!-- list/@type captures the nature of the content of a list, @form its format/presentation. -->
+        <!-- Schematron rule ensures <li> elements are preceded by a label in lists with type="gloss" -->
+        <list type="gloss">
+          <label/>
+          <li/>
+          <label/>
+          <li/>
+          <label/>
+          <li/>
+          <label/>
+          <li/>
+        </list>
+        <table>
+          <tr>
+            <td/>
+          </tr>
+        </table>
         <title>
-          <!-- rend.css and style.css added for CSS-based styling -->
           <!-- relative line-height and letter-spacing values now permitted -->
           <rend rend="line-height(150%) letter-spacing(5%)" halign="center" fontsize="12">
             <lb/>
@@ -255,11 +302,16 @@
           <date>1722.</date>
           <fig/>
         </imprint>
-        <pb/>
+        <!-- More elements borrowed from TEI are now members of att.typed: bibl, change, 
+          corr, date, fig, ptr, quote, ref, relatedItem, surface. -->
+        <pb type="voltaSubito"/>
         <imprint>
           <pubPlace>Oxford</pubPlace>
           <publisher>Clarendon Press</publisher>
           <date>1987</date>
+          <fig>
+            <graphic type="large"/>
+          </fig>
         </imprint>
       </titlePage>
     </front>
@@ -269,8 +321,16 @@
           <!-- new system.leftline attribute -->
           <scoreDef key.sig="3f" key.pname="c" key.accid="f" key.mode="minor" meter.count="4"
             meter.unit="4" meter.sym="common" system.leftline="true">
+            <symbolTable>
+              <symbolDef xml:id="mySymbol1">
+                <curve startid="#n1" endid="#n2" lform="dashed" lwidth="0.2mm" curvedir="above"/>
+              </symbolDef>
+            </symbolTable>
+
             <!-- @symbol="line" now indicates a heavy line joining the members of the group, not the system left line -->
+            <!-- @key.sig.mixed supports use of quarter-tone accidentals -->
             <staffGrp barthru="true" symbol="line">
+              <staffDef n="0" lines="5" key.sig="mixed" key.sig.mixed="as4 cn5 dts9"/>
               <staffDef xml:id="P1" n="1" clef.shape="G" clef.line="2" lines="5"/>
               <staffDef xml:id="P2" n="2" clef.shape="F" clef.line="4" lines="5"/>
               <staffDef xml:id="P3" n="3" clef.shape="G" clef.line="2" lines="5"/>
@@ -285,14 +345,16 @@
               <!-- fw now uses same model as pgHead* and pgFoot* -->
               <fw>
                 <anchoredText/>
-              </fw>
+                <bibl/> text </fw>
             </pb>
             <measure>
               <staff n="1">
                 <layer>
+                  <!-- @rend reserved for CSS-like renditional info; use @form -->
                   <beam form="acc">
-                    <note xml:id="e025768f1-e30d-4565-bcc7-973b5e42eff4" pname="a" oct="5" dur="16"
-                      stem.dir="down" accid="1qtrflat">
+                    <!-- added @vel on note; added "scoop" to values of @artic -->
+                    <note xml:id="n1" pname="a" oct="5" dur="16" stem.dir="down" accid="1qf"
+                      altsym="#mySymbol1" vel="127" artic="scoop">
                       <accid fontname="Leipzig" fontsize="12" fontweight="bold"/>
                       <artic fontname="Bravua" fontsize="11.5" fontweight="normal" color="blue"/>
                       <!-- verse now member of att.color -->
@@ -300,9 +362,14 @@
                         <syl>wo<rend color="fuchsia">rd</rend></syl>
                       </verse>
                     </note>
-                    <note/>
+                    <!-- added @vel on chord -->
+                    <chord>
+                      <note/>
+                    </chord>
+                    <custos target="#trill01"/>
+                    <note xml:id="n2"/>
                   </beam>
-                  <!-- @form replaces @rend on some elements -->
+                  <!-- @rend reserved for CSS-like renditional info; use @form -->
                   <bTrem form="meas">
                     <note/>
                   </bTrem>
@@ -310,26 +377,36 @@
                   <beatRpt form="4"/>
                   <meterSig form="denomsym"/>
                   <sb form="hash"/>
-                  <!-- @lform and @lwidth added to att.pedal.vis -->
-                  <pedal tstamp="1" dir="down" form="line" lform="dashed" lwidth="0.1mm"/>
-                  <phrase tstamp="1" tstamp2="2" lform="dashed" lwidth="0.2mm" curvedir="above"/>
-                  <slur tstamp="1" tstamp2="2" lform="dashed" lwidth="0.2mm" curvedir="above"/>
+                  <!-- control events now members of att.typed -->
+                  <dir type="foo" tstamp="2.5" place="above" staff="1" translit="pinyin">xin nian
+                    kuai le</dir>
+                  <!-- @lform and @lwidth allowed on pedal and octave to capture line characteristics -->
+                  <pedal type="quick" tstamp="1" dir="down" form="line" lform="dashed"
+                    lwidth="0.02vu"/>
+                  <octave type="overblown" tstamp="1" tstamp2="3m+2" lwidth="narrow"/>
+                  <!-- @rend reserved for CSS-like renditional info; use @lform and @lwidth -->
+                  <slur tstamp="1" tstamp2="2" lform="dashed" lwidth="0.2mm" curvedir="above"
+                    bezier="19,45 -32,118 T -42,1"/>
                   <tie tstamp="1" tstamp2="2" lform="dashed" lwidth="0.2mm" curvedir="above"/>
-                  <curve startid="" endid="" lform="dashed" lwidth="0.2mm" curvedir="above"/>
+                  <curve startid="#trill01" endid="#n2" lform="dashed" lwidth="0.2mm"
+                    curvedir="above"/>
                 </layer>
               </staff>
               <!-- trill and other control events can use @type & @subtype -->
-              <trill type="myKind" subtype="myKind-2" tstamp="1"/>
-              <gliss type="glissType1" tstamp="2" tstamp2="4.25">gliss.</gliss>
-              <!-- @text removed, text content used instead; width can take numeric values -->
-              <line startid="#foo1" endid="#foo2" width="2.1mm">cool line</line>
+              <trill xml:id="trill01" type="myKind" subtype="myKind-2" tstamp="1"/>
+              <!-- @lform and @lwidth allowed on gliss to capture line characteristics -->
+              <gliss type="glissType1" tstamp="2" tstamp2="4.25" lform="solid" lwidth="medium"
+                >gliss.</gliss>
+              <!-- @text removed, text content used instead; width can take string or numeric values -->
+              <line startid="#n1" endid="#n2" width="medium">cool line</line>
+              <line startid="#n1" endid="#n2" width="2.1mm">another cool line</line>
               <!-- bend/@amount can now take wider range of values -->
               <bend type="bendType2" tstamp="1" tstamp2="2" amount="1.25"/>
               <!-- breath now has typographic attributes -->
               <breath tstamp="1" fontname="Bravura" fontsize="10" fontstyle="normal" color="purple"/>
               <!-- line form and width are now separate attributes, allowing for more combinations -->
-              <octave xml:id="e501e26f7-5ac5-4ab6-87c6-6a83cd0de531" tstamp="1" tstamp2="0m+4.5"
-                dis="8" dis.place="above" staff="1" label="in 8va" lform="wavy" lwidth="medium"/>
+              <octave xml:id="oc1" tstamp="1" tstamp2="0m+4.5" dis="8" dis.place="above" staff="1"
+                label="in 8va" lform="wavy" lwidth="medium"/>
               <!-- dynam can now take start and end values -->
               <dynam tstamp="1" tstamp2="1m+2" val="2" val2="8">cres.</dynam>
             </measure>

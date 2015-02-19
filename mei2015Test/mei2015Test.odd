@@ -7,7 +7,7 @@
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>MEI Next Release Testing</title>
+        <title>MEI Next Release (2015?) Testing</title>
         <respStmt>
           <resp>Authored by</resp>
           <name xml:id="PR">Perry Roland</name>
@@ -85,6 +85,37 @@
           </attList>
         </classSpec>
 
+        <!-- THIS DOESN'T WORK! -->
+        <!--<macroSpec ident="data.PARAMREF" module="MEI" type="dt" mode="add">
+          <desc>Parameter reference.</desc>
+          <content>
+            <rng:data type="token">
+              <rng:param name="pattern">[$]\i[\c]*</rng:param>
+            </rng:data>
+          </content>
+        </macroSpec>
+
+        <classSpec ident="att.visualoffset.ho" module="MEI.shared" type="atts" mode="replace">
+          <desc>Horizontal offset attributes.</desc>
+          <attList>
+            <attDef ident="ho" usage="opt">
+              <desc>records a horizontal adjustment to a feature's programmatically-determined
+                location in terms of staff interline distance; that is, in units of 1/2 the distance
+                between adjacent staff lines.</desc>
+              <datatype>
+                <rng:choice>
+                  <rng:data type="token">
+                    <rng:param name="pattern">[$]\i[\c]*</rng:param>
+                  </rng:data>
+                  <rng:data type="token">
+                    <rng:param name="pattern">(\+|-)?\d+(\.\d+)?(cm|mm|in|pt|pc|vu)?</rng:param>
+                  </rng:data>
+                </rng:choice>
+              </datatype>
+            </attDef>
+          </attList>
+        </classSpec>-->
+
         <!-- Add model.titlePagePart, issue #36 -->
         <classSpec ident="model.titlePagePart" module="MEI.shared" type="model" mode="add">
           <desc>groups elements that may appear as part of a title page transcription.</desc>
@@ -99,10 +130,11 @@
           </classes>
         </classSpec>
         <!-- Make some existing classes members of titlePagePart -->
+        <!-- Simplify relationship between textphraseLike.limited and textphraseLike models, issue #210 -->
         <classSpec ident="model.dateLike" module="MEI.shared" type="model" mode="replace">
           <desc>groups elements containing date expressions.</desc>
           <classes>
-            <memberOf key="model.textphraseLike"/>
+            <!--<memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
             <memberOf key="model.pubStmtPart"/>
             <memberOf key="model.eventPart"/>
@@ -119,7 +151,7 @@
         <classSpec ident="model.titleLike" module="MEI.shared" type="model" mode="replace">
           <desc>groups elements that denote names of a bibliographic item.</desc>
           <classes>
-            <memberOf key="model.textphraseLike"/>
+            <!--<memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
             <memberOf key="model.titlePagePart"/>
           </classes>
@@ -135,7 +167,7 @@
             <memberOf key="model.biblPart"/>
             <memberOf key="model.titlePagePart"/>
           </classes>
-          <!-- Relax content model for titlePage.  Of course, this will affect use within <bibl> as well. -->
+          <!-- Relax content model of imprint -->
           <content>
             <rng:zeroOrMore>
               <rng:choice>
@@ -143,6 +175,7 @@
                 <rng:ref name="model.imprintPart"/>
                 <rng:ref name="model.textphraseLike"/>
                 <rng:ref name="respStmt"/>
+                <rng:ref name="model.annotLike"/>
               </rng:choice>
               <!-- Previous content model:
               <rng:oneOrMore>
@@ -615,6 +648,67 @@
           </remarks>
         </elementSpec>-->
 
+        <!-- Deprecate <vel> and add @vel to <note>, issue #90 -->
+        <!-- <vel> *not* removed since it serves the purpose of setting the velocity of all notes
+          from the point of its occurence forward; @vel added in new att.midivelocity class in MIDI module. -->
+        <classSpec ident="att.midivelocity" module="MEI.midi" type="atts" mode="add">
+          <desc>MIDI attributes pertaining to notes.</desc>
+          <attList>
+            <attDef ident="vel" usage="opt">
+              <desc>MIDI Note-on/off velocity.</desc>
+              <datatype>
+                <rng:ref name="data.MIDIVALUE"/>
+              </datatype>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Make att.note.ges member of att.midivelocity -->
+        <classSpec ident="att.note.ges" module="MEI.shared" type="atts" mode="replace">
+          <desc>Gestural domain attributes.</desc>
+          <classes>
+            <memberOf key="att.accidental.performed"/>
+            <memberOf key="att.articulation.performed"/>
+            <memberOf key="att.duration.performed"/>
+            <memberOf key="att.instrumentident"/>
+            <memberOf key="att.midivelocity"/>
+            <memberOf key="att.note.ges.cmn"/>
+            <memberOf key="att.note.ges.mensural"/>
+            <memberOf key="att.note.ges.tablature"/>
+          </classes>
+          <attList>
+            <attDef ident="oct.ges" usage="opt">
+              <desc>records performed octave information that differs from the written value.</desc>
+              <datatype>
+                <rng:ref name="data.OCTAVE"/>
+              </datatype>
+            </attDef>
+            <attDef ident="pname.ges" usage="opt">
+              <desc>contains a performed pitch name that differs from the written value.</desc>
+              <datatype>
+                <rng:ref name="data.PITCHNAME.GES"/>
+              </datatype>
+            </attDef>
+            <attDef ident="pnum" usage="opt">
+              <desc>holds a pitch-to-number mapping, a base-40 or MIDI note number, for
+                example.</desc>
+              <datatype>
+                <rng:ref name="data.PITCHNUMBER"/>
+              </datatype>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Make att.chord.ges member of att.midivelocity? -->
+        <!--<classSpec ident="att.chord.ges" module="MEI.shared" type="atts" mode="replace">
+          <desc>Gestural domain attributes.</desc>
+          <classes>
+            <memberOf key="att.articulation.performed"/>
+            <memberOf key="att.duration.performed"/>
+            <memberOf key="att.instrumentident"/>
+            <memberOf key="att.midivelocity"/>
+            <memberOf key="att.chord.ges.cmn"/>
+          </classes>
+        </classSpec>-->
+
         <!-- Revise timeline and performance, issue #94 -->
         <!-- Create new datatype for begin/end and interval types -->
         <macroSpec ident="data.BETYPE" module="MEI.shared" type="dt" mode="add">
@@ -657,11 +751,17 @@
             <attDef ident="begin" usage="opt">
               <desc>specifies a point where the relevant content begins. A numerical value must be
                 less and a time value must be earlier than that in the end attribute.</desc>
+              <datatype>
+                <rng:text/>
+              </datatype>
             </attDef>
             <attDef ident="end" usage="opt">
               <desc>specifies a point where the relevant content ends. If not specified, the end of
                 the content is assumed to be the end point. A numerical value must be greater and a
                 time value must be later than that in the begin attribute.</desc>
+              <datatype>
+                <rng:text/>
+              </datatype>
             </attDef>
             <attDef ident="betype" usage="opt">
               <desc>type of values used in the begin/end attributes. The begin and end attributes
@@ -778,6 +878,9 @@
           <attList>
             <attDef ident="absolute" usage="opt">
               <desc>provides an absolute value for the time point.</desc>
+              <datatype>
+                <rng:text/>
+              </datatype>
             </attDef>
             <attDef ident="interval" usage="opt">
               <desc>specifies the time interval between this time point and the one designated by
@@ -801,6 +904,7 @@
                 <rng:ref name="data.BETYPE"/>
               </datatype>
             </attDef>
+            <!-- Enforce constraints on attribute targets, issue #226 -->
             <attDef ident="since" usage="opt">
               <desc>identifies the reference point for determining the time of the current when
                 element, which is obtained by adding the interval to the time of the reference
@@ -811,6 +915,17 @@
               <datatype>
                 <rng:ref name="data.URI"/>
               </datatype>
+              <constraintSpec ident="check_sinceTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@since">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@since attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:when/@xml:id">The value in @since must correspond to the
+                      @xml:id attribute of a when element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
             </attDef>
           </attList>
           <remarks>
@@ -884,6 +999,7 @@
             <memberOf key="att.edit"/>
             <memberOf key="att.lang"/>
             <memberOf key="att.trans"/>
+            <memberOf key="att.typed"/>
             <memberOf key="model.substPart"/>
             <memberOf key="model.transcriptionLike"/>
           </classes>
@@ -939,7 +1055,7 @@
           </remarks>
         </elementSpec>
 
-        <!-- Reserve @rend and @style, issue #144 -->
+        <!-- Reserve @rend and @style for CSS-like renditional information, issue #144 -->
         <!-- THIS CHANGE BREAKS BACKWARD COMPATIBILITY! -->
         <classSpec ident="att.barLine.log" module="MEI.shared" type="atts" mode="replace">
           <desc>Logical domain attributes.</desc>
@@ -1128,6 +1244,7 @@
             <memberOf key="att.facsimile"/>
             <memberOf key="att.lang"/>
             <memberOf key="att.trans"/>
+            <memberOf key="att.typed"/>
             <memberOf key="model.substPart"/>
             <memberOf key="model.transcriptionLike"/>
           </classes>
@@ -1170,7 +1287,7 @@
               the identification of the hand of the deletion. The hand of the agent which made the
               deletion should be pointed to using the <att>hand</att> attribute. The <att>rend</att>
               attribute may be used to record the method used to make the deletion (overstrike,
-              strike[through], etc.) or how the deleted matter should be displayed.</p>
+              strike[through], etc.).</p>
           </remarks>
           <remarks>
             <p>This element is modelled on elements in the Text Encoding Initiative (TEI) and
@@ -1202,6 +1319,9 @@
           <attList>
             <attDef ident="altrend" usage="opt">
               <desc>used to extend the values of the rend attribute.</desc>
+              <datatype>
+                <rng:text/>
+              </datatype>
             </attDef>
             <attDef ident="rend" usage="opt">
               <desc>captures the appearance of the source material.</desc>
@@ -1210,6 +1330,13 @@
                 MEI-defined descriptors.</desc>-->
               <datatype>
                 <rng:ref name="data.TEXTRENDITION"/>
+              </datatype>
+            </attDef>
+            <attDef ident="rotation" usage="opt">
+              <desc>A positive value for rotation rotates the text in a counter-clockwise fashion,
+                while negative values produce clockwise rotation.</desc>
+              <datatype>
+                <rng:ref name="data.DEGREES"/>
               </datatype>
             </attDef>
             <attDef ident="valign" usage="opt">
@@ -1295,6 +1422,97 @@
               standard.</p>
           </remarks>
         </elementSpec>
+
+        <!-- Fix rip articulation, issue #164; data.ARTICULATIONS is missing 'scoop', issue #204 -->
+        <!-- Add scoop, shake, and longfall; revise documentation of rip, damp, dampall, and fall -->
+        <macroSpec ident="data.ARTICULATION" module="MEI" type="dt" mode="replace">
+          <desc>The following list of articulations mostly corresponds to symbols from the Western
+            Musical Symbols portion of the Unicode Standard. The dot and stroke values may be used
+            in cases where interpretation is difficult or undesirable.</desc>
+          <content>
+            <rng:choice>
+              <rng:value>acc</rng:value>
+              <a:documentation>accent (Unicode 1D17B)</a:documentation>
+              <rng:value>stacc</rng:value>
+              <a:documentation>staccato (Unicode 1D17C)</a:documentation>
+              <rng:value>ten</rng:value>
+              <a:documentation>tenuto (Unicode 1D17D)</a:documentation>
+              <rng:value>stacciss</rng:value>
+              <a:documentation>staccatissimo (Unicode 1D17E)</a:documentation>
+              <rng:value>marc</rng:value>
+              <a:documentation>marcato (Unicode 1D17F)</a:documentation>
+              <rng:value>marc-stacc</rng:value>
+              <a:documentation>marcato + staccato (Unicode 1D180)</a:documentation>
+              <rng:value>spicc</rng:value>
+              <a:documentation>spiccato</a:documentation>
+              <rng:value>doit</rng:value>
+              <a:documentation>main note followed by short slide to higher, indeterminate pitch
+                (Unicode 1D185)</a:documentation>
+              <rng:value>scoop</rng:value>
+              <a:documentation>main note preceded by short slide from lower, indeterminate pitch
+                (Unicode 1D186)</a:documentation>
+              <rng:value>rip</rng:value>
+              <a:documentation>main note preceded by long slide from lower, often indeterminate
+                pitch; also known as "squeeze".</a:documentation>
+              <rng:value>plop</rng:value>
+              <a:documentation>main note preceded by "slide" from higher, indeterminate
+                pitch</a:documentation>
+              <rng:value>fall</rng:value>
+              <a:documentation>main note followed by short "slide" to lower, indeterminate
+                pitch</a:documentation>
+              <rng:value>longfall</rng:value>
+              <a:documentation>main note followed by long "slide" to lower, indeterminate
+                pitch</a:documentation>
+              <rng:value>bend</rng:value>
+              <a:documentation>"lip slur" to lower pitch, then return to written
+                pitch</a:documentation>
+              <rng:value>flip</rng:value>
+              <a:documentation>main note followed by quick upward rise, then descent in pitch
+                (Unicode 1D187)</a:documentation>
+              <rng:value>smear</rng:value>
+              <a:documentation>(Unicode 1D188)</a:documentation>
+              <rng:value>shake</rng:value>
+              <a:documentation>alternation between written pitch and next highest overtone (brass
+                instruments) or note minor third higher (woodwinds)</a:documentation>
+              <rng:value>dnbow</rng:value>
+              <a:documentation>down bow (Unicode 1D1AA)</a:documentation>
+              <rng:value>upbow</rng:value>
+              <a:documentation>up bow (Unicode 1D1AB)</a:documentation>
+              <rng:value>harm</rng:value>
+              <a:documentation>harmonic (Unicode 1D1AC)</a:documentation>
+              <rng:value>snap</rng:value>
+              <a:documentation>snap pizzicato (Unicode 1D1AD)</a:documentation>
+              <rng:value>fingernail</rng:value>
+              <a:documentation>fingernail (Unicode 1D1B3)</a:documentation>
+              <rng:value>ten-stacc</rng:value>
+              <a:documentation>tenuto + staccato (Unicode 1D182)</a:documentation>
+              <rng:value>damp</rng:value>
+              <a:documentation>stop harp string from sounding (Unicode 1D1B4)</a:documentation>
+              <rng:value>dampall</rng:value>
+              <a:documentation>stop all harp strings from sounding (Unicode 1D1B5)</a:documentation>
+              <rng:value>open</rng:value>
+              <a:documentation>full (as opposed to stopped) tone</a:documentation>
+              <rng:value>stop</rng:value>
+              <a:documentation>"muffled" tone</a:documentation>
+              <rng:value>dbltongue</rng:value>
+              <a:documentation>double tongue (Unicode 1D18A)</a:documentation>
+              <rng:value>trpltongue</rng:value>
+              <a:documentation>triple tongue (Unicode 1D18B)</a:documentation>
+              <rng:value>heel</rng:value>
+              <a:documentation>use heel (organ pedal)</a:documentation>
+              <rng:value>toe</rng:value>
+              <a:documentation>use toe (organ pedal)</a:documentation>
+              <rng:value>tap</rng:value>
+              <a:documentation>percussive effect on guitar string(s)</a:documentation>
+              <rng:value>lhpizz</rng:value>
+              <a:documentation>left-hand pizzicato</a:documentation>
+              <rng:value>dot</rng:value>
+              <a:documentation>uninterpreted dot</a:documentation>
+              <rng:value>stroke</rng:value>
+              <a:documentation>uninterpreted stroke</a:documentation>
+            </rng:choice>
+          </content>
+        </macroSpec>
 
         <!-- Make control events members of att.typed, issue #166 -->
         <elementSpec ident="arpeg" module="MEI.cmn" mode="replace">
@@ -1584,10 +1802,10 @@
           </constraintSpec>
           <remarks>
             <p>The <att>dis</att> and <att>dis.place</att> attributes record the amount and
-              direction of displacement, respectively. The <att>rend</att> attribute captures the
-              appearance of the continuation line associated with the octave displacement. The
-              starting point of the octave displacement may be indicated by either a
-                <att>startid</att>, <att>tstamp</att>, <att>tstamp.ges</att>, or
+              direction of displacement, respectively. The <att>lform</att> and <att>lwidth</att>
+              attributes capture the appearance of the continuation line associated with the octave
+              displacement. The starting point of the octave displacement may be indicated by either
+              a <att>startid</att>, <att>tstamp</att>, <att>tstamp.ges</att>, or
                 <att>tstamp.real</att> attribute, while the ending point may be recorded by either a
                 <att>dur</att>, <att>dur.ges</att>, <att>endid</att>, or <att>tstamp2</att>
               attribute. It is a semantic error not to specify one starting and one ending type of
@@ -1663,9 +1881,7 @@
                 <att>dur</att>, <att>dur.ges</att>, <att>endid</att>, or <att>tstamp2</att>
               attribute. It is a semantic error not to specify one starting and one ending type of
               attribute. Either <att>place</att>, <att>bulge</att>, or <att>bezier</att> attributes
-              may be used to record the curvature of the phrase. Please note that the <att>dur</att>
-              attribute here is not a true duration, but rather a time stamp for the end point of
-              the phrase mark.</p>
+              may be used to record the curvature of the phrase.</p>
           </remarks>
         </elementSpec>
         <elementSpec ident="reh" module="MEI.cmn" mode="replace">
@@ -1692,9 +1908,9 @@
             </rng:zeroOrMore>
           </content>
           <remarks>
-            <p>It may also be called a rehearsal figure, or when numbers are used instead of
-              letters, a rehearsal number. See Read, p. 443. <gi scheme="MEI">reh</gi> uses a subset
-              of model.textphraseLike.limited.</p>
+            <p>It may also be called a "rehearsal figure", or when numbers are used instead of
+              letters, a "rehearsal number". See Read, p. 443. <gi scheme="MEI">reh</gi> uses a
+              subset of model.textphraseLike.limited.</p>
           </remarks>
         </elementSpec>
         <elementSpec ident="slur" module="MEI.cmn" mode="replace">
@@ -1740,8 +1956,7 @@
                 <gi scheme="MEI">tie</gi> elements may be used instead of the slur.* and tie.*
               attributes provided on <gi scheme="MEI">chord</gi> and <gi scheme="MEI">note</gi>
               elements when 1) they are required by software, or 2) multiple, alternative slurs are
-              needed. Please note that the <att>dur</att> attribute is not a true duration, but
-              rather a time stamp for the end point of the slur.</p>
+              needed.</p>
           </remarks>
         </elementSpec>
         <elementSpec ident="tempo" module="MEI.shared" mode="replace">
@@ -1928,6 +2143,7 @@
               <rng:value>ns</rng:value>
               <a:documentation>natural + sharp; used to cancel preceding double
                 sharp</a:documentation>
+              <!-- su, sd, fu, fd are equivalent to usual symbols plus an arrow (Gould, p. 95)-->
               <rng:value>su</rng:value>
               <a:documentation>sharp note raised by quarter tone (sharp modified by
                 arrow)</a:documentation>
@@ -1946,13 +2162,14 @@
               <rng:value>nd</rng:value>
               <a:documentation>natural note lowered by quarter tone (natural modified by
                 arrow)</a:documentation>
-              <rng:value>1qtrflat</rng:value>
+              <!-- 1qf, 3qf, 1qs, 3qs represent fixed symbols (Gould, p. 96) -->
+              <rng:value>1qf</rng:value>
               <a:documentation>1/4-tone flat accidental</a:documentation>
-              <rng:value>3qtrflat</rng:value>
+              <rng:value>3qf</rng:value>
               <a:documentation>3/4-tone flat accidental</a:documentation>
-              <rng:value>1qtrsharp</rng:value>
+              <rng:value>1qs</rng:value>
               <a:documentation>1/4-tone sharp accidental</a:documentation>
-              <rng:value>3qtrsharp</rng:value>
+              <rng:value>3qs</rng:value>
               <a:documentation>3/4-tone sharp accidental</a:documentation>
             </rng:choice>
           </content>
@@ -1963,6 +2180,59 @@
             </p>
           </remarks>
         </macroSpec>
+        <!-- Rewrite pattern spec for key.sig.mixed -->
+        <!-- THIS CHANGE BREAKS BACKWARD COMPATIBILITY! -->
+        <classSpec ident="att.keySigDefault.log" module="MEI.shared" type="atts" mode="replace">
+          <desc>Used by staffDef and scoreDef to provide default values for attributes in the
+            logical domain related to key signatures.</desc>
+          <attList>
+            <attDef ident="key.accid" usage="opt">
+              <desc>contains an accidental for the tonic key, if one is required, e.g., if key.pname
+                equals 'c' and key.accid equals 's', then a tonic of C# is indicated.</desc>
+              <datatype>
+                <rng:ref name="data.ACCIDENTAL.IMPLICIT"/>
+              </datatype>
+            </attDef>
+            <attDef ident="key.mode" usage="opt">
+              <desc>indicates major, minor, or other tonality.</desc>
+              <datatype>
+                <rng:ref name="data.MODE"/>
+              </datatype>
+            </attDef>
+            <attDef ident="key.pname" usage="opt">
+              <desc>holds the pitch name of the tonic key, e.g. 'c' for the key of C.</desc>
+              <datatype>
+                <rng:ref name="data.PITCHNAME"/>
+              </datatype>
+            </attDef>
+            <attDef ident="key.sig" usage="opt">
+              <desc>indicates where the key lies in the circle of fifths.</desc>
+              <datatype>
+                <rng:ref name="data.KEYSIGNATURE"/>
+              </datatype>
+            </attDef>
+            <attDef ident="key.sig.mixed" usage="opt">
+              <desc>Mixed key signatures, e.g. those consisting of a mixture of flats and sharps
+                (Read, p. 143, ex. 9-39), and key signatures with unorthodox placement of the
+                accidentals (Read, p. 141) must be indicated by setting the key.sig attribute to
+                'mixed' and providing explicit key signature information in the key.sig.mixed
+                attribute or in the &lt;keySig&gt; element. It is intended that key.sig.mixed
+                contain a series of tokens with each token containing pitch name, accidental, and
+                octave, such as 'bf3 an4 cs5 etf5' that indicate what key accidentals should be
+                rendered and where they should be placed.</desc>
+              <datatype>
+                <rng:list>
+                  <rng:oneOrMore>
+                    <rng:data type="token">
+                      <rng:param name="pattern"
+                        >[a-g](s|f|ss|x|ff|xs|ts|tf|n|nf|ns|su|sd|fu|fd|nu|nd|1qf|3qf|1qs|3qs)[0-9]</rng:param>
+                    </rng:data>
+                  </rng:oneOrMore>
+                </rng:list>
+              </datatype>
+            </attDef>
+          </attList>
+        </classSpec>
 
         <!-- Enhancement of bend, issue #169 -->
         <macroSpec ident="data.BEND.AMOUNT" module="MEI" type="dt" mode="replace">
@@ -2445,6 +2715,7 @@
           </attList>
         </classSpec>
         <!-- Make att.name a member of att.filing -->
+        <!-- Enforce constraints on attribute targets, issue #226 -->
         <classSpec ident="att.name" module="MEI.shared" type="atts" mode="replace">
           <desc>Attributes shared by names.</desc>
           <classes>
@@ -2459,10 +2730,24 @@
               <datatype>
                 <rng:ref name="data.URI"/>
               </datatype>
+              <constraintSpec ident="check_instrTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@nymref">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@nymref
+                      attribute has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id">The value in @nymref must correspond to the
+                      @xml:id attribute of an element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
             </attDef>
             <attDef ident="role" usage="opt">
               <desc>used to specify further information about the entity referenced by this name,
                 for example, the occupation of a person or the status of a place.</desc>
+              <datatype>
+                <rng:text/>
+              </datatype>
             </attDef>
           </attList>
         </classSpec>
@@ -2730,6 +3015,7 @@
           <desc>Gathers bibliographic item entities.</desc>
           <classes>
             <memberOf key="att.common"/>
+            <memberOf key="att.typed"/>
           </classes>
           <content>
             <rng:zeroOrMore>
@@ -2865,7 +3151,137 @@
           </remarks>
         </elementSpec>
 
+        <!-- Simplify relationship between textphraseLike.limited and textphraseLike models, issue #210 -->
+        <!-- Move annotLike to textphraseLike.limited -->
+        <classSpec ident="model.annotLike" module="MEI.shared" type="model" mode="replace">
+          <desc>groups annotation-like elements.</desc>
+          <classes>
+            <memberOf key="model.textphraseLike.limited"/>
+          </classes>
+        </classSpec>
+        <!-- milestoneLike.text no longer member of textphraseLike -->
+        <classSpec ident="model.milestoneLike.text" module="MEI.shared" type="model" mode="replace">
+          <desc>groups milestone-style elements found in text.</desc>
+          <!--<classes>
+            <memberOf key="model.textphraseLike"/>
+          </classes>-->
+        </classSpec>
+        <!-- pbLike now participates directly in textphraseLike -->
+        <classSpec ident="model.pbLike" module="MEI.shared" type="model" mode="replace">
+          <desc>groups pagebreak-like elements.</desc>
+          <classes>
+            <memberOf key="model.milestoneLike.music"/>
+            <memberOf key="model.milestoneLike.text"/>
+            <memberOf key="model.textphraseLike"/>
+          </classes>
+        </classSpec>
+        <!-- textphraseLike.limited now a member of textphraseLike -->
+        <classSpec ident="model.textphraseLike.limited" module="MEI.shared" type="model"
+          mode="replace">
+          <desc>groups textual elements that occur as part of the representation of the score, as
+            opposed to the textual matter which accompanies it. This class is equivalent to the
+            model.textphraseLike class without the pb element.</desc>
+          <classes>
+            <memberOf key="model.rdgPart.text"/>
+            <memberOf key="model.textphraseLike"/>
+          </classes>
+        </classSpec>
+        <!-- The following elements are no longer participate in textphraseLike directly;
+          They're members of textphraseLike.limited, which is a member of textphraseLike -->
+        <classSpec ident="model.addressLike" module="MEI.shared" type="model" mode="replace">
+          <desc>groups elements used to represent a postal address.</desc>
+          <classes>
+            <!--<memberOf key="model.textphraseLike"/>-->
+            <memberOf key="model.textphraseLike.limited"/>
+            <memberOf key="model.pubStmtPart"/>
+            <memberOf key="model.eventPart"/>
+          </classes>
+        </classSpec>
+        <classSpec ident="model.biblLike" module="MEI.shared" type="model" mode="replace">
+          <desc>groups elements containing a bibliographic description.</desc>
+          <classes>
+            <!--<memberOf key="model.textphraseLike"/>-->
+            <memberOf key="model.textphraseLike.limited"/>
+          </classes>
+        </classSpec>
+        <classSpec ident="model.editorialLike" module="MEI.shared" type="model" mode="replace">
+          <desc>groups editorial intervention elements.</desc>
+          <classes>
+            <!--<memberOf key="model.textphraseLike"/>-->
+            <memberOf key="model.textphraseLike.limited"/>
+            <memberOf key="model.choicePart"/>
+          </classes>
+        </classSpec>
+        <classSpec ident="model.figureLike" module="MEI.figtable" type="model" mode="replace">
+          <desc>groups elements representing or containing graphic information such as an
+            illustration or figure.</desc>
+          <classes>
+            <!--<memberOf key="model.textphraseLike"/>-->
+            <memberOf key="model.textphraseLike.limited"/>
+          </classes>
+        </classSpec>
+        <classSpec ident="model.identifierLike" module="MEI.shared" type="model" mode="replace">
+          <desc>groups identifier-like elements.</desc>
+          <classes>
+            <!--<memberOf key="model.textphraseLike"/>-->
+            <memberOf key="model.textphraseLike.limited"/>
+            <memberOf key="model.pubStmtPart"/>
+          </classes>
+        </classSpec>
+        <classSpec ident="model.locrefLike" module="MEI.ptrref" type="model" mode="replace">
+          <desc>groups elements used for purposes of location and reference.</desc>
+          <classes>
+            <!--<memberOf key="model.textphraseLike"/>-->
+            <memberOf key="model.textphraseLike.limited"/>
+          </classes>
+        </classSpec>
+        <classSpec ident="model.measurementLike" module="MEI.shared" type="model" mode="replace">
+          <desc>groups elements that represent a measurement.</desc>
+          <classes>
+            <!--<memberOf key="model.textphraseLike"/>-->
+            <memberOf key="model.textphraseLike.limited"/>
+          </classes>
+        </classSpec>
+        <classSpec ident="model.nameLike" module="MEI.shared" type="model" mode="replace">
+          <desc>groups elements that contain names.</desc>
+          <classes>
+            <!--<memberOf key="model.textphraseLike"/>-->
+            <memberOf key="model.textphraseLike.limited"/>
+            <memberOf key="model.eventPart"/>
+          </classes>
+        </classSpec>
+        <classSpec ident="model.nameLike.agent" module="MEI.namesdates" type="model" mode="replace">
+          <desc>groups elements which contain names of individuals or corporate bodies.</desc>
+          <classes>
+            <!--<memberOf key="model.textphraseLike"/>-->
+            <memberOf key="model.textphraseLike.limited"/>
+            <memberOf key="model.eventPart"/>
+          </classes>
+        </classSpec>
+        <classSpec ident="model.nameLike.label" module="MEI.namesdates" type="model" mode="replace">
+          <desc>groups elements that serve as stylistic labels.</desc>
+          <classes>
+            <!--<memberOf key="model.textphraseLike"/>-->
+            <memberOf key="model.textphraseLike.limited"/>
+          </classes>
+        </classSpec>
+        <classSpec ident="model.nameLike.place" module="MEI.namesdates" type="model" mode="replace">
+          <desc>groups place name and repository elements.</desc>
+          <classes>
+            <!--memberOf key="model.textphraseLike"/>-->
+            <memberOf key="model.textphraseLike.limited"/>
+          </classes>
+        </classSpec>
+        <classSpec ident="model.rendLike" module="MEI.shared" type="model" mode="replace">
+          <desc>groups elements that mark typographical features.</desc>
+          <classes>
+            <!--<memberOf key="model.textphraseLike"/>-->
+            <memberOf key="model.textphraseLike.limited"/>
+          </classes>
+        </classSpec>
+
         <!-- Allow relative values for letter-spacing & line-height, issue #211 -->
+        <!-- Add 'overstrike' -->
         <macroSpec ident="data.TEXTRENDITION" module="MEI" type="dt" mode="replace">
           <desc>Text rendition values.</desc>
           <content>
@@ -2933,6 +3349,8 @@
                   <rng:value>overline</rng:value>
                   <a:documentation>line above the text; may be qualified to indicate multiple lines,
                     e.g. overline(3)</a:documentation>
+                  <rng:value>overstrike</rng:value>
+                  <a:documentation>obscured by other text, such as 'XXXXX'</a:documentation>
                   <rng:value>strike</rng:value>
                   <a:documentation>struck through by '-'; equivalent to line-through; may be
                     qualified to indicate multiple lines, e.g. strike(3)</a:documentation>
@@ -3025,8 +3443,10 @@
               <a:documentation>dashed line</a:documentation>
               <rng:value>dotted</rng:value>
               <a:documentation>dotted line</a:documentation>
+              <rng:value>solid</rng:value>
+              <a:documentation>straight, uninterrupted line</a:documentation>
               <rng:value>wavy</rng:value>
-              <a:documentation>undulating line line</a:documentation>
+              <a:documentation>undulating line</a:documentation>
             </rng:choice>
           </content>
         </macroSpec>
@@ -3837,12 +4257,12 @@
               both the case where distinct intermediate pitches are produced (as on the piano) and
               the case where they are not (as on the trombone), though the latter is sometimes
               referred to as 'portamento'. The visual appearance of the indicating line may be
-              recorded in the <att>rend</att> attribute. The starting point of the glissando may be
-              indicated by either a <att>startid</att>, <att>tstamp</att>, <att>tstamp.ges</att>, or
-                <att>tstamp.real</att> attribute, while the ending point may be recorded by either a
-                <att>dur</att>, <att>dur.ges</att>, <att>endid</att>, or <att>tstamp2</att>
-              attribute. It is a semantic error not to specify one starting and one ending type of
-              attribute.</p>
+              recorded in the <att>lform</att> and <att>lwidth</att> attributes. The starting point
+              of the glissando may be indicated by either a <att>startid</att>, <att>tstamp</att>,
+                <att>tstamp.ges</att>, or <att>tstamp.real</att> attribute, while the ending point
+              may be recorded by either a <att>dur</att>, <att>dur.ges</att>, <att>endid</att>, or
+                <att>tstamp2</att> attribute. It is a semantic error not to specify one starting and
+              one ending type of attribute.</p>
           </remarks>
         </elementSpec>
 
@@ -4352,6 +4772,7 @@
           <classes>
             <memberOf key="att.common"/>
             <memberOf key="att.bibl"/>
+            <memberOf key="att.typed"/>
             <memberOf key="model.physDescPart"/>
           </classes>
           <content>
@@ -4377,7 +4798,6 @@
             <memberOf key="att.common"/>
             <memberOf key="att.facsimile"/>
             <memberOf key="att.lang"/>
-            <memberOf key="att.typed"/>
             <memberOf key="att.xy"/>
             <memberOf key="model.listLike"/>
           </classes>
@@ -4392,15 +4812,23 @@
               <rng:ref name="li"/>
             </rng:zeroOrMore>
           </content>
+          <constraintSpec ident="list_type_constraint" scheme="isoschematron">
+            <constraint>
+              <sch:rule context="mei:list[@type='gloss']">
+                <sch:assert test="count(mei:label) = count(mei:li)">In a list of type "gloss" all
+                  items must be immediately preceded by a label.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
           <attList>
             <attDef ident="form" usage="opt">
-              <desc>used to identify and format a list. In a "simple" list, <gi scheme="MEI"
-                  >item</gi>s are not numbered or bulleted. In a "marked" list, the sequence of the
-                list items is not critical, and a bullet, box, dash, or other character is displayed
-                at the start of each <gi scheme="MEI">item</gi>. In an "ordered" list, the sequence
-                of the items is important, and each <gi scheme="MEI">item</gi> is lettered or
+              <desc>used to indicate the format of a list. In a "simple" list, <gi scheme="MEI"
+                  >li</gi> elements are not numbered or bulleted. In a "marked" list, the sequence
+                of the list items is not critical, and a bullet, box, dash, or other character is
+                displayed at the start of each <gi scheme="MEI">item</gi>. In an "ordered" list, the
+                sequence of the items is important, and each <gi scheme="MEI">li</gi> is lettered or
                 numbered. Style sheet functions should be used to specify the mark or numeration
-                system for each <gi scheme="MEI">item</gi>.</desc>
+                system for each <gi scheme="MEI">li</gi>.</desc>
               <valList type="closed">
                 <valItem ident="simple">
                   <desc>items are not numbered or bulleted</desc>
@@ -4413,17 +4841,49 @@
                 </valItem>
               </valList>
             </attDef>
+            <attDef ident="type" usage="opt">
+              <desc>captures the nature of the content of a list.</desc>
+              <valList type="semi">
+                <valItem ident="gloss">
+                  <desc>each list item glosses some term or concept, which is given by a label
+                    element preceding the list item.</desc>
+                </valItem>
+                <valItem ident="index">
+                  <desc>each list item is an entry in an index such as the alphabetical topical
+                    index at the back of a print volume.</desc>
+                </valItem>
+                <valItem ident="instructions">
+                  <desc>each list item is a step in a sequence of instructions, as in a
+                    recipe.</desc>
+                </valItem>
+                <valItem ident="litany">
+                  <desc>each list item is one of a sequence of petitions, supplications or
+                    invocations, typically in a religious ritual.</desc>
+                </valItem>
+                <valItem ident="syllogism">
+                  <desc>each list item is part of an argument consisting of two or more propositions
+                    and a final conclusion derived from them.</desc>
+                </valItem>
+              </valList>
+              <remarks>
+                <p>In a list of type "gloss" it is a semantic error not to precede each list item
+                  with a label.</p>
+              </remarks>
+            </attDef>
           </attList>
           <remarks>
             <p>This element is modelled on elements in Encoded Archival Description (EAD), Text
               Encoding Initiative (TEI), and HTML standards.</p>
           </remarks>
         </elementSpec>
+        <!-- Enforce constraints on attribute targets, issue #226 -->
         <elementSpec ident="termList" module="MEI.header" mode="replace">
           <desc>Collection of text phrases which describe a resource.</desc>
           <classes>
             <memberOf key="att.common"/>
             <memberOf key="att.bibl"/>
+            <memberOf key="att.classcodeident"/>
+            <memberOf key="att.typed"/>
           </classes>
           <content>
             <rng:zeroOrMore>
@@ -4436,16 +4896,6 @@
               <rng:ref name="term"/>
             </rng:zeroOrMore>
           </content>
-          <attList>
-            <attDef ident="classcode" usage="opt">
-              <desc>contains a reference to the controlled vocabulary from which the terms are
-                drawn. The value must match the value of an ID attribute on a classCode element
-                given elsewhere in the document.</desc>
-              <datatype>
-                <rng:ref name="data.URI"/>
-              </datatype>
-            </attDef>
-          </attList>
         </elementSpec>
 
         <!-- Allow <lg> in <p>, issue #219 -->
@@ -4465,6 +4915,7 @@
             <memberOf key="att.common"/>
             <memberOf key="att.facsimile"/>
             <memberOf key="att.lang"/>
+            <memberOf key="att.typed"/>
             <memberOf key="att.xy"/>
             <memberOf key="model.headLike"/>
           </classes>
@@ -4557,6 +5008,7 @@
             <memberOf key="att.common"/>
             <memberOf key="att.facsimile"/>
             <memberOf key="att.lang"/>
+            <memberOf key="att.typed"/>
             <memberOf key="model.listLike"/>
           </classes>
           <content>
@@ -4598,33 +5050,32 @@
               </rng:oneOrMore>
             </rng:choice>
           </content>
-          <!--<exemplum>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <contents>
-                <p>A suitable tone ; Left hand colouring ; Rhythm and accent ; Tempo ; Flexibility ;
-                  Ornaments</p>
-              </contents>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:space="preserve">
+<contents>
+  <p>A suitable tone ; Left hand colouring ; Rhythm and accent ; Tempo ; 
+    Flexibility ; Ornaments</p>
+</contents>
             </egXML>
           </exemplum>
           <exemplum>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <contents>
-                <head>Contents</head>
-                <label>1.</label><contentItem>Sonata in D major, op. V, no. 1 /
-                  Corelli</contentItem>
-                <label>2.</label><contentItem>Sonata in G minor / Purcell (with Robert Donington,
-                  gamba)</contentItem>
-                <label>3.</label><contentItem>Forlane from Concert royal no. 3 /
-                  Couperin</contentItem>
-              </contents>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:space="preserve">
+<contents>
+  <head>Contents</head>
+  <label>1.</label><contentItem>Sonata in D major, op. V, no. 1 /
+     Corelli</contentItem>
+  <label>2.</label><contentItem>Sonata in G minor / Purcell (with Robert Donington,
+     gamba)</contentItem>
+  <label>3.</label><contentItem>Forlane from Concert royal no. 3 /
+     Couperin</contentItem>
+</contents>
             </egXML>
           </exemplum>
           <exemplum>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples"
-              xmlns:xlink="http://www.w3.org/1999/xlink">
-              <contents target="http://www.contentProvider.org/toc/toc01.html"/>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink">
+<contents target="http://www.contentProvider.org/toc/toc01.html"/>
             </egXML>
-          </exemplum>-->
+          </exemplum>
         </elementSpec>
         <elementSpec ident="div" module="MEI.text" mode="replace">
           <desc>(division) – Major structural division of text, such as a preface, chapter or
@@ -4672,6 +5123,7 @@
             <memberOf key="att.datable"/>
             <memberOf key="att.edit"/>
             <memberOf key="att.lang"/>
+            <memberOf key="att.typed"/>
           </classes>
           <content>
             <rng:zeroOrMore>
@@ -4679,7 +5131,6 @@
             </rng:zeroOrMore>
             <rng:zeroOrMore>
               <rng:choice>
-                <rng:text/>
                 <rng:ref name="model.eventPart"/>
                 <rng:ref name="model.pLike"/>
                 <rng:ref name="model.tableLike"/>
@@ -4691,59 +5142,6 @@
               <rng:ref name="biblList"/>
             </rng:zeroOrMore>
           </content>
-          <!-- <content>
-            <rng:choice>
-              <!-\- A semi-structured description using name, date, and place elements -\->
-              <rng:group>
-                <rng:optional>
-                  <!-\- A descriptive label, such as "First performance in Denmark" -\->
-                  <rng:ref name="model.headLike"/>
-                </rng:optional>
-                <rng:oneOrMore>
-                  <rng:ref name="model.eventPart"/>
-                </rng:oneOrMore>
-                <!-\- A single paragraph is allowed here in order to "grandfather in" MerMEId.  This paragraph
-                will be deprecated following MEI2013!  The <head> element should be used instead. Once this
-                paragraph is eliminated, the preceding model.eventPart reference above and the choice below
-                can be made optional. Until then, at least one element from model.eventPart must be required
-                in order to avoid an ambiguous content model when converting to XSD. -\->
-                <rng:optional>
-                  <rng:ref name="model.pLike"/>
-                </rng:optional>
-              </rng:group>
-              <!-\- A more free-form description using elements from the textcomponentLike class -\->
-              <rng:group>
-                <rng:oneOrMore>
-                  <rng:choice>
-                    <rng:ref name="model.pLike"/>
-                    <rng:ref name="model.tableLike"/>
-                    <!-\- The list and castList elements from model.listLike are invoked here
-                      individually so that biblList can be shared by both the structured and 
-                      unstructured models. -\->
-                    <rng:ref name="list"/>
-                    <rng:ref name="castList"/>
-                  </rng:choice>
-                </rng:oneOrMore>
-              </rng:group>
-            </rng:choice>
-            <rng:zeroOrMore>
-              <rng:choice>
-                <rng:ref name="biblList"/>
-              </rng:choice>
-            </rng:zeroOrMore>
-          </content> -->
-          <constraintSpec ident="event_content_constraint" scheme="isoschematron">
-            <constraint>
-              <sch:rule context="mei:event[mei:p or mei:table]">
-                <sch:assert test="not(*[../text()[normalize-space()]])">Mixed content is not allowed
-                  when p or table is used.</sch:assert>
-                <sch:assert test="not(*[not(local-name() eq 'biblList' or local-name() eq 'castList'
-                  or local-name() eq 'list' or local-name() eq 'p' or local-name() eq
-                  'table')])">Unstructured text not allowed when p or table elements are
-                  used.</sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
         </elementSpec>
         <elementSpec ident="eventList" module="MEI.header" mode="replace">
           <desc>Contains historical information given as a sequence of significant past
@@ -4863,6 +5261,7 @@
             <memberOf key="att.declaring"/>
             <memberOf key="att.facsimile"/>
             <memberOf key="att.lang"/>
+            <memberOf key="att.typed"/>
             <memberOf key="att.xy"/>
             <memberOf key="model.lgLike"/>
           </classes>
@@ -4950,17 +5349,6 @@
         <!-- Add constraintSpec to att.altsym -->
         <classSpec ident="att.altsym" module="MEI.shared" type="atts" mode="replace">
           <desc>Attributes supplying pointers to user-defined symbols.</desc>
-          <constraintSpec ident="check_altsym.target" scheme="isoschematron">
-            <constraint>
-              <sch:rule context="@altsym">
-                <sch:assert role="warning" test="every $ref in tokenize(.,' ') satisfies
-                  starts-with($ref,'#')">Every URI should start with a hash.</sch:assert>
-                <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                  substring($i,2)=//mei:symbolDef/@xml:id">The value in @altsym must correspond to
-                  the @xml:id attribute of a symbolDef element.</sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
           <attList>
             <attDef ident="altsym" usage="opt">
               <desc>provides a way of pointing to a user-defined symbol. It must contain an ID of a
@@ -4968,6 +5356,580 @@
               <datatype>
                 <rng:ref name="data.URI"/>
               </datatype>
+              <constraintSpec ident="check_altsymTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@altsym">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@altsym
+                      attribute has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:symbolDef/@xml:id">The value in @altsym must correspond
+                      to the @xml:id attribute of a symbolDef element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Add constraintSpec in att.common.anl -->
+        <classSpec ident="att.common.anl" module="MEI.analysis" type="atts" mode="replace">
+          <desc>Common analytical attributes. When the meiLinkAlign module is used, the when
+            attribute is also a member of this attribute class.</desc>
+          <classes>
+            <memberOf key="att.alignment"/>
+          </classes>
+          <attList>
+            <attDef ident="copyof" usage="opt">
+              <desc>points to an element of which the current element is a copy.</desc>
+              <datatype>
+                <rng:ref name="data.URI"/>
+              </datatype>
+              <constraintSpec ident="When_copyof_element_empty" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="mei:*[@copyof]">
+                    <sch:assert test="count(child::node()) = 0">An element with a copyof attribute
+                      cannot have content.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+              <constraintSpec ident="check_copyofTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@copyof">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@copyof
+                      attribute has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id">The value in @copyof must correspond to the
+                      @xml:id attribute of an element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+            <attDef ident="corresp" usage="opt">
+              <desc>used to point to other elements that correspond to this one in a generic
+                fashion.</desc>
+              <datatype>
+                <rng:ref name="data.URIS"/>
+              </datatype>
+              <constraintSpec ident="check_correspTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@corresp">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@corresp
+                      attribute has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id">Each value in @corresp must correspond to the
+                      @xml:id attribute of an element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+            <attDef ident="next" usage="opt">
+              <desc>used to point to the next event(s) in a user-defined collection.</desc>
+              <datatype>
+                <rng:ref name="data.URIS"/>
+              </datatype>
+              <constraintSpec ident="check_nextTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@next">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@next attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id">Each value in @next must correspond to the
+                      @xml:id attribute of an element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+            <attDef ident="prev" usage="opt">
+              <desc>points to the previous event(s) in a user-defined collection.</desc>
+              <datatype>
+                <rng:ref name="data.URIS"/>
+              </datatype>
+              <constraintSpec ident="check_prevTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@prev">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@prev attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id">Each value in @prev must correspond to the
+                      @xml:id attribute of an element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+            <attDef ident="sameas" usage="opt">
+              <desc>points to an element that is the same as the current element but is not a
+                literal copy of the current element.</desc>
+              <datatype>
+                <rng:ref name="data.URIS"/>
+              </datatype>
+              <constraintSpec ident="check_sameasTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@sameas">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@sameas
+                      attribute has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id">Each value in @sameas must correspond to the
+                      @xml:id attribute of an element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+            <attDef ident="synch" usage="opt">
+              <desc>points to elements that are synchronous with the current element.</desc>
+              <datatype>
+                <rng:ref name="data.URIS"/>
+              </datatype>
+              <constraintSpec ident="check_synchTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@synch">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@synch attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id">Each value in @synch must correspond to the
+                      @xml:id attribute of an element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Enforce constraints on attribute targets, issue #226 -->
+        <!-- Create new att.classcodeident class -->
+        <classSpec ident="att.classcodeident" module="MEI.shared" type="atts" mode="add">
+          <attList>
+            <attDef ident="classcode" usage="opt">
+              <desc>contains a reference to the controlled vocabulary from which the term is drawn.
+                The value must match the value of an ID attribute on a classCode element given
+                elsewhere in the document.</desc>
+              <datatype>
+                <rng:ref name="data.URI"/>
+              </datatype>
+              <constraintSpec ident="check_classcodeTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@classcode">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@classcode
+                      attribute has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:classCode/@xml:id">The value in @classcode must
+                      correspond to the @xml:id attribute of a classCode element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Make term member of att.classcodeident -->
+        <elementSpec ident="term" module="MEI.header" mode="replace">
+          <desc>Keyword or phrase which describes a resource.</desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.classcodeident"/>
+            <memberOf key="att.bibl"/>
+            <memberOf key="att.lang"/>
+            <memberOf key="att.typed"/>
+          </classes>
+          <content>
+            <rng:zeroOrMore>
+              <rng:choice>
+                <rng:text/>
+                <rng:ref name="term"/>
+                <rng:ref name="model.textphraseLike.limited"/>
+              </rng:choice>
+            </rng:zeroOrMore>
+          </content>
+          <remarks>
+            <p>The <att>classcode</att> attribute may be used to link the term to a terminological
+              source given in a <gi scheme="MEI">classCode</gi> element. The <gi scheme="MEI"
+                >term</gi> element may include other <gi scheme="MEI">term</gi> elements in order to
+              allow the creation of coordinated terms; i.e., terms created from a combination of
+              other, independent terms.</p>
+          </remarks>
+          <remarks>
+            <p>This element is modelled on an element in the Text Encoding Initiative (TEI)
+              standard.</p>
+          </remarks>
+        </elementSpec>
+        <!-- Add constraintSpec in att.custos.log -->
+        <classSpec ident="att.custos.log" module="MEI.shared" type="atts" mode="replace">
+          <desc>Logical domain attributes.</desc>
+          <classes>
+            <memberOf key="att.pitched"/>
+          </classes>
+          <attList>
+            <attDef ident="target" usage="opt">
+              <desc>encodes the target note when its pitch differs from the pitch at which the
+                custos appears.</desc>
+              <datatype>
+                <rng:ref name="data.URI"/>
+              </datatype>
+              <constraintSpec ident="check_goalTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="mei:custos/@target">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@target
+                      attribute has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id">The value in @target must correspond to the
+                      @xml:id attribute of a note element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Add constraintSpec in att.datapointing -->
+        <classSpec ident="att.datapointing" module="MEI.shared" type="atts" mode="replace">
+          <desc>Attributes for linking metadata to data.</desc>
+          <attList>
+            <attDef ident="data" usage="opt">
+              <desc>used to link metadata elements to one or more data-containing elements.</desc>
+              <datatype>
+                <rng:ref name="data.URIS"/>
+              </datatype>
+              <constraintSpec ident="check_dataTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@data">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@data attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id">The value in @data must correspond to the
+                      @xml:id attribute of an element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Add constraintSpec in att.declaring -->
+        <classSpec ident="att.declaring" module="MEI.shared" type="atts" mode="replace">
+          <desc>provides attributes for elements which may be associated with particular contextual
+            elements within the header.</desc>
+          <attList>
+            <attDef ident="decls" usage="opt">
+              <desc>identifies one or more metadata elements within the header, which are understood
+                to apply to the element bearing this attribute and its content.</desc>
+              <datatype>
+                <rng:ref name="data.URIS"/>
+              </datatype>
+              <constraintSpec ident="check_dataTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@decls">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@decls attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*[ancestor::meiHead]/@xml:id">Each value in @decls must
+                      correspond to the @xml:id attribute of an element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Add constraintSpec in att.facsimile -->
+        <classSpec ident="att.facsimile" module="MEI.facsimile" type="atts" mode="replace">
+          <desc>Attributes that associate a feature corresponding with all or part of an
+            image.</desc>
+          <attList>
+            <attDef ident="facs" usage="opt">
+              <desc>permits the current element to reference a facsimile surface or image zone which
+                corresponds to it.</desc>
+              <datatype>
+                <rng:ref name="data.URIS"/>
+              </datatype>
+              <constraintSpec ident="check_facsTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@facs">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@facs attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*[local-name() eq 'surface' or local-name() eq
+                      'zone']/@xml:id">Each value in @facs must correspond to the @xml:id attribute
+                      of an element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Add constraintSpec in att.handident -->
+        <classSpec ident="att.handident" module="MEI.shared" type="atts" mode="replace">
+          <desc>Attributes which identify a document hand.</desc>
+          <attList>
+            <attDef ident="hand" usage="opt">
+              <desc>signifies the hand responsible for an action. The value must be the ID of a
+                &lt;hand&gt; element declared in the header.</desc>
+              <datatype>
+                <rng:ref name="data.URI"/>
+              </datatype>
+              <constraintSpec ident="check_handTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@hand">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@hand attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:hand/@xml:id">Each value in @hand must correspond to the
+                      @xml:id attribute of a hand element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Add constraintSpec in att.harm.log -->
+        <classSpec ident="att.harm.log" module="MEI.harmony" type="atts" mode="replace">
+          <desc>Logical domain attributes.</desc>
+          <classes>
+            <memberOf key="att.controlevent"/>
+            <memberOf key="att.augmentdots"/>
+            <memberOf key="att.duration.additive"/>
+            <memberOf key="att.startendid"/>
+            <memberOf key="att.timestamp2.musical"/>
+          </classes>
+          <attList>
+            <attDef ident="chordref" usage="opt">
+              <desc>contains a reference to a &lt;chordDef&gt; element elsewhere in the
+                document.</desc>
+              <datatype>
+                <rng:ref name="data.URI"/>
+              </datatype>
+              <constraintSpec ident="check_chordrefTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@chordref">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@chordref
+                      attribute has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:chordDef/@xml:id">The value in @chordref must correspond
+                      to the @xml:id attribute of a chordDef element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Add constraintSpec in att.instrumentident -->
+        <classSpec ident="att.instrumentident" module="MEI.shared" type="atts" mode="replace">
+          <desc>Attributes which identify a MIDI instrument.</desc>
+          <attList>
+            <attDef ident="instr" usage="opt">
+              <desc>provides a way of pointing to a MIDI instrument definition. It must contain the
+                ID of an &lt;instrDef&gt; element elsewhere in the document.</desc>
+              <datatype>
+                <rng:ref name="data.URI"/>
+              </datatype>
+              <constraintSpec ident="check_instrTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@instr">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@instr attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:instrDef/@xml:id">The value in @instr must correspond to
+                      the @xml:id attribute of a instrDef element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Add constraintSpec in att.joined -->
+        <classSpec ident="att.joined" module="MEI.shared" type="atts" mode="replace">
+          <desc>Attributes indicating that elements are semantically linked; that is, while the
+            parts are encoded separately, together they may be thought of as a single intellectual
+            object.</desc>
+          <attList>
+            <attDef ident="join" usage="opt">
+              <desc>used for linking visually separate entities that form a single logical entity,
+                for example, multiple slurs broken across a system break that form a single musical
+                phrase. Also used to indicate a measure which metrically completes the current one.
+                Record the identifiers of the separately encoded components, excluding the one
+                carrying the attribute.</desc>
+              <datatype>
+                <rng:ref name="data.URIS"/>
+              </datatype>
+              <constraintSpec ident="check_joinTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@join">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@join attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id">Each value in @join must correspond to the
+                      @xml:id attribute of an element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Add constraintSpec in att.layer.log -->
+        <classSpec ident="att.layer.log" module="MEI.shared" type="atts" mode="replace">
+          <desc>Logical domain attributes.</desc>
+          <classes>
+            <memberOf key="att.meterconformance"/>
+          </classes>
+          <attList>
+            <attDef ident="def">
+              <desc>provides a mechanism for linking the layer to a layerDef element.</desc>
+              <datatype>
+                <rng:ref name="data.URI"/>
+              </datatype>
+              <constraintSpec ident="check_defTarget_layer" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@def">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@def attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:layerDef/@xml:id">The value in @def must correspond to
+                      the @xml:id attribute of a layerDef element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Add constraintSpec in att.plist -->
+        <classSpec ident="att.plist" module="MEI.shared" type="atts" mode="replace">
+          <desc>Attributes listing the participants in a user-defined collection.</desc>
+          <attList>
+            <attDef ident="plist" usage="opt">
+              <desc>contains a space separated list of references that identify logical events that
+                participate in a collection, such as notes under a phrase mark.</desc>
+              <datatype>
+                <rng:ref name="data.URIS"/>
+              </datatype>
+              <constraintSpec ident="check_plistTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@plist">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@plist attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id">Each value in @plist must correspond to the
+                      @xml:id attribute of an element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+            <attDef ident="evaluate" usage="opt">
+              <desc>specifies the intended meaning when the target of a pointer is itself a
+                pointer.</desc>
+              <valList type="closed">
+                <valItem ident="all">
+                  <desc>if the element pointed to is itself a pointer, then the target of that
+                    pointer will be taken, and so on, until an element is found which is not a
+                    pointer.</desc>
+                </valItem>
+                <valItem ident="one">
+                  <desc>if the element pointed to is itself a pointer, then its target (whether a
+                    pointer or not) is taken as the target of this pointer.</desc>
+                </valItem>
+                <valItem ident="none">
+                  <desc>no further evaluation of targets is carried out beyond that needed to find
+                    the element specified in the pointer's target.</desc>
+                </valItem>
+              </valList>
+              <remarks>
+                <p>If no value is given, the application program is responsible for deciding
+                  (possibly on the basis of user input) how far to trace a chain of pointers.</p>
+              </remarks>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Add constraintSpec in att.source -->
+        <classSpec ident="att.source" module="MEI.critapp" type="atts" mode="replace">
+          <desc>Attributes common to elements that may refer to a source.</desc>
+          <attList>
+            <attDef ident="source" usage="opt">
+              <desc>contains a list of one or more pointers indicating the sources which attest to a
+                given reading. Each value should correspond to the ID of a &lt;source&gt; element
+                located in the document header.</desc>
+              <datatype>
+                <rng:ref name="data.URIS"/>
+              </datatype>
+              <constraintSpec ident="check_sourceTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@source">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@source
+                      attribute has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:source/@xml:id">Each value in @source must correspond to
+                      the @xml:id attribute of a source element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Add constraintSpec in att.staff.log -->
+        <classSpec ident="att.staff.log" module="MEI.shared" type="atts" mode="replace">
+          <desc>Logical domain attributes.</desc>
+          <classes>
+            <memberOf key="att.meterconformance"/>
+          </classes>
+          <attList>
+            <attDef ident="def">
+              <desc>provides a mechanism for linking the staff to a staffDef element.</desc>
+              <datatype>
+                <rng:ref name="data.URI"/>
+              </datatype>
+              <constraintSpec ident="check_defTarget_staff" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@def">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@def attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:staffDef/@xml:id">The value in @def must correspond to
+                      the @xml:id attribute of a staffDef element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Add constraintSpec in att.startendid -->
+        <classSpec ident="att.startendid" module="MEI.shared" type="atts" mode="replace">
+          <desc>Attributes recording the identifiers of the first and last elements of a sequence of
+            elements to which the current element is associated.</desc>
+          <classes>
+            <memberOf key="att.startid"/>
+          </classes>
+          <attList>
+            <attDef ident="endid" usage="opt">
+              <desc>indicates the final element in a sequence of events to which the feature
+                applies.</desc>
+              <datatype>
+                <rng:ref name="data.URI"/>
+              </datatype>
+              <constraintSpec ident="check_endidTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@endid">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@endid attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id">The value in @endid must correspond to the
+                      @xml:id attribute of an element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Add constraintSpec in att.start -->
+        <classSpec ident="att.startid" module="MEI.shared" type="atts" mode="replace">
+          <desc>Attributes that identify a relative starting point.</desc>
+          <attList>
+            <attDef ident="startid" usage="opt">
+              <desc>holds a reference to the first element in a sequence of events to which the
+                feature applies.</desc>
+              <datatype>
+                <rng:ref name="data.URI"/>
+              </datatype>
+              <constraintSpec ident="check_startidTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@startid">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@startid
+                      attribute has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id">The value in @startid must correspond to the
+                      @xml:id attribute of an element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
             </attDef>
           </attList>
         </classSpec>
@@ -4975,11 +5937,11 @@
         <classSpec ident="att.responsibility" module="MEI.shared" type="atts" mode="replace">
           <desc>Attributes capturing information regarding responsibility for some aspect of the
             text's creation, transcription, editing, or encoding.</desc>
-          <constraintSpec ident="check_resp.target" scheme="isoschematron">
+          <constraintSpec ident="check_respTarget" scheme="isoschematron">
             <constraint>
               <sch:rule context="@resp">
-                <sch:assert role="warning" test="every $ref in tokenize(.,' ') satisfies
-                  starts-with($ref,'#')">Every URI should start with a hash.</sch:assert>
+                <sch:assert role="warning" test="not(normalize-space(.) eq '')">@resp attribute has
+                  no content.</sch:assert>
                 <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
                   substring($i,2)=//mei:*[ancestor::mei:meiHead]/@xml:id">The value in @resp must
                   correspond to the @xml:id attribute of an element in meiHead.</sch:assert>
@@ -4994,6 +5956,18 @@
               <datatype>
                 <rng:ref name="data.URIS"/>
               </datatype>
+              <constraintSpec ident="check_respTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@resp">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@resp attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*[ancestor::mei:meiHead]/@xml:id">The value in @resp
+                      must correspond to the @xml:id attribute of an element in
+                      meiHead.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
             </attDef>
           </attList>
         </classSpec>
@@ -5011,31 +5985,12 @@
           <content>
             <rng:empty/>
           </content>
-          <constraintSpec ident="check_new.target" scheme="isoschematron">
-            <constraint>
-              <sch:rule context="mei:handShift/@new">
-                <sch:assert role="warning" test="every $ref in tokenize(.,' ') satisfies
-                  starts-with($ref,'#')">Every URI should start with a hash.</sch:assert>
-                <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                  substring($i,2)=//mei:hand/@xml:id">The value in @new must correspond to the
-                  @xml:id attribute of a hand element.</sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-          <constraintSpec ident="check_old.target" scheme="isoschematron">
-            <constraint>
-              <sch:rule context="mei:handShift/@old">
-                <sch:assert role="warning" test="every $ref in tokenize(.,' ') satisfies
-                  starts-with($ref,'#')">Every URI should start with a hash.</sch:assert>
-                <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                  substring($i,2)=//mei:hand/@xml:id">The value in @old must correspond to the
-                  @xml:id attribute of a hand element.</sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
           <attList>
             <attDef ident="character" usage="opt">
               <desc>describes the character of the new hand.</desc>
+              <datatype>
+                <rng:text/>
+              </datatype>
             </attDef>
             <attDef ident="new" usage="opt">
               <desc>identifies the new hand. The value must contain the ID of a hand element given
@@ -5043,6 +5998,17 @@
               <datatype>
                 <rng:ref name="data.URI"/>
               </datatype>
+              <constraintSpec ident="check_newTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@new">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@new attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:hand/@xml:id">The value in @new must correspond to the
+                      @xml:id attribute of a hand element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
             </attDef>
             <attDef ident="old" usage="opt">
               <desc>identifies the old hand. The value must contain the ID of a hand element given
@@ -5050,6 +6016,17 @@
               <datatype>
                 <rng:ref name="data.URI"/>
               </datatype>
+              <constraintSpec ident="check_oldTarget" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="@old">
+                    <sch:assert role="warning" test="not(normalize-space(.) eq '')">@old attribute
+                      has no content.</sch:assert>
+                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:hand/@xml:id">The value in @old must correspond to the
+                      @xml:id attribute of a hand element.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
             </attDef>
           </attList>
           <remarks>
@@ -5068,50 +6045,374 @@
               standard.</p>
           </remarks>
         </elementSpec>
-        <!-- Add constraintSpec to term, but this will catch @classcode everywhere -->
-        <elementSpec ident="term" module="MEI.header" mode="replace">
-          <desc>Keyword or phrase which describes a resource.</desc>
+
+        <!-- Make more elements members of att.typed -->
+        <elementSpec ident="bibl" module="MEI.shared" mode="replace">
+          <desc>(bibliographic reference) – Provides a loosely-structured bibliographic citation in
+            which the sub-components may or may not be explicitly marked.</desc>
           <classes>
             <memberOf key="att.common"/>
-            <memberOf key="att.bibl"/>
+            <memberOf key="att.facsimile"/>
             <memberOf key="att.lang"/>
+            <memberOf key="att.pointing"/>
+            <memberOf key="att.typed"/>
+            <memberOf key="model.biblLike"/>
           </classes>
           <content>
             <rng:zeroOrMore>
               <rng:choice>
                 <rng:text/>
-                <rng:ref name="term"/>
-                <rng:ref name="model.textphraseLike.limited"/>
+                <rng:ref name="model.biblPart"/>
+                <rng:ref name="model.imprintPart"/>
+                <rng:ref name="model.textphraseLike"/>
               </rng:choice>
             </rng:zeroOrMore>
           </content>
-          <constraintSpec ident="check_classcode.target" scheme="isoschematron">
+          <!-- To produce a more strict bibliographic citation, the following content model may be used: -->
+          <!-- <content>
+            <rng:zeroOrMore>
+              <rng:choice>
+                <rng:ref name="model.titleLike"/>
+                <rng:ref name="model.identifierLike"/>
+                <rng:ref name="model.annotLike"/>
+                <rng:ref name="model.biblPart"/>
+                <rng:ref name="imprint"/>
+                <rng:ref name="creation"/>
+                <rng:ref name="genre"/>
+                <rng:ref name="relatedItem"/>
+              </rng:choice>
+            </rng:zeroOrMore>
+           </content> -->
+          <remarks>
+            <p><gi scheme="MEI">bibl</gi> may contain a mix of text and more specific elements such
+              as <gi scheme="MEI">title</gi>, <gi scheme="MEI">edition</gi>, <gi scheme="MEI"
+                >persName</gi>, and <gi scheme="MEI">corpName</gi>. This element may also function
+              as a hypertext reference to an external electronic resource. Do not confuse this
+              element with <gi scheme="MEI">ref</gi>, which does not provide special bibliographic
+              sub-elements.</p>
+          </remarks>
+          <remarks>
+            <p>This element is modelled on elements in the Text Encoding Initiative (TEI) and
+              Encoded Archival Description (EAD) standards.</p>
+          </remarks>
+        </elementSpec>
+        <elementSpec ident="change" module="MEI.header" mode="replace">
+          <desc>Individual change within the revision description.</desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.bibl"/>
+            <memberOf key="att.datable"/>
+            <memberOf key="att.responsibility"/>
+            <memberOf key="att.typed"/>
+          </classes>
+          <content>
+            <rng:optional>
+              <rng:ref name="respStmt"/>
+            </rng:optional>
+            <rng:ref name="changeDesc"/>
+            <rng:optional>
+              <rng:ref name="model.dateLike"/>
+            </rng:optional>
+          </content>
+          <constraintSpec ident="change_requirements" scheme="isoschematron">
             <constraint>
-              <sch:rule context="@classcode">
-                <sch:assert role="warning" test="every $ref in tokenize(.,' ') satisfies
-                  starts-with($ref,'#')">Every URI should start with a hash.</sch:assert>
-                <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                  substring($i,2)=//mei:classCode/@xml:id">The value in @classcode must correspond
-                  to the @xml:id attribute of a classCode element.</sch:assert>
+              <sch:rule context="mei:change">
+                <sch:assert test="@isodate or mei:date">The date of the change must be recorded in
+                  an isodate attribute or date element.</sch:assert>
+                <sch:assert test="@resp or mei:respStmt">The person responsible for the change must
+                  be recorded in a resp attribute or respStmt element.</sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
+          <remarks>
+            <p>Additions, deletions, and significant recoding should be noted, but not correction of
+              minor typographical errors. It is recommended that revisions should be entered in
+              reverse chronological order, with the most recent <gi scheme="MEI">change</gi> first.
+              The <att>resp</att> attribute contains a pointer to an element containing info about
+              the person/entity responsible for change. The <gi scheme="MEI">edition</gi> element
+              can be used to designate an MEI encoding that has been so substantively changed that
+              it constitutes a new version that supersedes earlier versions.</p>
+          </remarks>
+          <remarks>
+            <p>This element is modelled on an element in the Encoded Archival Description (EAD)
+              standard.</p>
+          </remarks>
+        </elementSpec>
+        <elementSpec ident="corr" module="MEI.edittrans" mode="replace">
+          <desc>(correction) – Contains the correct form of an apparent erroneous passage.</desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.edit"/>
+            <memberOf key="att.lang"/>
+            <memberOf key="att.trans"/>
+            <memberOf key="att.typed"/>
+            <memberOf key="model.choicePart"/>
+            <memberOf key="model.substPart"/>
+            <memberOf key="model.transcriptionLike"/>
+          </classes>
+          <content>
+            <rng:zeroOrMore>
+              <rng:choice>
+                <rng:text/>
+                <rng:ref name="model.textphraseLike"/>
+                <rng:ref name="model.eventLike"/>
+                <rng:ref name="model.eventLike.neumes"/>
+                <rng:ref name="model.controleventLike"/>
+                <rng:ref name="model.lyricsLike"/>
+                <rng:ref name="model.midiLike"/>
+                <rng:ref name="model.editLike"/>
+                <rng:ref name="model.transcriptionLike"/>
+                <rng:ref name="model.eventLike.measureFilling"/>
+                <rng:ref name="model.noteModifierLike"/>
+                <rng:ref name="model.sectionLike"/>
+                <rng:ref name="model.measureLike"/>
+                <rng:ref name="model.staffLike"/>
+                <rng:ref name="model.layerLike"/>
+                <rng:ref name="model.graphicprimitiveLike"/>
+                <rng:ref name="model.fLike"/>
+              </rng:choice>
+            </rng:zeroOrMore>
+          </content>
+          <remarks>
+            <p>The <att>cert</att> attribute signifies the degree of certainty ascribed to
+              correction. The <att>resp</att> attribute contains an ID reference to an element
+              containing the name of the editor or transcriber responsible for suggesting the
+              correction held as the content of the <gi scheme="MEI">corr</gi> element. If the
+              correction was made in the source, resp should be used to identify the hand of the
+              corrector. The value of resp must point to one or more identifiers declared in the
+              document header.</p>
+          </remarks>
+          <remarks>
+            <p>This element is modelled on an element in the Text Encoding Initiative (TEI)
+              standard.</p>
+          </remarks>
+        </elementSpec>
+        <elementSpec ident="date" module="MEI.shared" mode="replace">
+          <desc>A string identifying a point in time or the time period between two such
+            points.</desc>
+          <classes>
+            <memberOf key="att.bibl"/>
+            <memberOf key="att.calendared"/>
+            <memberOf key="att.common"/>
+            <memberOf key="att.datable"/>
+            <memberOf key="att.edit"/>
+            <memberOf key="att.facsimile"/>
+            <memberOf key="att.lang"/>
+            <memberOf key="att.typed"/>
+            <memberOf key="model.dateLike"/>
+          </classes>
+          <content>
+            <rng:zeroOrMore>
+              <rng:choice>
+                <rng:text/>
+                <rng:ref name="model.textphraseLike"/>
+              </rng:choice>
+            </rng:zeroOrMore>
+          </content>
+          <remarks>
+            <p>This element is modelled on elements in the Text Encoding Initiative (TEI) and
+              Encoded Archival Description (EAD) standards.</p>
+          </remarks>
+        </elementSpec>
+        <elementSpec ident="fig" module="MEI.figtable" mode="replace">
+          <desc>(figure) – groups elements representing or containing graphic information such as an
+            illustration or figure.</desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.facsimile"/>
+            <memberOf key="att.typed"/>
+            <memberOf key="att.xy"/>
+            <memberOf key="model.figureLike"/>
+          </classes>
+          <content>
+            <rng:zeroOrMore>
+              <rng:choice>
+                <rng:ref name="model.captionLike"/>
+                <rng:ref name="figDesc"/>
+                <rng:ref name="model.graphicLike"/>
+              </rng:choice>
+            </rng:zeroOrMore>
+          </content>
+          <remarks>
+            <p>This element is modelled on the figure element in the Text Encoding Initiative (TEI)
+              standard.</p>
+          </remarks>
+        </elementSpec>
+        <classSpec ident="att.pb.log" module="MEI.shared" type="atts" mode="replace">
+          <desc>Logical domain attributes.</desc>
+          <classes>
+            <memberOf key="att.typed"/>
+          </classes>
+        </classSpec>
+        <elementSpec ident="ptr" module="MEI.ptrref" mode="replace">
+          <desc>(pointer) – Defines a pointer to another location, using only attributes to describe
+            the destination.</desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.internetmedia"/>
+            <memberOf key="att.pointing"/>
+            <memberOf key="att.typed"/>
+            <memberOf key="model.locrefLike"/>
+          </classes>
+          <content>
+            <rng:empty/>
+          </content>
+          <remarks>
+            <p>Unlike the <gi scheme="MEI">ref</gi> element, <gi scheme="MEI">ptr</gi> cannot
+              contain text or sub-elements to describe the referenced object.</p>
+          </remarks>
+          <remarks>
+            <p>This element is modelled on elements in the Encoded Archival Description (EAD) and
+              Text Encoding Initiative (TEI) standards.</p>
+          </remarks>
+        </elementSpec>
+        <elementSpec ident="quote" module="MEI.text" mode="replace">
+          <desc>(block quote) – A formatting element that designates an extended quotation; that is,
+            a passage attributed to a source external to the text and normally set off from the text
+            by spacing or other typographic distinction.</desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.facsimile"/>
+            <memberOf key="att.lang"/>
+            <memberOf key="att.typed"/>
+            <memberOf key="att.xy"/>
+            <memberOf key="model.quoteLike"/>
+          </classes>
+          <content>
+            <rng:zeroOrMore>
+              <rng:choice>
+                <rng:text/>
+                <rng:ref name="model.paracontentPart"/>
+                <rng:ref name="p"/>
+              </rng:choice>
+            </rng:zeroOrMore>
+          </content>
+          <remarks>
+            <p>The source for the quote may be included in the optional <gi scheme="MEI">bibl</gi>
+              sub-element. Use <gi scheme="MEI">rend</gi> for words that are enclosed in quotation
+              marks for emphasis or for a short quoted phrase that occurs within a line of text.</p>
+          </remarks>
+          <remarks>
+            <p>This element is modelled on elements found in HTML, TEI, and EAD standards.</p>
+          </remarks>
+        </elementSpec>
+        <elementSpec ident="ref" module="MEI.ptrref" mode="replace">
+          <desc>(reference) – Defines a reference to another location that may contain text and
+            sub-elements to describe the destination.</desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.internetmedia"/>
+            <memberOf key="att.lang"/>
+            <memberOf key="att.pointing"/>
+            <memberOf key="att.typed"/>
+            <memberOf key="model.locrefLike"/>
+          </classes>
+          <content>
+            <rng:zeroOrMore>
+              <rng:choice>
+                <rng:text/>
+                <rng:ref name="model.textphraseLike"/>
+              </rng:choice>
+            </rng:zeroOrMore>
+          </content>
+          <remarks>
+            <p>Unlike the <gi scheme="MEI">ptr</gi> element, <gi scheme="MEI">ref</gi> may contain
+              text and sub-elements to describe the destination.</p>
+          </remarks>
+          <remarks>
+            <p>This element is modelled on elements in the Encoded Archival Description (EAD) and
+              TEI standards.</p>
+          </remarks>
+        </elementSpec>
+        <elementSpec ident="relatedItem" module="MEI.shared" mode="replace">
+          <desc>(related item) – Contains or references another bibliographic item which is related
+            to the present one.</desc>
+          <classes>
+            <memberOf key="att.datapointing"/>
+            <memberOf key="att.common"/>
+            <memberOf key="att.bibl"/>
+            <memberOf key="att.facsimile"/>
+            <memberOf key="att.pointing"/>
+            <memberOf key="att.typed"/>
+            <memberOf key="model.biblPart"/>
+          </classes>
+          <content>
+            <rng:zeroOrMore>
+              <rng:choice>
+                <rng:ref name="model.biblLike"/>
+                <!-- ptr/ref aren't necessary as relatedItem is a member of att.pointing. -->
+                <!--<rng:ref name="model.locrefLike"/>-->
+              </rng:choice>
+            </rng:zeroOrMore>
+          </content>
           <attList>
-            <attDef ident="classcode" usage="opt">
-              <desc>contains a reference to the controlled vocabulary from which the term is drawn.
-                The value must match the value of an ID attribute on a classCode element given
-                elsewhere in the document.</desc>
-              <datatype>
-                <rng:ref name="data.URI"/>
-              </datatype>
+            <attDef ident="rel" usage="req">
+              <desc>describes the relationship between the &lt;relatedItem&gt; and the resource
+                described in the parent element, i.e., &lt;bibl&gt;, &lt;source&gt; or
+                &lt;relatedItem&gt;. The values are based on MODS version 3.4. The subject of these
+                relations is always the &lt;relatedItem&gt;, and the object is always the parent of
+                the &lt;relatedItem&gt;. "preceding" and "succeeding" indicate temporal
+                order.</desc>
+              <valList type="closed">
+                <valItem ident="preceding">
+                  <desc>predecessor of the resource</desc>
+                </valItem>
+                <valItem ident="succeeding">
+                  <desc>successor to the resource</desc>
+                </valItem>
+                <valItem ident="original">
+                  <desc>original form of the resource</desc>
+                </valItem>
+                <valItem ident="host">
+                  <desc>parent containing the resource</desc>
+                </valItem>
+                <valItem ident="constituent">
+                  <desc>intellectual or physical component of the resource</desc>
+                </valItem>
+                <valItem ident="otherVersion">
+                  <desc>version of the resource's intellectual content not changed enough to be a
+                    different work</desc>
+                </valItem>
+                <valItem ident="otherFormat">
+                  <desc>version of the resource in a different physical format</desc>
+                </valItem>
+                <valItem ident="isReferencedBy">
+                  <desc>published bibliographic description, review, abstract, or index of the
+                    resource's content</desc>
+                </valItem>
+                <valItem ident="references">
+                  <desc>cited or referred to in the resource</desc>
+                </valItem>
+              </valList>
             </attDef>
           </attList>
+        </elementSpec>
+        <elementSpec ident="surface" module="MEI.facsimile" mode="replace">
+          <desc>Defines a writing surface in terms of a rectangular coordinate space, optionally
+            grouping one or more graphic representations of that space, and rectangular zones of
+            interest within it.</desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.coordinated"/>
+            <memberOf key="att.datapointing"/>
+            <memberOf key="att.declaring"/>
+            <memberOf key="att.startid"/>
+            <memberOf key="att.typed"/>
+          </classes>
+          <content>
+            <rng:zeroOrMore>
+              <rng:ref name="model.figDescLike"/>
+            </rng:zeroOrMore>
+            <rng:zeroOrMore>
+              <rng:ref name="model.graphicLike"/>
+            </rng:zeroOrMore>
+            <rng:zeroOrMore>
+              <rng:ref name="zone"/>
+            </rng:zeroOrMore>
+          </content>
           <remarks>
-            <p>The <att>classcode</att> attribute may be used to link the term to a terminological
-              source given in a <gi scheme="MEI">classCode</gi> element. The <gi scheme="MEI"
-                >term</gi> element may include other <gi scheme="MEI">term</gi> elements in order to
-              allow the creation of coordinated terms; i.e., terms created from a combination of
-              other, independent terms.</p>
+            <p>The <att>startid</att> attribute may be used to hold a reference to the first feature
+              occurring on this surface.</p>
           </remarks>
           <remarks>
             <p>This element is modelled on an element in the Text Encoding Initiative (TEI)
@@ -5119,8 +6420,70 @@
           </remarks>
         </elementSpec>
 
-        <!-- Modify elementSpec-level documentation for some elements -->
-        <!--<elementSpec ident="barLine" module="MEI.shared" mode="replace">
+        <!-- Minor amendments to documentation -->
+        <classSpec ident="att.typed" module="MEI.shared" type="atts" mode="replace">
+          <desc>Attributes which can be used to classify or sub-classify features.</desc>
+          <attList>
+            <attDef ident="type" usage="opt">
+              <desc>characterizes the element in some sense, using any convenient classification
+                scheme or typology.</desc>
+              <datatype>
+                <rng:data type="NMTOKEN"/>
+              </datatype>
+            </attDef>
+            <attDef ident="subtype" usage="opt">
+              <desc>provide any sub-classification for the element, additional to that given by its
+                type attribute.</desc>
+              <datatype>
+                <rng:data type="NMTOKEN"/>
+              </datatype>
+              <constraintSpec ident="When_subtype" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="mei:*[@subtype]">
+                    <sch:assert test="@type">An element with a subtype attribute must have a type
+                      attribute.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+          <remarks>
+            <p>When appropriate, values from an established typology should be used. Alternatively a
+              typology may be defined in the associated MEI header using the <gi scheme="MEI"
+                >classification</gi> element. If values are to be taken from a project-specific
+              list, this should be defined using the <gi scheme="MEI">valList</gi> element in a
+              project-specific schema description.</p>
+          </remarks>
+        </classSpec>
+        <elementSpec ident="avFile" module="MEI.performance" mode="replace">
+          <desc>(audio/video file) – References an external digital audio or video file.</desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.declaring"/>
+            <memberOf key="att.internetmedia"/>
+            <memberOf key="att.facsimile"/>
+            <memberOf key="att.pointing"/>
+            <memberOf key="att.typed"/>
+          </classes>
+          <content>
+            <rng:zeroOrMore>
+              <rng:ref name="clip"/>
+            </rng:zeroOrMore>
+          </content>
+          <constraintSpec ident="avFile_child_of_clip" scheme="isoschematron">
+            <constraint>
+              <sch:rule context="mei:clip/mei:avFile">
+                <sch:assert test="count(mei:*) = 0">An avFile child of clip cannot have
+                  children</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <remarks>
+            <p>This element is analogous to the <gi scheme="MEI">graphic</gi> element in the
+              figtable module.</p>
+          </remarks>
+        </elementSpec>
+        <elementSpec ident="barLine" module="MEI.shared" mode="replace">
           <desc>Vertical line drawn through one or more staves that divides musical notation into
             metrical units.</desc>
           <classes>
@@ -5159,7 +6522,7 @@
         </elementSpec>
         <elementSpec ident="measure" module="MEI.cmn" mode="replace">
           <desc>Unit of musical time consisting of a fixed number of note-values of a given type, as
-            determined by the prevailing meter, and delimited in musical notation by two bar
+            determined by the prevailing meter, and delimited in musical notation by bar
             lines.</desc>
           <classes>
             <memberOf key="att.common"/>
@@ -5192,44 +6555,11 @@
             <p>In MEI, the <gi scheme="MEI">measure</gi> element is a grouping mechanism for events
               and control events. Pointing attributes make it possible to connect this element to
               other internal or external entities, such as media objects or annotations. The
-              <att>width</att> attribute may be used to capture the width of the measure for
+                <att>width</att> attribute may be used to capture the width of the measure for
               interchange with music printing systems that utilize this information for
               printing.</p>
           </remarks>
-        </elementSpec>-->
-
-        <!-- Support capture of raw MIDI data -->
-        <!-- Add xmlData element that permits any XML data -->
-        <!-- Modify content of recording to allow xmlData element -->
-        <!--<elementSpec ident="recording" module="MEI.performance" mode="replace">
-          <desc>A recorded performance.</desc>
-          <classes>
-            <memberOf key="att.common"/>
-            <memberOf key="att.datapointing"/>
-            <memberOf key="att.declaring"/>
-            <memberOf key="att.mediabounds"/>
-            <memberOf key="att.startid"/>
-          </classes>
-          <content>
-            <rng:zeroOrMore>
-              <rng:ref name="avFile"/>
-            </rng:zeroOrMore>
-            <rng:zeroOrMore>
-              <rng:ref name="xmlData"/>
-            </rng:zeroOrMore>
-            <rng:zeroOrMore>
-              <rng:ref name="when"/>
-            </rng:zeroOrMore>
-            <rng:zeroOrMore>
-              <rng:ref name="clip"/>
-            </rng:zeroOrMore>
-          </content>
-          <remarks>
-            <p>The <att>startid</att> attribute may be used to hold a reference to the first feature
-              occurring in this performance. This element is analogous to the <gi scheme="MEI"
-                >surface</gi> element in the facsimile module.</p>
-          </remarks>
-        </elementSpec>-->
+        </elementSpec>
 
       </schemaSpec>
     </body>
