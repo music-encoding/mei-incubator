@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- To validate against RNG -->
 <?xml-model href="mei2015_testing.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="mei2015_testing.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-
+<?xml-model href="mei2015_testing.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?> 
 <!-- New meiversion and meiversion.num values -->
 <mei xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.music-encoding.org/ns/mei"
@@ -17,15 +15,18 @@
         <!-- level="a" documentation clarified -->
         <title level="a" nonfiling="4">The MEI-Datei des Autographs</title>
         <respStmt>
+          <resp>Composer</resp>
           <persName role="rth" xml:id="PR" nonfiling="3">de Roland, Pierre</persName>
         </respStmt>
       </titleStmt>
-      <pubStmt/>
+      <pubStmt>
+        <unpub/>
+      </pubStmt>
       <sourceDesc>
         <!-- <head> moved to MEI.shared; now allowed in more places within header -->
         <head/>
         <head/>
-        <source>
+        <source xml:id="source1">
           <identifier type="siglum">D-BNba BH 71</identifier>
           <titleStmt>
             <title>Autograph op. 111</title>
@@ -37,7 +38,7 @@
                 <subst>
                   <handShift old="#lvb_brownInk1" new="#lvb_pencil1"/>
                   <!-- del/@rend now more constrained -->
-                  <!-- @hand should point to hand element -->
+                  <!-- value of hand must contain a valid xml:id reference -->
                   <del rend="line-through" hand="#wr_brownInk1">Wenzel Rampl</del>
                   <!-- add/@method -->
                   <add method="intraline">Wenzel Rampl</add>
@@ -55,6 +56,7 @@
             <handList type="typeA">
               <head type="main">My Hand List</head>
               <head type="sub">Part the First</head>
+              <!-- value of resp must contain a valid xml:id reference -->
               <hand xml:id="lvb_brownInk1" medium="brown ink" resp="#LvB" initial="true"/>
               <hand xml:id="lvb_pencil1" medium="pencil" resp="#LvB"/>
               <hand xml:id="lvb_mind" medium="none" resp="#LvB"/>
@@ -79,6 +81,8 @@
             <!-- <head> now allowed in more places within header -->
             <head>Allgemeine Informationen zum Manuskript</head>
             <annot>
+              <!-- annot now allowed to have head; schematron used to ensure that it occurs only at
+                start of annot and only in conjunction with other structured markup -->
               <head>Allgemeine Informationen zum Manuskript</head>
               <head>Allgemeine Informationen zum Manuskript</head>
               <p>
@@ -142,14 +146,56 @@
             <annot>
               <!-- <biblList> is now recursively nest-able. -->
               <biblList>
-                <bibl>my book</bibl>
+                <bibl>My Books</bibl>
                 <biblList>
+                  <head>Good Ones</head>
+                  <bibl/>
+                </biblList>
+                <biblList>
+                  <head>Bad Ones</head>
                   <bibl/>
                 </biblList>
               </biblList>
             </annot>
           </notesStmt>
         </source>
+        <source xml:id="source2">
+          <!-- sourceDesc content re-ordered! -->
+          <identifier/>
+          <titleStmt>
+            <title/>
+          </titleStmt>
+          <editionStmt>
+            <edition/>
+          </editionStmt>
+          <pubStmt/>
+          <physDesc>
+            <!-- scoreFormat now permitted within physDesc -->
+            <scoreFormat/>
+          </physDesc>
+          <physLoc/>
+          <seriesStmt>
+            <title/>
+          </seriesStmt>
+          <langUsage>
+            <language/>
+          </langUsage>
+          <perfMedium/>
+          <contents/>
+          <biblList/>
+          <notesStmt>
+            <annot/>
+          </notesStmt>
+          <classification>
+            <classCode/>
+          </classification>
+          <itemList>
+            <item/>
+          </itemList>
+          <componentGrp/>
+          <relationList/>
+        </source>
+        <source xml:id="source3"/>
       </sourceDesc>
     </fileDesc>
     <encodingDesc>
@@ -177,9 +223,33 @@
     </encodingDesc>
     <workDesc>
       <work>
-        <!-- extent can be used within work -->
-        <extent unit="duration" isotime="02:34:45">2 hours, 34 minutes, 45 seconds or something like
-          that</extent>
+        <perfMedium>
+          <instrumentation evidence="conjecture" resp="#PR">
+            <ensemble>foobar</ensemble>
+            <instrVoiceGrp>
+              <head>Orchestra</head>
+              <instrVoice count="2" source="#source2" evidence="conjecture" resp="#PR"
+                >Corno</instrVoice>
+              <instrVoice count="2" source="#source1 #source2">Oboi</instrVoice>
+              <instrVoice count="2" source="#source1 #source2">Violino</instrVoice>
+              <instrVoice count="1" source="#source2" evidence="partsFromSource2" resp="#PR"
+                >Viola</instrVoice>
+              <instrVoice count="1" source="#source1 #source2">Basso continuo</instrVoice>
+              <!--- Clarinet/sax doubling -->
+              <instrVoice count="1">
+                <instrVoiceGrp>
+                  <head/>
+                  <instrVoice>Clarinet</instrVoice>/<instrVoice>Alto saxophone</instrVoice>
+                </instrVoiceGrp>
+              </instrVoice>
+            </instrVoiceGrp>
+            <annot>The violas and horns are present only in source 2. The oboes, violins and basso
+              continuo exist in both source 1 and 2.</annot>
+          </instrumentation>
+        </perfMedium>
+        <!-- extent can be used within work; @stdval can be used to assign a standard value (number or duration) to the content of extent. -->
+        <extent unit="duration" stdval="PT2H34M45.67S">approximately 2 hours, 34 minutes, 45.67
+          seconds</extent>
         <classification>
           <!-- <head> now allowed in more places within header -->
           <head/>
@@ -187,6 +257,7 @@
           <termList>
             <!-- <head> now allowed in more places within header -->
             <head/>
+            <!-- @classcode must now contain the xml:id of a classCode element -->
             <term xml:id="bwTerm_openVariant" classcode="#bwTerminology"/>
             <label/>
             <term xml:id="bwTerm_closedVariant" classcode="#bwTerminology"/>
@@ -204,6 +275,7 @@
             <titleStmt>
               <title/>
             </titleStmt>
+            <biblList/>
           </expression>
         </expressionList>
         <componentGrp>
@@ -218,7 +290,7 @@
         <relationList>
           <!-- <head> now allowed in more places within header -->
           <head/>
-          <relation rel="isSummarizationOf"/>
+          <relation rel="isRealizationOf"/>
         </relationList>
       </work>
     </workDesc>
@@ -330,7 +402,9 @@
             <!-- @symbol="line" now indicates a heavy line joining the members of the group, not the system left line -->
             <!-- @key.sig.mixed supports use of quarter-tone accidentals -->
             <staffGrp barthru="true" symbol="line">
-              <staffDef n="0" lines="5" key.sig="mixed" key.sig.mixed="as4 cn5 dts9"/>
+              <!-- notationtype allows 2-level classification of the notation found on the staff. For more complex classification, use @decls to refer to <classification> in header. -->
+              <staffDef n="0" lines="5" key.sig="mixed" key.sig.mixed="as4 cn5 dts9"
+                notationtype="tab" notationsubtype="guitar"/>
               <staffDef xml:id="P1" n="1" clef.shape="G" clef.line="2" lines="5"/>
               <staffDef xml:id="P2" n="2" clef.shape="F" clef.line="4" lines="5"/>
               <staffDef xml:id="P3" n="3" clef.shape="G" clef.line="2" lines="5"/>
@@ -353,13 +427,30 @@
                   <!-- @rend reserved for CSS-like renditional info; use @form -->
                   <beam form="acc">
                     <!-- added @vel on note; added "scoop" to values of @artic -->
+                    <!-- value of altsym must contain a valid xml:id reference -->
                     <note xml:id="n1" pname="a" oct="5" dur="16" stem.dir="down" accid="1qf"
                       altsym="#mySymbol1" vel="127" artic="scoop">
                       <accid fontname="Leipzig" fontsize="12" fontweight="bold"/>
                       <artic fontname="Bravua" fontsize="11.5" fontweight="normal" color="blue"/>
                       <!-- verse now member of att.color -->
+                      <!-- Allow app within verse -->
                       <verse color="aqua">
+                        <syl>
+                          <choice>
+                            <sic>So</sic>
+                            <corr>Some</corr>
+                          </choice>
+                        </syl>
                         <syl>wo<rend color="fuchsia">rd</rend></syl>
+                        <app>
+                          <rdg>
+                            <syl>Thus</syl>
+                          </rdg>
+                          <rdg>
+                            <syl>This</syl>
+                          </rdg>
+                        </app>
+                        <syl>spake</syl>
                       </verse>
                     </note>
                     <!-- added @vel on chord -->

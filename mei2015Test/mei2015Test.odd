@@ -85,37 +85,6 @@
           </attList>
         </classSpec>
 
-        <!-- THIS DOESN'T WORK! -->
-        <!--<macroSpec ident="data.PARAMREF" module="MEI" type="dt" mode="add">
-          <desc>Parameter reference.</desc>
-          <content>
-            <rng:data type="token">
-              <rng:param name="pattern">[$]\i[\c]*</rng:param>
-            </rng:data>
-          </content>
-        </macroSpec>
-
-        <classSpec ident="att.visualoffset.ho" module="MEI.shared" type="atts" mode="replace">
-          <desc>Horizontal offset attributes.</desc>
-          <attList>
-            <attDef ident="ho" usage="opt">
-              <desc>records a horizontal adjustment to a feature's programmatically-determined
-                location in terms of staff interline distance; that is, in units of 1/2 the distance
-                between adjacent staff lines.</desc>
-              <datatype>
-                <rng:choice>
-                  <rng:data type="token">
-                    <rng:param name="pattern">[$]\i[\c]*</rng:param>
-                  </rng:data>
-                  <rng:data type="token">
-                    <rng:param name="pattern">(\+|-)?\d+(\.\d+)?(cm|mm|in|pt|pc|vu)?</rng:param>
-                  </rng:data>
-                </rng:choice>
-              </datatype>
-            </attDef>
-          </attList>
-        </classSpec>-->
-
         <!-- Add model.titlePagePart, issue #36 -->
         <classSpec ident="model.titlePagePart" module="MEI.shared" type="model" mode="add">
           <desc>groups elements that may appear as part of a title page transcription.</desc>
@@ -151,7 +120,6 @@
         <classSpec ident="model.titleLike" module="MEI.shared" type="model" mode="replace">
           <desc>groups elements that denote names of a bibliographic item.</desc>
           <classes>
-            <!--<memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
             <memberOf key="model.titlePagePart"/>
           </classes>
@@ -168,6 +136,8 @@
             <memberOf key="model.titlePagePart"/>
           </classes>
           <!-- Relax content model of imprint -->
+          <!-- model.annotLike and model.dateLike are no longer needed as they're members of 
+            textphraseLike.limited, which is in turn a member of textphraseLike -->
           <content>
             <rng:zeroOrMore>
               <rng:choice>
@@ -175,21 +145,7 @@
                 <rng:ref name="model.imprintPart"/>
                 <rng:ref name="model.textphraseLike"/>
                 <rng:ref name="respStmt"/>
-                <rng:ref name="model.annotLike"/>
               </rng:choice>
-              <!-- Previous content model:
-              <rng:oneOrMore>
-                <rng:choice>
-                  <rng:ref name="model.imprintPart"/>
-                  <rng:ref name="model.dateLike"/>
-                </rng:choice>
-                <rng:zeroOrMore>
-                  <rng:ref name="respStmt"/>
-                </rng:zeroOrMore>
-                <rng:zeroOrMore>
-                  <rng:ref name="model.annotLike"/>
-                </rng:zeroOrMore>
-              </rng:oneOrMore>-->
             </rng:zeroOrMore>
           </content>
           <remarks>
@@ -455,6 +411,17 @@
         </elementSpec>
 
         <!-- Allow extent in <work> to accommodate intended duration of work, issue #45 -->
+        <!-- Add datatype for extent -->
+        <macroSpec ident="data.EXTENT" module="MEI" type="dt" mode="add">
+          <desc>A standard value.</desc>
+          <content>
+            <rng:choice>
+              <rng:data type="decimal"/>
+              <rng:data type="duration"/>
+            </rng:choice>
+          </content>
+        </macroSpec>
+        <!-- Add <extent> to model of <work> element -->
         <elementSpec ident="work" module="MEI.header" mode="replace">
           <desc>Provides a detailed description of a work, specifically its history, language use,
             and high-level musical attributes: key, tempo, meter, and medium of performance.</desc>
@@ -474,9 +441,10 @@
             <rng:zeroOrMore>
               <rng:ref name="model.workIdent"/>
             </rng:zeroOrMore>
-            <rng:optional>
+            <!-- Allow otherChar to be repeatable -->
+            <rng:zeroOrMore>
               <rng:ref name="otherChar"/>
-            </rng:optional>
+            </rng:zeroOrMore>
             <rng:optional>
               <rng:ref name="history"/>
             </rng:optional>
@@ -486,9 +454,10 @@
             <rng:optional>
               <rng:ref name="perfMedium"/>
             </rng:optional>
-            <rng:optional>
+            <!-- Allow extent to be repeatable -->
+            <rng:zeroOrMore>
               <rng:ref name="extent"/>
-            </rng:optional>
+            </rng:zeroOrMore>
             <rng:optional>
               <rng:ref name="audience"/>
             </rng:optional>
@@ -518,11 +487,11 @@
             </rng:optional>
           </content>
         </elementSpec>
-        <!-- Limit use of @isotime to extent expressed as a duration -->
+        <!-- Add @val attribute to <extent> that can hold a numeric or durational value -->
         <elementSpec ident="extent" module="MEI.shared" mode="replace">
-          <desc>Used to express size in terms other than physical dimensions, such as number of
-            pages, number of records in file, number of bytes, performance duration for music, audio
-            recordings and visual projections, etc.</desc>
+          <desc>Used to express quantity or size in terms other than physical dimensions, such as
+            number of pages, number of records in file, number of bytes, performance duration for
+            music, audio recordings and visual projections, etc.</desc>
           <classes>
             <memberOf key="att.common"/>
             <memberOf key="att.bibl"/>
@@ -540,30 +509,48 @@
               </rng:choice>
             </rng:zeroOrMore>
           </content>
-          <constraintSpec ident="isotime_extent_co-constraint" scheme="isoschematron" mode="add">
-            <constraint>
-              <sch:rule context="mei:extent[@isotime]">
-                <sch:assert test="@unit eq 'duration'">@isotime can only be used when
-                  @unit='duration'.</sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
+          <attList>
+            <attDef ident="stdval">
+              <desc>A decimal number or durational value that captures the extent in a standard
+                form. Can only be interpreted in combination with the unit attribute.</desc>
+              <datatype>
+                <rng:ref name="data.EXTENT"/>
+              </datatype>
+              <constraintSpec ident="extent_unit_and_stdval_co-constraint" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="mei:extent[@unit eq 'duration'][@stdval]">
+                    <sch:assert test="matches(@stdval, '^P')">When @unit = 'duration', @val must
+                      contain an unsigned W3C duration.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+              <constraintSpec ident="extent_stdval_and_unit_co-constraint" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="mei:extent[matches(@stdval, '^P')][@unit]">
+                    <sch:assert test="matches(@unit, 'duration')">When @stdval contains a W3C
+                      duration, @unit must be 'duration'.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
           <remarks>
             <p>Use the <gi scheme="MEI">dimensions</gi> element when it is necessary to specify the
                 <hi rend="bold">physical</hi> size of materials being described, for example, height
-              and width.</p>
+              and width. The units in which the @val attribute or the extent element's content is
+              measured can be recorded in the @unit attribute.</p>
           </remarks>
           <remarks>
             <p>This element is modelled on elements in the Text Encoding Initiative (TEI) and
               Encoded Archival Description (EAD) standards.</p>
           </remarks>
         </elementSpec>
-        <!-- Extend @unit values -->
+        <!-- Extend @unit values to include "duration" -->
         <classSpec ident="att.measurement" module="MEI.shared" type="atts" mode="replace">
           <desc>Attributes that record the unit of measurement in which a value is expressed.</desc>
           <attList>
             <attDef ident="unit" usage="opt">
-              <desc>indicates the unit used for a measurement of size.</desc>
+              <desc>indicates the unit used for a measurement of size or duration.</desc>
               <valList type="semi">
                 <valItem ident="byte">
                   <desc>byte.</desc>
@@ -574,11 +561,11 @@
                 <valItem ident="cm">
                   <desc>centimeter.</desc>
                 </valItem>
+                <valItem ident="duration">
+                  <desc>elapsed time.</desc>
+                </valItem>
                 <valItem ident="mm">
                   <desc>millimeter.</desc>
-                </valItem>
-                <valItem ident="duration">
-                  <desc>duration.</desc>
                 </valItem>
                 <valItem ident="in">
                   <desc>inch.</desc>
@@ -605,13 +592,6 @@
                   <desc>serial volume.</desc>
                 </valItem>
               </valList>
-            </attDef>
-            <!-- Add @isotime in order to provide standard format for extent expressed as a duration -->
-            <attDef ident="isotime" usage="opt">
-              <desc/>
-              <datatype>
-                <rng:ref name="data.ISOTIME"/>
-              </datatype>
             </attDef>
           </attList>
         </classSpec>
@@ -3162,9 +3142,6 @@
         <!-- milestoneLike.text no longer member of textphraseLike -->
         <classSpec ident="model.milestoneLike.text" module="MEI.shared" type="model" mode="replace">
           <desc>groups milestone-style elements found in text.</desc>
-          <!--<classes>
-            <memberOf key="model.textphraseLike"/>
-          </classes>-->
         </classSpec>
         <!-- pbLike now participates directly in textphraseLike -->
         <classSpec ident="model.pbLike" module="MEI.shared" type="model" mode="replace">
@@ -3191,7 +3168,6 @@
         <classSpec ident="model.addressLike" module="MEI.shared" type="model" mode="replace">
           <desc>groups elements used to represent a postal address.</desc>
           <classes>
-            <!--<memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
             <memberOf key="model.pubStmtPart"/>
             <memberOf key="model.eventPart"/>
@@ -3200,14 +3176,12 @@
         <classSpec ident="model.biblLike" module="MEI.shared" type="model" mode="replace">
           <desc>groups elements containing a bibliographic description.</desc>
           <classes>
-            <!--<memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
           </classes>
         </classSpec>
         <classSpec ident="model.editorialLike" module="MEI.shared" type="model" mode="replace">
           <desc>groups editorial intervention elements.</desc>
           <classes>
-            <!--<memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
             <memberOf key="model.choicePart"/>
           </classes>
@@ -3216,14 +3190,12 @@
           <desc>groups elements representing or containing graphic information such as an
             illustration or figure.</desc>
           <classes>
-            <!--<memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
           </classes>
         </classSpec>
         <classSpec ident="model.identifierLike" module="MEI.shared" type="model" mode="replace">
           <desc>groups identifier-like elements.</desc>
           <classes>
-            <!--<memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
             <memberOf key="model.pubStmtPart"/>
           </classes>
@@ -3231,21 +3203,18 @@
         <classSpec ident="model.locrefLike" module="MEI.ptrref" type="model" mode="replace">
           <desc>groups elements used for purposes of location and reference.</desc>
           <classes>
-            <!--<memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
           </classes>
         </classSpec>
         <classSpec ident="model.measurementLike" module="MEI.shared" type="model" mode="replace">
           <desc>groups elements that represent a measurement.</desc>
           <classes>
-            <!--<memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
           </classes>
         </classSpec>
         <classSpec ident="model.nameLike" module="MEI.shared" type="model" mode="replace">
           <desc>groups elements that contain names.</desc>
           <classes>
-            <!--<memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
             <memberOf key="model.eventPart"/>
           </classes>
@@ -3253,7 +3222,6 @@
         <classSpec ident="model.nameLike.agent" module="MEI.namesdates" type="model" mode="replace">
           <desc>groups elements which contain names of individuals or corporate bodies.</desc>
           <classes>
-            <!--<memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
             <memberOf key="model.eventPart"/>
           </classes>
@@ -3261,21 +3229,18 @@
         <classSpec ident="model.nameLike.label" module="MEI.namesdates" type="model" mode="replace">
           <desc>groups elements that serve as stylistic labels.</desc>
           <classes>
-            <!--<memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
           </classes>
         </classSpec>
         <classSpec ident="model.nameLike.place" module="MEI.namesdates" type="model" mode="replace">
           <desc>groups place name and repository elements.</desc>
           <classes>
-            <!--memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
           </classes>
         </classSpec>
         <classSpec ident="model.rendLike" module="MEI.shared" type="model" mode="replace">
           <desc>groups elements that mark typographical features.</desc>
           <classes>
-            <!--<memberOf key="model.textphraseLike"/>-->
             <memberOf key="model.textphraseLike.limited"/>
           </classes>
         </classSpec>
@@ -3458,16 +3423,10 @@
                 <rng:ref name="data.LINEFORM"/>
               </datatype>
             </attDef>
-            <!-- @length implies we know the direction of the vector which we 
+            <!-- @llength implies we know the direction of the vector which we 
               can't know without establishing an end point, which in turn makes
-              @length redundant.
+              @llength redundant.
             -->
-            <!--<attDef ident="llength" usage="opt">
-              <desc>Length of the line.</desc>
-              <datatype>
-                <rng:ref name="data.MEASUREMENT"/>
-              </datatype>
-            </attDef>-->
             <attDef ident="lwidth" usage="opt">
               <desc>Width of the line.</desc>
               <datatype>
@@ -3509,16 +3468,10 @@
                 <rng:ref name="data.LINEFORM"/>
               </datatype>
             </attDef>
-            <!-- @length implies we know the direction of the vector which we 
+            <!-- @llength implies we know the direction of the vector which we 
               can't know without establishing an end point, which in turn makes
-              @length redundant.
+              @llength redundant.
             -->
-            <!--<attDef ident="length" usage="opt">
-              <desc>Length of the line.</desc>
-              <datatype>
-                <rng:ref name="data.MEASUREMENT"/>
-              </datatype>
-            </attDef>-->
             <attDef ident="width" usage="opt">
               <desc>Width of the line.</desc>
               <datatype>
@@ -5198,10 +5151,12 @@
         </elementSpec>
         <elementSpec ident="instrumentation" module="MEI.header" mode="replace">
           <desc>Instrumental and non-dramatic vocal resources.</desc>
+          <!-- instrumentation and its subelements should allow att.edit, issue #227 -->
           <classes>
             <memberOf key="att.common"/>
             <memberOf key="att.bibl"/>
             <memberOf key="att.authorized"/>
+            <memberOf key="att.edit"/>
           </classes>
           <content>
             <rng:zeroOrMore>
@@ -5214,6 +5169,10 @@
                 <rng:ref name="instrVoiceGrp"/>
               </rng:choice>
             </rng:zeroOrMore>
+            <!-- Add <annot> for the annotation of complex instrumentation markup and circumstances -->
+            <rng:optional>
+              <rng:ref name="model.annotLike"/>
+            </rng:optional>
           </content>
           <remarks>
             <p>The function of instrumentalists or vocalists is represented by the choice of <gi
@@ -5224,11 +5183,13 @@
         </elementSpec>
         <elementSpec ident="instrVoiceGrp" module="MEI.header" mode="replace">
           <desc>Several instrumental or vocal resources treated as a group.</desc>
+          <!-- instrumentation and its subelements should allow att.edit, issue #227 -->
           <classes>
             <memberOf key="att.common"/>
             <memberOf key="att.authorized"/>
             <memberOf key="att.bibl"/>
             <memberOf key="att.coded"/>
+            <memberOf key="att.edit"/>
             <memberOf key="att.lang"/>
           </classes>
           <content>
@@ -5246,8 +5207,9 @@
               <sch:rule context="mei:instrVoiceGrp[mei:head or mei:instrVoice or mei:instrVoiceGrp]">
                 <sch:assert test="not(mei:head[preceding-sibling::*[not(local-name()='head')]])"
                   >Head elements can only occur at the start of instrVoiceGrp.</sch:assert>
-                <sch:assert test="not(*[../text()[normalize-space()]])">Mixed content is not allowed
-                  when head, instrVoice, or instrVoiceGrp is used.</sch:assert>
+                <!-- This rule interferes with the capture of instrumental doublings. -->
+                <!--<sch:assert test="not(*[../text()[normalize-space()]])">Mixed content is not allowed
+                  when head, instrVoice, or instrVoiceGrp is used.</sch:assert>-->
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -5492,7 +5454,6 @@
             </attDef>
           </attList>
         </classSpec>
-        <!-- Enforce constraints on attribute targets, issue #226 -->
         <!-- Create new att.classcodeident class -->
         <classSpec ident="att.classcodeident" module="MEI.shared" type="atts" mode="add">
           <attList>
@@ -6046,6 +6007,303 @@
           </remarks>
         </elementSpec>
 
+        <!-- instrumentation and its subelements should allow att.edit, issue #227 -->
+        <!-- instrumentation and instrVoiceGrp addressed elsewhere -->
+        <elementSpec ident="ensemble" module="MEI.header" mode="replace">
+          <desc>The name of a standard instrumental or vocal grouping, such as 'orchestra' or
+            'marching band'.</desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.authorized"/>
+            <memberOf key="att.bibl"/>
+            <memberOf key="att.coded"/>
+            <memberOf key="att.edit"/>
+            <memberOf key="att.lang"/>
+          </classes>
+          <content>
+            <rng:text/>
+          </content>
+          <remarks>
+            <p>It is recommended that name values (recorded in the <att>code</att> attribute or in
+              the element's content) be taken from a standardized list, such as the IAML
+              (International Association of Music Libraries) Medium of Performance Codes List or the
+              MARC Instruments and Voices Code List.</p>
+          </remarks>
+        </elementSpec>
+        <elementSpec ident="instrVoice" module="MEI.header" mode="replace">
+          <desc>(instrument or voice) – Name of an instrument on which a performer plays or a
+            performer's voice range.</desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.authorized"/>
+            <memberOf key="att.bibl"/>
+            <memberOf key="att.coded"/>
+            <memberOf key="att.edit"/>
+            <memberOf key="att.lang"/>
+          </classes>
+          <content>
+            <rng:zeroOrMore>
+              <rng:choice>
+                <rng:text/>
+                <!-- THIS CHANGE BREAKS BACKWARD COMPATIBILITY! -->
+                <!--<rng:ref name="instrVoice"/>-->
+                <rng:ref name="instrVoiceGrp"/>
+              </rng:choice>
+            </rng:zeroOrMore>
+          </content>
+          <attList>
+            <attDef ident="count" usage="opt">
+              <desc>indicates the number of performers.</desc>
+              <datatype>
+                <rng:data type="positiveInteger"/>
+              </datatype>
+            </attDef>
+            <attDef ident="solo" usage="opt">
+              <desc>marks this instrument or vocal part as a soloist. Do not use this attribute for
+                a solo instrument which is not accompanied.</desc>
+              <datatype>
+                <rng:ref name="data.BOOLEAN"/>
+              </datatype>
+            </attDef>
+          </attList>
+          <remarks>
+            <p><gi scheme="MEI">instrVoice</gi> is permitted to contain <gi scheme="MEI"
+                >instrVoiceGrp</gi> for those situations where a group of instruments is performed
+              upon by a single player or group of players, i.e., doubling.</p>
+          </remarks>
+        </elementSpec>
+        <elementSpec ident="expression" module="MEI.frbr" mode="replace">
+          <desc>Intellectual or artistic realization of a work.</desc>
+          <classes>
+            <memberOf key="att.datapointing"/>
+            <memberOf key="att.common"/>
+            <memberOf key="att.bibl"/>
+            <memberOf key="model.expressionLike"/>
+          </classes>
+          <content>
+            <rng:zeroOrMore>
+              <rng:ref name="model.identifierLike"/>
+            </rng:zeroOrMore>
+            <rng:optional>
+              <rng:ref name="titleStmt"/>
+            </rng:optional>
+            <rng:zeroOrMore>
+              <rng:ref name="model.workIdent"/>
+            </rng:zeroOrMore>
+            <!-- Allow otherChar to be repeatable -->
+            <rng:zeroOrMore>
+              <rng:ref name="otherChar"/>
+            </rng:zeroOrMore>
+            <rng:optional>
+              <rng:ref name="history"/>
+            </rng:optional>
+            <rng:optional>
+              <rng:ref name="langUsage"/>
+            </rng:optional>
+            <rng:optional>
+              <rng:ref name="perfMedium"/>
+            </rng:optional>
+            <!-- Allow extent to be repeatable -->
+            <rng:zeroOrMore>
+              <rng:ref name="extent"/>
+            </rng:zeroOrMore>
+            <rng:optional>
+              <rng:ref name="scoreFormat"/>
+            </rng:optional>
+            <rng:optional>
+              <rng:ref name="contents"/>
+            </rng:optional>
+            <rng:optional>
+              <rng:ref name="context"/>
+            </rng:optional>
+            <rng:zeroOrMore>
+              <rng:ref name="biblList"/>
+            </rng:zeroOrMore>
+            <rng:optional>
+              <rng:ref name="notesStmt"/>
+            </rng:optional>
+            <rng:optional>
+              <rng:ref name="classification"/>
+            </rng:optional>
+            <rng:optional>
+              <rng:ref name="componentGrp"/>
+            </rng:optional>
+            <rng:optional>
+              <rng:ref name="relationList"/>
+            </rng:optional>
+          </content>
+        </elementSpec>
+        <!-- Allow <perfMedium> within <source>; do some re-ordering to better match work and expression content. -->
+        <!-- THIS CHANGE BREAKS BACKWARD COMPATIBILITY! -->
+        <elementSpec ident="source" module="MEI.header" mode="replace">
+          <desc>A bibliographic description of a source used in the creation of the electronic
+            file.</desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.bibl"/>
+            <memberOf key="att.datapointing"/>
+            <memberOf key="att.pointing"/>
+            <memberOf key="model.manifestationLike"/>
+          </classes>
+          <content>
+            <rng:zeroOrMore>
+              <rng:ref name="model.identifierLike"/>
+            </rng:zeroOrMore>
+            <rng:optional>
+              <rng:ref name="titleStmt"/>
+            </rng:optional>
+            <rng:ref name="macro.bibldescPart"/>
+            <rng:optional>
+              <rng:ref name="langUsage"/>
+            </rng:optional>
+            <rng:optional>
+              <rng:ref name="perfMedium"/>
+            </rng:optional>
+            <rng:optional>
+              <rng:ref name="contents"/>
+            </rng:optional>
+            <rng:zeroOrMore>
+              <rng:ref name="biblList"/>
+            </rng:zeroOrMore>
+            <rng:optional>
+              <rng:ref name="notesStmt"/>
+            </rng:optional>
+            <rng:optional>
+              <rng:ref name="classification"/>
+            </rng:optional>
+            <rng:optional>
+              <rng:ref name="itemList"/>
+            </rng:optional>
+            <rng:optional>
+              <rng:ref name="componentGrp"/>
+            </rng:optional>
+            <rng:optional>
+              <rng:ref name="relationList"/>
+            </rng:optional>
+          </content>
+          <remarks>
+            <p>Multiple <gi scheme="MEI">physDesc</gi> sub-elements may be used to describe the
+              physically separate parts of a single source. The <att>data</att> attribute may be
+              used to reference one or more features that occur in this particular source. A URI
+              referencing a description of the related item may be placed in the <att>target</att>
+              attribute.</p>
+          </remarks>
+          <remarks>
+            <p>This element is modelled on elements in the Text Encoding Initiative (TEI) and
+              Encoded Archival Description (EAD) standards.</p>
+          </remarks>
+        </elementSpec>
+        <!-- Make <scoreFormat> a member of model.physDescPart -->
+        <elementSpec ident="scoreFormat" module="MEI.header" mode="replace">
+          <desc>Describes the type of score used to represent a musical composition (e.g., short
+            score, full score, condensed score, close score, etc.).</desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.authorized"/>
+            <memberOf key="att.bibl"/>
+            <memberOf key="att.lang"/>
+            <memberOf key="model.physDescPart"/>
+          </classes>
+          <content>
+            <rng:text/>
+          </content>
+        </elementSpec>
+
+        <!-- Allow app within verse, issue #228 -->
+        <elementSpec ident="verse" module="MEI.lyrics" mode="replace">
+          <desc>Lyric verse.</desc>
+          <classes>
+            <memberOf key="att.common"/>
+            <memberOf key="att.facsimile"/>
+            <memberOf key="att.lang"/>
+            <memberOf key="att.verse.log"/>
+            <memberOf key="att.verse.vis"/>
+            <memberOf key="att.verse.ges"/>
+            <memberOf key="att.verse.anl"/>
+            <memberOf key="model.verseLike"/>
+          </classes>
+          <content>
+            <rng:zeroOrMore>
+              <rng:choice>
+                <rng:ref name="dir"/>
+                <rng:ref name="dynam"/>
+                <rng:ref name="tempo"/>
+                <rng:ref name="space"/>
+              </rng:choice>
+            </rng:zeroOrMore>
+            <rng:oneOrMore>
+              <rng:choice>
+                <rng:ref name="model.sylLike"/>
+                <rng:ref name="model.appLike"/>
+              </rng:choice>
+            </rng:oneOrMore>
+            <rng:zeroOrMore>
+              <rng:ref name="model.lbLike"/>
+            </rng:zeroOrMore>
+          </content>
+          <remarks>
+            <p>The <gi scheme="MEI">lb</gi> element is allowed here in order to facilitate karaoke
+              applications. The <att>func</att> attribute on <gi scheme="MEI">lb</gi> may be used to
+              distinguish true line endings from those of line groups for these applications.</p>
+          </remarks>
+        </elementSpec>
+
+        <!-- Allow staffDef to specify the type [and subtype] of notation that occurs on it, issue #229 -->
+        <!-- Add datatype -->
+        <macroSpec ident="data.NOTATIONTYPE" module="MEI" type="dt" mode="add">
+          <desc>Notation type and subtype</desc>
+          <content>
+            <rng:data type="NMTOKEN">
+              <rng:param name="pattern">(cmn|mensural|neumes|tab)</rng:param>
+              <!-- Another approach: -->
+              <!--<rng:param name="pattern">(cmn|mensural|neumes|tab)(-[\i\c]+)?</rng:param>-->
+            </rng:data>
+          </content>
+        </macroSpec>
+        <!-- Add notationtype attribute class -->
+        <classSpec ident="att.notationtype" module="MEI" type="atts" mode="add">
+          <desc>Attributes that provide for classification of notation.</desc>
+          <attList>
+            <attDef ident="notationtype">
+              <desc>Contains classification of the notation contained or described by the element
+                bearing this attribute.</desc>
+              <datatype>
+                <rng:ref name="data.NOTATIONTYPE"/>
+              </datatype>
+            </attDef>
+            <attDef ident="notationsubtype">
+              <desc>provides any sub-classification of the notation contained or described by the
+                element, additional to that given by its notationtype attribute.</desc>
+              <datatype>
+                <rng:data type="NMTOKEN"/>
+              </datatype>
+              <constraintSpec ident="When_notationsubtype" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="mei:*[@notationsubtype]">
+                    <sch:assert test="@notationtype">An element with a notationsubtype attribute
+                      must have a notationtype attribute.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+        </classSpec>
+        <!-- Make att.staffDef.log a member of att.notationtype -->
+        <classSpec ident="att.staffDef.log" module="MEI.shared" type="atts" mode="replace">
+          <desc>Logical domain attributes for staffDef.</desc>
+          <classes>
+            <memberOf key="att.cleffing.log"/>
+            <memberOf key="att.duration.default"/>
+            <memberOf key="att.keySigDefault.log"/>
+            <memberOf key="att.meterSigDefault.log"/>
+            <memberOf key="att.notationtype"/>
+            <memberOf key="att.octavedefault"/>
+            <memberOf key="att.transposition"/>
+            <memberOf key="att.staffDef.log.cmn"/>
+            <memberOf key="att.staffDef.log.mensural"/>
+          </classes>
+        </classSpec>
+
         <!-- Make more elements members of att.typed -->
         <elementSpec ident="bibl" module="MEI.shared" mode="replace">
           <desc>(bibliographic reference) – Provides a loosely-structured bibliographic citation in
@@ -6340,7 +6598,7 @@
             <rng:zeroOrMore>
               <rng:choice>
                 <rng:ref name="model.biblLike"/>
-                <!-- ptr/ref aren't necessary as relatedItem is a member of att.pointing. -->
+                <!-- ptr/ref children aren't necessary as relatedItem is a member of att.pointing. -->
                 <!--<rng:ref name="model.locrefLike"/>-->
               </rng:choice>
             </rng:zeroOrMore>
@@ -6448,8 +6706,8 @@
             </attDef>
           </attList>
           <remarks>
-            <p>When appropriate, values from an established typology should be used. Alternatively a
-              typology may be defined in the associated MEI header using the <gi scheme="MEI"
+            <p>When appropriate, values from an established typology should be used. Alternatively,
+              a typology may be defined in the associated MEI header using the <gi scheme="MEI"
                 >classification</gi> element. If values are to be taken from a project-specific
               list, this should be defined using the <gi scheme="MEI">valList</gi> element in a
               project-specific schema description.</p>
