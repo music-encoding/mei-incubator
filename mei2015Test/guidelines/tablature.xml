@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  © 2014 by the Music Encoding Initiative (MEI) Council.
+  Licensed under the Educational Community License, Version 2.0 (the "License"); you may
+  not use this file except in compliance with the License. You may obtain a copy of the License
+  at http://www.osedu.org/licenses/ECL-2.0.
+  
+  Unless required by applicable law or agreed to in writing, software distributed under the
+  License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
+  OF ANY KIND, either express or implied. See the License for the specific language
+  governing permissions and limitations under the License.
+  
+  This is a derivative work based on earlier versions of the schema © 2001-2006 Perry Roland
+  and the Rector and Visitors of the University of Virginia; licensed under the Educational
+  Community License version 1.0.
+  
+  CONTACT: info@music-encoding.org
+-->
+
+<div xmlns="http://www.tei-c.org/ns/1.0" type="div1" xml:id="tablature" n="0">
+  <head>Tablature Notation</head>
+  <p>This chapter describes the attribute classes that are part of the MEI.tablature module.</p>
+  <div type="div2" xml:id="tablatureOverview">
+    <!-- Overview -->
+    <head>Overview of the Tablature Module</head>
+    <p>The tablature module is used to record basic tablature notation. It is designed primarily for
+      guitar and similar plucked-string instruments.</p>
+
+    <p>The <att>lines</att> attribute on the <gi scheme="MEI">staffDef</gi> element is used to
+      record the number of the instrument's strings or courses. The <att>tab.strings</att> attribute
+      is then used to enumerate the pitches of the open strings. It is important to note that this
+      is given using the written pitch, not the sounding pitch. For example, the Western 6-string
+      guitar, in standard tuning, sounds an octave below written pitch.</p>
+
+    <p>The <att>tab.strings</att> attribute gives the string tuning, ordered from highest to lowest
+      pitch.</p>
+
+    <p>For standard guitar tuning, the <gi scheme="MEI">staffDef</gi> element might look like
+      this:</p>
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:space="preserve">
+<staffDef n="1" lines="6" tab.strings="e5 b4 g4 d4 a3 e3"/>
+    </egXML>
+
+    <p>Chromatic alteration of the open string's pitch may be indicated with '-' or 'f' (for flat),
+      or '#' or 's' (for sharp). Multiple sharps and flats are not permitted.</p>
+
+    <p>A guitar in E-flat tuning might look like this:</p>
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:space="preserve">
+<staffDef n="1" lines="6" tab.strings="ef5 bf4 gf4 df4 af3 ef3"/>
+    </egXML>
+
+    <p>On some instruments, such as the 12-string guitar, the strings are arranged in
+        <soCalled>courses</soCalled>, groups of two or more adjacent strings that are closely spaced
+      relative to the other strings, often tuned in unison or octaves. Because a course is typically
+      played as though it were a single string, a tablature staff for these instruments contains one
+      line <emph>for each course</emph>. For instruments such as this, the pitches for each course
+      are recorded as a single token. For example, the open strings of the 12-string guitar may be
+      indicated using:</p>
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:space="preserve">
+<staffDef n="1" lines="6" tab.strings="e3e4 a3a4 d3d4 g4g5 b4b4 e5e5"/>
+    </egXML>
+
+    <p>The <gi scheme="MEI">note</gi> element is used to capture the specific events in the
+      tablature. A numeric value in the <att>tab.string</att> attribute is used to capture the
+      string on which the note is to be played, counting in the same order (lowest to highest) as
+      that given in <att>tab.strings</att>. This attribute takes a positive integer in the range of
+      1-9.</p>
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:space="preserve">
+<note tab.string="3" pname="a" oct="3" dur="4"/>
+    </egXML>
+
+    <p>In the case of fretted instruments, the fret number may be captured using the
+        <att>tab.fret</att> attribute, while an open string may be indicated using the letter
+      "o".</p>
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:space="preserve" valid="false">
+<note tab.string="6" pname="a" oct="2" dur="4" tab.fret="5"/>
+<note tab.string="5" pname="a" oct="2" dur="4" tab.fret="o"/>
+    </egXML>
+
+  </div>
+</div>

@@ -31,8 +31,65 @@
       <divGen type="toc"/>
     </front>
     <body>
-      <schemaSpec ident="mei" start="mei meiHead meiCorpus music" prefix="mei_"
-        ns="http://www.music-encoding.org/ns/mei">
+      <!-- ALL ELEMENTS -->
+      <!--
+        abbr accessRestrict accid acqSource actor add address addrLine altId anchoredText annot 
+        app appInfo application arpeg arranger artic audience author availability avFile back 
+        barLine barre beam beamSpan beatRpt bend bibl biblList biblScope body breath bTrem byline 
+        caption captureMode carrierForm castGrp castItem castList cc chan change changeDesc chanPr 
+        choice chord chordDef chordMember chordTable classCode classification clef clefGrp clip 
+        componentGrp composer condition contentItem contents context corpName corr correction 
+        creation cue curve custos damage date del dimensions dir distributor div dot dynam edition 
+        editionStmt editor editorialDecl encodingDesc ending ensemble event eventList exhibHist 
+        expan expansion expression expressionList extent f facsimile fb fermata fig figDesc fileChar 
+        fileDesc fingerprint front fTrem funder fw gap genre geogName gliss graphic group grpSym 
+        hairpin halfmRpt hand handList handShift harm harpPedal head hex history identifier imprint 
+        incip incipCode incipText ineume inscription instrDef instrGrp instrumentation instrVoice 
+        instrVoiceGrp interpretation item itemList key keyAccid keySig l label language langUsage 
+        layer layerDef lb lem lg li librettist ligature line list lyricist lyrics marker mdiv measure 
+        mei meiCorpus meiHead mensur mensuration metaText meter meterSig meterSigGrp midi mordent 
+        mRest mRpt mRpt2 mSpace multiRest multiRpt music name normalization note noteOff noteOn 
+        notesStmt num octave orig ossia otherChar p pad part parts pb pedal perfMedium performance 
+        periodName persName pgDesc pgFoot pgFoot2 pgHead pgHead2 phrase physDesc physLoc physMedium 
+        plateNum playingSpeed port price prog projectDesc proport provenance ptr publisher pubPlace 
+        pubStmt quote rdg recipient recording ref reg reh relatedItem relation relationList rend 
+        repository resp respStmt rest restore revisionDesc role roleDesc samplingDecl sb score 
+        scoreDef scoreFormat section segmentation seqNum series seriesStmt sic slur soundChan source 
+        sourceDesc space specRepro sponsor stack staff staffDef staffGrp stdVals styleName subst 
+        supplied surface syl syllable symbol symbolDef symbolTable sysReq table tapeConfig td tempo 
+        term termList textLang th tie timeline title titlePage titleStmt tr trackConfig treatHist 
+        treatSched trill trkName tuplet tupletSpan turn unclear uneume unpub useRestrict vel verse 
+        watermark when work workDesc zone
+      -->
+      <schemaSpec ident="mei"
+        start="abbr accessRestrict accid acqSource actor add address addrLine altId anchoredText annot 
+        app appInfo application arpeg arranger artic audience author availability avFile back 
+        barLine barre beam beamSpan beatRpt bend bibl biblList biblScope body breath bTrem byline 
+        caption captureMode carrierForm castGrp castItem castList cc chan change changeDesc chanPr 
+        choice chord chordDef chordMember chordTable classCode classification clef clefGrp clip 
+        componentGrp composer condition contentItem contents context corpName corr correction 
+        creation cue curve custos damage date del dimensions dir distributor div dot dynam edition 
+        editionStmt editor editorialDecl encodingDesc ending ensemble event eventList exhibHist 
+        expan expansion expression expressionList extent f facsimile fb fermata fig figDesc fileChar 
+        fileDesc fingerprint front fTrem funder fw gap genre geogName gliss graphic group grpSym 
+        hairpin halfmRpt hand handList handShift harm harpPedal head hex history identifier imprint 
+        incip incipCode incipText ineume inscription instrDef instrGrp instrumentation instrVoice 
+        instrVoiceGrp interpretation item itemList key keyAccid keySig l label language langUsage 
+        layer layerDef lb lem lg li librettist ligature line list lyricist lyrics marker mdiv measure 
+        mei meiCorpus meiHead mensur mensuration metaText meter meterSig meterSigGrp midi mordent 
+        mRest mRpt mRpt2 mSpace multiRest multiRpt music name normalization note noteOff noteOn 
+        notesStmt num octave orig ossia otherChar p pad part parts pb pedal perfMedium performance 
+        periodName persName pgDesc pgFoot pgFoot2 pgHead pgHead2 phrase physDesc physLoc physMedium 
+        plateNum playingSpeed port price prog projectDesc proport provenance ptr publisher pubPlace 
+        pubStmt quote rdg recipient recording ref reg reh relatedItem relation relationList rend 
+        repository resp respStmt rest restore revisionDesc role roleDesc samplingDecl sb score 
+        scoreDef scoreFormat section segmentation seqNum series seriesStmt sic slur soundChan source 
+        sourceDesc space specRepro sponsor stack staff staffDef staffGrp stdVals styleName subst 
+        supplied surface syl syllable symbol symbolDef symbolTable sysReq table tapeConfig td tempo 
+        term termList textLang th tie timeline title titlePage titleStmt tr trackConfig treatHist 
+        treatSched trill trkName tuplet tupletSpan turn unclear uneume unpub useRestrict vel verse 
+        watermark when work workDesc zone"
+        prefix="mei_" ns="http://www.music-encoding.org/ns/mei">
 
         <moduleRef key="MEI"/>
         <moduleRef key="MEI.shared"/>
@@ -849,9 +906,11 @@
               <sch:rule context="mei:when[@interval]">
                 <sch:assert test="@since">@since must be present when @interval is
                   used.</sch:assert>
-                <sch:assert test="every $i in tokenize(@since, '\s+') satisfies
-                  substring($i,2)=//mei:when/@xml:id">The value in @since must correspond to the
-                  @xml:id attribute of a when element.</sch:assert>
+                <sch:assert
+                  test="every $i in tokenize(@since, '\s+') satisfies
+                  substring($i,2)=//mei:when/@xml:id"
+                  >The value in @since must correspond to the @xml:id attribute of a when
+                  element.</sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -900,9 +959,11 @@
                   <sch:rule context="@since">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@since attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:when/@xml:id">The value in @since must correspond to the
-                      @xml:id attribute of a when element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:when/@xml:id"
+                      >The value in @since must correspond to the @xml:id attribute of a when
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -1010,6 +1071,9 @@
             <attDef ident="method" usage="opt">
               <desc>contains an indication of how the addition was accomplished.</desc>
               <valList type="semi">
+                <valItem ident="interline">
+                  <desc>new material added to the existing text.</desc>
+                </valItem>
                 <valItem ident="intraline">
                   <desc>new material added above or below original text.</desc>
                 </valItem>
@@ -1349,9 +1413,7 @@
 
         <!-- Clarify element description of <supplied>, issue #160 -->
         <elementSpec ident="supplied" module="MEI.edittrans" mode="replace">
-          <desc>Contains material supplied by the transcriber or editor not present in the source
-            material or in place of text which cannot be read, either because of physical damage or
-            loss in the original or because it is illegible for any reason.</desc>
+          <desc>Contains material supplied by the transcriber or editor for any reason.</desc>
           <classes>
             <memberOf key="att.agentident"/>
             <memberOf key="att.common"/>
@@ -1651,11 +1713,16 @@
             </constraint>
           </constraintSpec>
           <remarks>
-            <p>The starting point of the hairpin may be indicated by either a <att>startid</att>,
-                <att>tstamp</att>, <att>tstamp.ges</att>, or <att>tstamp.real</att> attribute, while
-              the ending point may be recorded by either a <att>dur</att>, <att>dur.ges</att>,
-                <att>endid</att>, or <att>tstamp2</att> attribute. It is a semantic error not to
-              specify one starting and one ending type of attribute.</p>
+            <p>The <gi scheme="MEI">hairpin</gi> element is used for <emph>graphical</emph>, i.e.,
+              crescendo and diminuendo, dynamic markings. For instantaneous or continuous
+                <emph>textual</emph> dynamics, such as 'p', 'mf', or 'cres. poco a poco', the <gi
+                scheme="MEI">dynam</gi> element should be used. The starting point of the hairpin
+              marking may be indicated by either a <att>startid</att>, <att>tstamp</att>,
+                <att>tstamp.ges</att>, or <att>tstamp.real</att> attribute, while the ending point
+              may be recorded by either a <att>dur</att>, <att>dur.ges</att>, <att>endid</att>, or
+                <att>tstamp2</att> attribute. It is a semantic error not to specify one starting and
+              one ending type of attribute. MIDI values associated with the graphical dynamic sign
+              may be recorded in the <att>val</att> and <att>val2</att> attributes.</p>
           </remarks>
         </elementSpec>
         <elementSpec ident="harm" module="MEI.harmony" mode="replace">
@@ -1968,16 +2035,18 @@
           <constraintSpec ident="tempo_in_header_disallow_most_attrs" scheme="isoschematron">
             <constraint>
               <sch:rule context="mei:tempo[ancestor::mei:meiHead]">
-                <sch:assert test="not(@*[name() != 'label' and name() != 'n' and name() !=
-                  'xml:base' and name() != 'xml:id' and name() != 'xml:lang'])">Only label, n,
-                  xml:base, xml:id, and xml:lang attributes allowed when this element occurs in the
-                  header.</sch:assert>
+                <sch:assert
+                  test="not(@*[name() != 'label' and name() != 'n' and name() !=
+                  'xml:base' and name() != 'xml:id' and name() != 'xml:lang'])"
+                  >Only label, n, xml:base, xml:id, and xml:lang attributes allowed when this
+                  element occurs in the header.</sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
           <constraintSpec ident="tempo_start-type_attributes_required" scheme="isoschematron">
             <constraint>
-              <sch:rule context="mei:tempo[not(ancestor::mei:syllable) and
+              <sch:rule
+                context="mei:tempo[not(ancestor::mei:syllable) and
                 not(ancestor::mei:meiHead)]">
                 <sch:assert test="@startid or @tstamp or @tstamp.ges or @tstamp.real">Must have one
                   of the attributes: startid, tstamp, tstamp.ges or tstamp.real</sch:assert>
@@ -2294,17 +2363,26 @@
             </constraint>
           </constraintSpec>
           <remarks>
-            <p>This element may be used for instantaneous or continuous textual dynamics, e.g. 'p',
-              'mf', or 'cresc. poco a poco'. The <gi scheme="MEI">hairpin</gi> element should be
-              used for graphical, i.e., crescendo and diminuendo, dynamic markings. The starting
-              point of the dynamic marking may be indicated by either a <att>startid</att>,
-                <att>tstamp</att>, <att>tstamp.ges</att>, or <att>tstamp.real</att> attribute, while
-              the ending point may be recorded by either a <att>dur</att>, <att>dur.ges</att>,
-                <att>endid</att>, or <att>tstamp2</att> attribute. It is a semantic error not to
-              specify a starting point attribute. MIDI values associated with the graphical dynamic
-              sign may be recorded in the <att>val</att> and <att>val2</att> attributes.</p>
+            <p>This element may be used for instantaneous or continuous <emph>textual</emph>
+              dynamics, e.g. 'p', 'mf', or 'cresc. poco a poco'. The <gi scheme="MEI">hairpin</gi>
+              element should be used for <emph>graphical</emph>, i.e., crescendo and diminuendo,
+              dynamic markings. The starting point of the dynamic marking may be indicated by either
+              a <att>startid</att>, <att>tstamp</att>, <att>tstamp.ges</att>, or
+                <att>tstamp.real</att> attribute, while the ending point may be recorded by either a
+                <att>dur</att>, <att>dur.ges</att>, <att>endid</att>, or <att>tstamp2</att>
+              attribute. It is a semantic error not to specify a starting point attribute. MIDI
+              values associated with the graphical dynamic sign may be recorded in the
+                <att>val</att> and <att>val2</att> attributes.</p>
           </remarks>
         </elementSpec>
+        <classSpec ident="att.hairpin.ges" module="MEI.cmn" type="atts" mode="replace">
+          <desc>Gestural domain attributes.</desc>
+          <classes>
+            <memberOf key="att.duration.performed"/>
+            <memberOf key="att.midivalue"/>
+            <memberOf key="att.midivalue2"/>
+          </classes>
+        </classSpec>
 
         <!-- Use of tstamp.ges, issue #177 -->
         <!-- Change datatype of @tstamp.ges -->
@@ -2376,6 +2454,7 @@
           </classes>
           <attList>
             <attDef ident="level" usage="opt">
+              <desc>Indicates the nesting level of staff grouping symbols.</desc>
               <datatype>
                 <rng:data type="positiveInteger"/>
               </datatype>
@@ -2426,13 +2505,15 @@
                   <desc>curved symbol, i.e., {.</desc>
                 </valItem>
                 <valItem ident="bracket">
-                  <desc>square symbol, i.e., [, but with curved top and bottom segments.</desc>
+                  <desc>square symbol, i.e., [, but with curved/angled top and bottom
+                    segments.</desc>
                 </valItem>
                 <valItem ident="bracketsq">
-                  <desc>square symbol, i.e., [, with straight top and bottom segments.</desc>
+                  <desc>square symbol, i.e., [, with horizontal top and bottom segments.</desc>
                 </valItem>
                 <valItem ident="line">
-                  <desc>line symbol, i.e., |.</desc>
+                  <desc>line symbol, i.e., |, (wide) line without top and bottom curved/horizontal
+                    segments.</desc>
                 </valItem>
                 <valItem ident="none">
                   <desc>grouping symbol missing.</desc>
@@ -2613,8 +2694,8 @@
           <attList>
             <attDef ident="system.leftline" usage="opt">
               <desc>indicates whether the staves are joined at the left by a continuous line. The
-                default value is "true". Do not confuse this with a line used as a grouping
-                symbol.</desc>
+                default value is "true". Do not confuse this with the heavy vertical line used as a
+                grouping symbol.</desc>
               <datatype>
                 <rng:ref name="data.BOOLEAN"/>
               </datatype>
@@ -2715,9 +2796,11 @@
                   <sch:rule context="@nymref">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@nymref
                       attribute has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*/@xml:id">The value in @nymref must correspond to the
-                      @xml:id attribute of an element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id"
+                      >The value in @nymref must correspond to the @xml:id attribute of an
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -2742,7 +2825,7 @@
             <memberOf key="att.facsimile"/>
             <memberOf key="att.filing"/>
             <memberOf key="att.lang"/>
-            <memberOf key="att.typed"/>
+            <!--<memberOf key="att.typed"/>-->
             <memberOf key="model.titleLike"/>
           </classes>
           <content>
@@ -2778,6 +2861,46 @@
                 </valItem>
               </valList>
             </attDef>
+            <!-- att.typed (@type and @subtype) expanded here to encourage use of recommended type values -->
+            <attDef ident="type" usage="opt">
+              <desc>characterizes the element in some sense, using any convenient classification
+                scheme or typology.</desc>
+              <valList type="semi">
+                <valItem ident="main">
+                  <desc>main title.</desc>
+                </valItem>
+                <valItem ident="subordinate">
+                  <desc>subtitle or title of part.</desc>
+                </valItem>
+                <valItem ident="abbreviated">
+                  <desc>abbreviated form of title.</desc>
+                </valItem>
+                <valItem ident="alternative">
+                  <desc>alternate title by which the item is also known.</desc>
+                </valItem>
+                <valItem ident="translated">
+                  <desc>translated form of title.</desc>
+                </valItem>
+                <valItem ident="uniform">
+                  <desc>collective title.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="subtype" usage="opt">
+              <desc>provide any sub-classification for the element, additional to that given by its
+                type attribute.</desc>
+              <datatype>
+                <rng:data type="NMTOKEN"/>
+              </datatype>
+              <constraintSpec ident="When_subtype" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="mei:*[@subtype]">
+                    <sch:assert test="@type">An element with a subtype attribute must have a type
+                      attribute.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
           </attList>
           <remarks>
             <p>The <att>type</att> attribute may be used to classify the title according to some
@@ -2790,7 +2913,10 @@
               including subtitles and any parallel titles, may be enclosed within a single <gi
                 scheme="MEI">title</gi> element. Title parts may be encoded in <gi scheme="MEI"
                 >title</gi> sub-elements. The name of the list from which a controlled value is
-              taken may be recorded using the <att>authority</att> attribute.</p>
+              taken may be recorded using the <att>authority</att> attribute. The number of initial
+              characters (such as those constituing an article or preposition) that should not be
+              used for sorting a title or name may be indicated in the <att>nonfiling</att>
+              attribute.</p>
           </remarks>
           <remarks>
             <p>This element is modelled on an element in the Text Encoding Initiative (TEI)
@@ -2961,9 +3087,11 @@
           <constraintSpec ident="checkComponentGrp" scheme="isoschematron">
             <constraint>
               <sch:rule context="mei:componentGrp">
-                <sch:assert test="every $i in ./child::mei:*[not(local-name()='head')] satisfies
-                  $i/local-name() eq ./parent::mei:*/local-name()">Only child elements of the same
-                  name as the parent of the componentGrp-element are allowed.</sch:assert>
+                <sch:assert
+                  test="every $i in ./child::mei:*[not(local-name()='head')] satisfies
+                  $i/local-name() eq ./parent::mei:*/local-name()"
+                  >Only child elements of the same name as the parent of the componentGrp-element
+                  are allowed.</sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -3311,6 +3439,9 @@
                   <!-- <rng:value>rotate</rng:value>
                   <a:documentation>rotated</a:documentation> -->
 
+                  <rng:value>obscure</rng:value>
+                  <a:documentation>obscured by non-textual writing gesture, e.g. a large 'X', wavy
+                    line, etc.</a:documentation>
                   <rng:value>overline</rng:value>
                   <a:documentation>line above the text; may be qualified to indicate multiple lines,
                     e.g. overline(3)</a:documentation>
@@ -4927,17 +5058,20 @@
           </content>
           <constraintSpec ident="annot_content_constraint" scheme="isoschematron">
             <constraint>
-              <sch:rule context="mei:annot[mei:head or mei:lg or mei:p or mei:quote or
+              <sch:rule
+                context="mei:annot[mei:head or mei:lg or mei:p or mei:quote or
                 mei:table]">
                 <sch:assert test="not(mei:head[preceding-sibling::*[not(local-name()='head')]])"
                   >Head elements can only occur at the start of annot.</sch:assert>
                 <sch:assert test="not(*[../text()[normalize-space()]])">Mixed content is not allowed
                   when head, lg, p, quote, or table is used.</sch:assert>
-                <sch:assert test="not(*[not(local-name() eq 'biblList' or local-name() eq 'castList'
+                <sch:assert
+                  test="not(*[not(local-name() eq 'biblList' or local-name() eq 'castList'
                   or local-name() eq 'head' or local-name() eq 'lg' or local-name() eq 'list' or
                   local-name() eq 'p' or local-name() eq 'quote' or local-name()
-                  eq 'table')])">Unstructured text not allowed when head, lg, p, quote, or table
-                  elements are used.</sch:assert>
+                  eq 'table')])"
+                  >Unstructured text not allowed when head, lg, p, quote, or table elements are
+                  used.</sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -5038,7 +5172,8 @@
             <memberOf key="att.declaring"/>
             <memberOf key="att.facsimile"/>
             <memberOf key="att.lang"/>
-            <memberOf key="att.typed"/>
+            <!-- <memberOf key="att.typed"/> -->
+            <!-- Expand att.typed/@type to provide suggested values -->
             <memberOf key="model.divLike"/>
           </classes>
           <content>
@@ -5058,6 +5193,75 @@
               <rng:ref name="model.milestoneLike.text"/>
             </rng:zeroOrMore>
           </content>
+          <attList>
+            <attDef ident="type" usage="opt">
+              <desc>characterizes the element in some sense, using any convenient classification
+                scheme or typology.</desc>
+              <valList type="semi">
+                <valItem ident="abstract">
+                  <desc>A summary of the content of a text as continuous prose.</desc>
+                </valItem>
+                <valItem ident="ack">
+                  <desc>A formal declaration of acknowledgement by the author in which persons and
+                    institutions are thanked for their part in the creation of a text.</desc>
+                </valItem>
+                <valItem ident="appendix">
+                  <desc>An ancillary self-contained section of a work, often providing additional
+                    but in some sense extra-canonical text.</desc>
+                </valItem>
+                <valItem ident="bibliography">
+                  <desc>A list of bibliographic citations.</desc>
+                </valItem>
+                <valItem ident="colophon">
+                  <desc>A statement appearing at the end of a book describing the conditions of its
+                    physical production.</desc>
+                </valItem>
+                <valItem ident="contents">
+                  <desc>A table of contents, specifying the structure of a work and listing its
+                    constituents. The list element should be used to mark its structure.</desc>
+                </valItem>
+                <valItem ident="dedication">
+                  <desc>A formal offering or dedication of a text to one or more persons or
+                    institutions by the author.</desc>
+                </valItem>
+                <valItem ident="frontispiece">
+                  <desc>A pictorial frontispiece, possibly including some text.</desc>
+                </valItem>
+                <valItem ident="glossary">
+                  <desc>A list of terms associated with definition texts (‘glosses’).</desc>
+                </valItem>
+                <valItem ident="half-title">
+                  <desc>A page containing only the title of a book — as opposed to the title page,
+                    which also lists subtitle, author, imprint and similar data.</desc>
+                </valItem>
+                <valItem ident="index">
+                  <desc>Any form of index to the work.</desc>
+                </valItem>
+                <valItem ident="notes">
+                  <desc>A section in which annotations on the textual are gathered together.</desc>
+                </valItem>
+                <valItem ident="preface">
+                  <desc>A foreword or preface addressed to the reader in which the author or
+                    publisher explains the content, purpose, or origin of the text.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="subtype" usage="opt">
+              <desc>provide any sub-classification for the element, additional to that given by its
+                type attribute.</desc>
+              <datatype>
+                <rng:data type="NMTOKEN"/>
+              </datatype>
+              <constraintSpec ident="When_subtype" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="mei:*[@subtype]">
+                    <sch:assert test="@type">An element with a subtype attribute must have a type
+                      attribute.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
           <remarks>
             <p>This element is modelled on an element in the Text Encoding Initiative (TEI)
               standard.</p>
@@ -5323,9 +5527,11 @@
                   <sch:rule context="@altsym">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@altsym
                       attribute has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:symbolDef/@xml:id">The value in @altsym must correspond
-                      to the @xml:id attribute of a symbolDef element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:symbolDef/@xml:id"
+                      >The value in @altsym must correspond to the @xml:id attribute of a symbolDef
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5358,9 +5564,11 @@
                   <sch:rule context="@copyof">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@copyof
                       attribute has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*/@xml:id">The value in @copyof must correspond to the
-                      @xml:id attribute of an element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id"
+                      >The value in @copyof must correspond to the @xml:id attribute of an
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5376,9 +5584,11 @@
                   <sch:rule context="@corresp">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@corresp
                       attribute has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*/@xml:id">Each value in @corresp must correspond to the
-                      @xml:id attribute of an element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id"
+                      >Each value in @corresp must correspond to the @xml:id attribute of an
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5393,9 +5603,11 @@
                   <sch:rule context="@next">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@next attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*/@xml:id">Each value in @next must correspond to the
-                      @xml:id attribute of an element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id"
+                      >Each value in @next must correspond to the @xml:id attribute of an
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5410,9 +5622,11 @@
                   <sch:rule context="@prev">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@prev attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*/@xml:id">Each value in @prev must correspond to the
-                      @xml:id attribute of an element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id"
+                      >Each value in @prev must correspond to the @xml:id attribute of an
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5428,9 +5642,11 @@
                   <sch:rule context="@sameas">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@sameas
                       attribute has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*/@xml:id">Each value in @sameas must correspond to the
-                      @xml:id attribute of an element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id"
+                      >Each value in @sameas must correspond to the @xml:id attribute of an
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5445,9 +5661,11 @@
                   <sch:rule context="@synch">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@synch attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*/@xml:id">Each value in @synch must correspond to the
-                      @xml:id attribute of an element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id"
+                      >Each value in @synch must correspond to the @xml:id attribute of an
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5469,9 +5687,11 @@
                   <sch:rule context="@classcode">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@classcode
                       attribute has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:classCode/@xml:id">The value in @classcode must
-                      correspond to the @xml:id attribute of a classCode element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:classCode/@xml:id"
+                      >The value in @classcode must correspond to the @xml:id attribute of a
+                      classCode element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5527,9 +5747,11 @@
                   <sch:rule context="mei:custos/@target">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@target
                       attribute has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*/@xml:id">The value in @target must correspond to the
-                      @xml:id attribute of a note element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:note/@xml:id"
+                      >The value in @target must correspond to the @xml:id attribute of a note
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5550,9 +5772,11 @@
                   <sch:rule context="@data">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@data attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*/@xml:id">The value in @data must correspond to the
-                      @xml:id attribute of an element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*[ancestor::mei:music]/@xml:id"
+                      >The value in @data must correspond to the @xml:id attribute of a descendant
+                      of the music element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5575,9 +5799,11 @@
                   <sch:rule context="@decls">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@decls attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*[ancestor::meiHead]/@xml:id">Each value in @decls must
-                      correspond to the @xml:id attribute of an element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*[ancestor::mei:meiHead]/@xml:id"
+                      >Each value in @decls must correspond to the @xml:id attribute of an element
+                      within the metadata header.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5600,10 +5826,12 @@
                   <sch:rule context="@facs">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@facs attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
                       substring($i,2)=//mei:*[local-name() eq 'surface' or local-name() eq
-                      'zone']/@xml:id">Each value in @facs must correspond to the @xml:id attribute
-                      of an element.</sch:assert>
+                      'zone']/@xml:id"
+                      >Each value in @facs must correspond to the @xml:id attribute of a surface or
+                      zone element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5625,9 +5853,11 @@
                   <sch:rule context="@hand">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@hand attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:hand/@xml:id">Each value in @hand must correspond to the
-                      @xml:id attribute of a hand element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:hand/@xml:id"
+                      >Each value in @hand must correspond to the @xml:id attribute of a hand
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5656,9 +5886,11 @@
                   <sch:rule context="@chordref">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@chordref
                       attribute has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:chordDef/@xml:id">The value in @chordref must correspond
-                      to the @xml:id attribute of a chordDef element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:chordDef/@xml:id"
+                      >The value in @chordref must correspond to the @xml:id attribute of a chordDef
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5680,9 +5912,11 @@
                   <sch:rule context="@instr">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@instr attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:instrDef/@xml:id">The value in @instr must correspond to
-                      the @xml:id attribute of a instrDef element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:instrDef/@xml:id"
+                      >The value in @instr must correspond to the @xml:id attribute of an instrDef
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5709,9 +5943,11 @@
                   <sch:rule context="@join">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@join attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*/@xml:id">Each value in @join must correspond to the
-                      @xml:id attribute of an element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id"
+                      >Each value in @join must correspond to the @xml:id attribute of an
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5735,9 +5971,11 @@
                   <sch:rule context="@def">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@def attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:layerDef/@xml:id">The value in @def must correspond to
-                      the @xml:id attribute of a layerDef element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:layerDef/@xml:id"
+                      >The value in @def must correspond to the @xml:id attribute of a layerDef
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5759,9 +5997,11 @@
                   <sch:rule context="@plist">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@plist attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*/@xml:id">Each value in @plist must correspond to the
-                      @xml:id attribute of an element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id"
+                      >Each value in @plist must correspond to the @xml:id attribute of an
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5807,9 +6047,11 @@
                   <sch:rule context="@source">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@source
                       attribute has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:source/@xml:id">Each value in @source must correspond to
-                      the @xml:id attribute of a source element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:source/@xml:id"
+                      >Each value in @source must correspond to the @xml:id attribute of a source
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5833,9 +6075,11 @@
                   <sch:rule context="@def">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@def attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:staffDef/@xml:id">The value in @def must correspond to
-                      the @xml:id attribute of a staffDef element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:staffDef/@xml:id"
+                      >The value in @def must correspond to the @xml:id attribute of a staffDef
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5861,9 +6105,11 @@
                   <sch:rule context="@endid">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@endid attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*/@xml:id">The value in @endid must correspond to the
-                      @xml:id attribute of an element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id"
+                      >The value in @endid must correspond to the @xml:id attribute of an
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5885,9 +6131,11 @@
                   <sch:rule context="@startid">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@startid
                       attribute has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*/@xml:id">The value in @startid must correspond to the
-                      @xml:id attribute of an element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*/@xml:id"
+                      >The value in @startid must correspond to the @xml:id attribute of an
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5903,9 +6151,11 @@
               <sch:rule context="@resp">
                 <sch:assert role="warning" test="not(normalize-space(.) eq '')">@resp attribute has
                   no content.</sch:assert>
-                <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                  substring($i,2)=//mei:*[ancestor::mei:meiHead]/@xml:id">The value in @resp must
-                  correspond to the @xml:id attribute of an element in meiHead.</sch:assert>
+                <sch:assert role="warning"
+                  test="every $i in tokenize(., '\s+') satisfies
+                  substring($i,2)=//mei:*[ancestor::mei:meiHead]/@xml:id"
+                  >The value in @resp must correspond to the @xml:id attribute of an element within
+                  the metadata header.</sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -5922,10 +6172,11 @@
                   <sch:rule context="@resp">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@resp attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:*[ancestor::mei:meiHead]/@xml:id">The value in @resp
-                      must correspond to the @xml:id attribute of an element in
-                      meiHead.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:*[ancestor::mei:meiHead]/@xml:id"
+                      >The value in @resp must correspond to the @xml:id attribute of an element
+                      within the metadata header.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5964,9 +6215,11 @@
                   <sch:rule context="@new">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@new attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:hand/@xml:id">The value in @new must correspond to the
-                      @xml:id attribute of a hand element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:hand/@xml:id"
+                      >The value in @new must correspond to the @xml:id attribute of a hand
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -5982,9 +6235,11 @@
                   <sch:rule context="@old">
                     <sch:assert role="warning" test="not(normalize-space(.) eq '')">@old attribute
                       has no content.</sch:assert>
-                    <sch:assert role="warning" test="every $i in tokenize(., '\s+') satisfies
-                      substring($i,2)=//mei:hand/@xml:id">The value in @old must correspond to the
-                      @xml:id attribute of a hand element.</sch:assert>
+                    <sch:assert role="warning"
+                      test="every $i in tokenize(., '\s+') satisfies
+                      substring($i,2)=//mei:hand/@xml:id"
+                      >The value in @old must correspond to the @xml:id attribute of a hand
+                      element.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -6045,9 +6300,7 @@
             <rng:zeroOrMore>
               <rng:choice>
                 <rng:text/>
-                <!-- THIS CHANGE BREAKS BACKWARD COMPATIBILITY! -->
-                <!--<rng:ref name="instrVoice"/>-->
-                <rng:ref name="instrVoiceGrp"/>
+                <rng:ref name="instrVoice"/>
               </rng:choice>
             </rng:zeroOrMore>
           </content>
@@ -6133,7 +6386,7 @@
             </rng:optional>
           </content>
         </elementSpec>
-        <!-- Allow <perfMedium> within <source>; do some re-ordering to better match work and expression content. -->
+        <!-- Do some re-ordering to better align with work and expression content. -->
         <!-- THIS CHANGE BREAKS BACKWARD COMPATIBILITY! -->
         <elementSpec ident="source" module="MEI.header" mode="replace">
           <desc>A bibliographic description of a source used in the creation of the electronic
@@ -6156,9 +6409,10 @@
             <rng:optional>
               <rng:ref name="langUsage"/>
             </rng:optional>
-            <rng:optional>
+            <!-- Allow repeatable <perfMedium> within <source>? -->
+            <!--<rng:zeroOrMore>
               <rng:ref name="perfMedium"/>
-            </rng:optional>
+            </rng:zeroOrMore>-->
             <rng:optional>
               <rng:ref name="contents"/>
             </rng:optional>
@@ -6253,11 +6507,24 @@
         <macroSpec ident="data.NOTATIONTYPE" module="MEI" type="dt" mode="add">
           <desc>Notation type and subtype</desc>
           <content>
-            <rng:data type="NMTOKEN">
-              <rng:param name="pattern">(cmn|mensural|neumes|tab)</rng:param>
-              <!-- Another approach: -->
-              <!--<rng:param name="pattern">(cmn|mensural|neumes|tab)(-[\i\c]+)?</rng:param>-->
-            </rng:data>
+            <rng:choice>
+              <rng:value>cmn</rng:value>
+              <a:documentation>Common Music Notation</a:documentation>
+              <rng:value>mensural</rng:value>
+              <a:documentation>Mensural notation</a:documentation>
+              <rng:value>mensural.black</rng:value>
+              <a:documentation>Black mensural notation</a:documentation>
+              <rng:value>mensural.white</rng:value>
+              <a:documentation>White mensural notation</a:documentation>
+              <rng:value>neume</rng:value>
+              <a:documentation>Neumatic notation</a:documentation>
+              <!--<rng:value>neume.heighted</rng:value>
+              <a:documentation>Heighted neumatic notation</a:documentation>
+              <rng:value>neume.unheighted</rng:value>
+              <a:documentation>Unheighted neumatic notation</a:documentation>-->
+              <rng:value>tab</rng:value>
+              <a:documentation>Tablature notation</a:documentation>
+            </rng:choice>
           </content>
         </macroSpec>
         <!-- Add notationtype attribute class -->
@@ -6679,6 +6946,27 @@
         </elementSpec>
 
         <!-- Minor amendments to documentation -->
+        <classSpec ident="att.meterconformance" module="MEI.shared" type="atts" mode="replace">
+          <desc>Attributes that provide information about a structure's conformance to the
+            prevailing meter.</desc>
+          <attList>
+            <attDef ident="metcon" usage="opt">
+              <desc>indicates the relationship between the content of a staff or layer and the
+                prevailing meter.</desc>
+              <valList type="closed">
+                <valItem ident="c">
+                  <desc>complete; i.e., conformant with the prevailing meter.</desc>
+                </valItem>
+                <valItem ident="i">
+                  <desc>incomplete; i.e., not enough beats.</desc>
+                </valItem>
+                <valItem ident="o">
+                  <desc>overfull; i.e., too many beats.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </classSpec>
         <classSpec ident="att.typed" module="MEI.shared" type="atts" mode="replace">
           <desc>Attributes which can be used to classify or sub-classify features.</desc>
           <attList>
@@ -6763,8 +7051,10 @@
                 <sch:let name="staff" value="ancestor::mei:staff/@n"/>
                 <sch:let name="staffpos"
                   value="count(ancestor::mei:staff/preceding-sibling::mei:staff) + 1"/>
-                <sch:assert test="number(@taktplace) &lt;= number(2 *
-                  preceding::mei:staffDef[@n=$staff and @lines][1]/@lines)"/>
+                <sch:assert
+                  test="number(@taktplace) &lt;= number(2 *
+                  preceding::mei:staffDef[@n=$staff and @lines][1]/@lines)"
+                />
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -6818,6 +7108,107 @@
               printing.</p>
           </remarks>
         </elementSpec>
+        <elementSpec ident="persName" module="MEI.shared" mode="replace">
+          <desc>Proper noun or noun phrase.</desc>
+          <classes>
+            <memberOf key="att.bibl"/>
+            <memberOf key="att.common"/>
+            <memberOf key="att.datable"/>
+            <memberOf key="att.edit"/>
+            <memberOf key="att.facsimile"/>
+            <memberOf key="att.lang"/>
+            <memberOf key="att.name"/>
+            <!-- <memberOf key="att.typed"/> -->
+            <!-- Expand att.typed/@type to provide suggested values -->
+            <memberOf key="model.nameLike.agent"/>
+          </classes>
+          <content>
+            <rng:zeroOrMore>
+              <rng:choice>
+                <rng:text/>
+                <rng:ref name="model.textphraseLike"/>
+                <rng:ref name="model.editLike"/>
+                <rng:ref name="model.transcriptionLike"/>
+              </rng:choice>
+            </rng:zeroOrMore>
+          </content>
+          <attList>
+            <attDef ident="type" usage="opt">
+              <desc>characterizes the element in some sense, using any convenient classification
+                scheme or typology.</desc>
+              <valList type="semi">
+                <valItem ident="forename">
+                  <desc>contains a forename, given or baptismal name.</desc>
+                </valItem>
+                <valItem ident="surname">
+                  <desc>a family (inherited) name, as opposed to a given, baptismal, or nick
+                    name.</desc>
+                </valItem>
+                <valItem ident="rolename">
+                  <desc>contains a name component which indicates that the referent has a particular
+                    role or position in society, such as an official title or rank.</desc>
+                </valItem>
+                <valItem ident="addname">
+                  <desc>contains an additional name component, such as a nickname, epithet, or
+                    alias, or any other descriptive phrase used within a personal name.</desc>
+                </valItem>
+                <valItem ident="namelink">
+                  <desc>contains a connecting phrase or link used within a name but not regarded as
+                    part of it, such as "van der" or "of".</desc>
+                </valItem>
+                <valItem ident="genname">
+                  <desc>contains a name component used to distinguish otherwise similar names on the
+                    basis of the relative ages or generations of the persons named.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="subtype" usage="opt">
+              <desc>provide any sub-classification for the element, additional to that given by its
+                type attribute.</desc>
+              <datatype>
+                <rng:data type="NMTOKEN"/>
+              </datatype>
+              <constraintSpec ident="When_subtype" scheme="isoschematron">
+                <constraint>
+                  <sch:rule context="mei:*[@subtype]">
+                    <sch:assert test="@type">An element with a subtype attribute must have a type
+                      attribute.</sch:assert>
+                  </sch:rule>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
+          <remarks>
+            <p>Name sub-parts may be recorded in <gi scheme="MEI">persName</gi> sub-elements. The
+              name of the list from which a controlled value is taken may be recorded using the
+                <att>authority</att> attribute.</p>
+          </remarks>
+          <remarks>
+            <p>This element is modelled on an element in the Encoded Archival Description (EAD)
+              standard.</p>
+          </remarks>
+        </elementSpec>
+
+        <!-- Fix problem with string *courses* -->
+        <classSpec ident="att.staffDef.ges.tablature" module="MEI.tablature" type="atts"
+          mode="replace">
+          <desc>Gestural domain attributes for staffDef in tablature.</desc>
+          <attList>
+            <attDef ident="tab.strings" usage="opt">
+              <desc>provides a *written* pitch and octave for each open string or course of
+                strings.</desc>
+              <datatype>
+                <rng:list>
+                  <rng:oneOrMore>
+                    <rng:data type="token">
+                      <rng:param name="pattern">[a-g][\-#fs]?[0-9]([a-g][\-#fs]?[0-9])*</rng:param>
+                    </rng:data>
+                  </rng:oneOrMore>
+                </rng:list>
+              </datatype>
+            </attDef>
+          </attList>
+        </classSpec>
 
       </schemaSpec>
     </body>

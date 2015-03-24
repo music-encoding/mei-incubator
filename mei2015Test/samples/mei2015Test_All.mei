@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="mei2015_testing.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="mei2015_testing.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?> 
+<?xml-model href="../schemata/mei2015Test_All.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../schemata/mei2015Test_All.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?> 
 <!-- New meiversion and meiversion.num values -->
 <mei xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.music-encoding.org/ns/mei"
@@ -69,12 +69,8 @@
               <hand/>
               <hand/>
             </handList>
-            <!-- TapeConfig replaced by trackConfig; documentation on soundChan clarified -->
-            <trackConfig num="4">quadraphonic</trackConfig>
-            <trackConfig num="3">3-track tape</trackConfig>
-            <trackConfig num="2">2-track mono</trackConfig>
-            <soundChan num="1">monaural</soundChan>
-            <soundChan/>
+            <!-- scoreFormat now permitted within physDesc -->
+            <scoreFormat/>
           </physDesc>
           <physLoc/>
           <notesStmt>
@@ -140,8 +136,10 @@
               <head/>
               <p>I read a good book: <biblList>
                   <bibl>my book</bibl>
-                </biblList> But it took <rend rend="bold" altrend="this is what i want it to look
-                  like">me</rend> a looooooonnnngggg time.</p>
+                </biblList> But it took <rend rend="bold"
+                  altrend="this is what i want it to look
+                  like">me</rend> a
+                looooooonnnngggg time.</p>
             </annot>
             <annot>
               <!-- <biblList> is now recursively nest-able. -->
@@ -170,8 +168,12 @@
           </editionStmt>
           <pubStmt/>
           <physDesc>
-            <!-- scoreFormat now permitted within physDesc -->
-            <scoreFormat/>
+            <!-- TapeConfig replaced by trackConfig; documentation on soundChan clarified -->
+            <trackConfig num="4">quadraphonic</trackConfig>
+            <trackConfig num="3">3-track tape</trackConfig>
+            <trackConfig num="2">2-track mono</trackConfig>
+            <soundChan num="1">monaural</soundChan>
+            <soundChan/>
           </physDesc>
           <physLoc/>
           <seriesStmt>
@@ -180,7 +182,7 @@
           <langUsage>
             <language/>
           </langUsage>
-          <perfMedium/>
+          <!--<perfMedium/>-->
           <contents/>
           <biblList/>
           <notesStmt>
@@ -222,7 +224,14 @@
       </samplingDecl>
     </encodingDesc>
     <workDesc>
-      <work>
+      <work data="#t1">
+        <history>
+          <eventList>
+            <event xml:id="firstPerformanceToo">
+              <p>Performance info could appear here when the FRBR module is not available.</p>
+            </event>
+          </eventList>
+        </history>
         <perfMedium>
           <instrumentation evidence="conjecture" resp="#PR">
             <ensemble>foobar</ensemble>
@@ -237,10 +246,7 @@
               <instrVoice count="1" source="#source1 #source2">Basso continuo</instrVoice>
               <!--- Clarinet/sax doubling -->
               <instrVoice count="1">
-                <instrVoiceGrp>
-                  <head/>
-                  <instrVoice>Clarinet</instrVoice>/<instrVoice>Alto saxophone</instrVoice>
-                </instrVoiceGrp>
+                <instrVoice>Clarinet/<instrVoice>Alto saxophone</instrVoice></instrVoice>
               </instrVoice>
             </instrVoiceGrp>
             <annot>The violas and horns are present only in source 2. The oboes, violins and basso
@@ -271,11 +277,28 @@
         <expressionList>
           <!-- <head> now allowed in more places within header -->
           <head/>
-          <expression>
+          <expression xml:id="expr1">
             <titleStmt>
               <title/>
             </titleStmt>
+            <history>
+              <eventList>
+                <event xml:id="firstPerformance"/>
+              </eventList>
+            </history>
+            <perfMedium>
+              <instrumentation source="#source1"/>
+            </perfMedium>
             <biblList/>
+            <relationList>
+              <relation rel="hasEmbodiment" target="#source1"/>
+              <relation rel="hasEmbodiment" target="#source2"/>
+            </relationList>
+          </expression>
+          <expression xml:id="expr2">
+            <relationList>
+              <relation rel="hasExemplar" target="#source2 #source3"/>
+            </relationList>
           </expression>
         </expressionList>
         <componentGrp>
@@ -301,9 +324,9 @@
         <zone/>
       </surface>
     </facsimile>
-    <performance>
+    <performance decls="#firstPerformance">
       <!-- <timeline> eliminated; <recording> revamped to behave more like <facsimile> -->
-      <recording begin="00:00:00.00" end="00:03:10.00" betype="time" startid="#t1">
+      <recording begin="00:00:00.00" end="00:03:10.00" betype="time" startid="#t1" decls="#source2">
         <avFile target="http://example.com/path/to/audio/recording" xml:id="audio1.wav"/>
         <avFile target="http://example.com/path/to/audio/recording" xml:id="audio1.mp3"/>
         <when xml:id="t1" absolute="00:00:01.915291666"/>
@@ -409,6 +432,8 @@
               <staffDef xml:id="P2" n="2" clef.shape="F" clef.line="4" lines="5"/>
               <staffDef xml:id="P3" n="3" clef.shape="G" clef.line="2" lines="5"/>
               <staffDef xml:id="P4" n="4" clef.shape="F" clef.line="4" lines="5"/>
+              <staffDef xml:id="P5" n="5" clef.shape="TAB" lines="6"
+                tab.strings="e4e3 a4a3 d4 g5g4 b4b4 e5"/>
             </staffGrp>
             <!-- Overlapping group symbols -->
             <grpSym symbol="bracket" startid="#P1" endid="#P3" level="1"/>
@@ -457,7 +482,7 @@
                     <chord>
                       <note/>
                     </chord>
-                    <custos target="#trill01"/>
+                    <custos target="#n2"/>
                     <note xml:id="n2"/>
                   </beam>
                   <!-- @rend reserved for CSS-like renditional info; use @form -->
