@@ -33,12 +33,12 @@
             <respStmt>
               <persName xml:id="LvB" role="cmp" dbkey="118508288" authURI="http://d-nb.info/gnd"
                 authority="GND">Ludwig van Beethoven</persName>
-              <!-- value of altsym, classcode, hand, and resp must contain a valid xml:id reference -->
+              <!-- @altsym, @classcode, @hand, and @resp must contain a valid xml:id reference -->
               <persName role="mcp" xml:id="pr" resp="#PR">
                 <subst>
                   <handShift old="#lvb_brownInk1" new="#lvb_pencil1"/>
                   <!-- del/@rend now more constrained -->
-                  <!-- value of hand must contain a valid xml:id reference -->
+                  <!-- @hand must contain a valid xml:id reference -->
                   <del rend="line-through" hand="#wr_brownInk1">Wenzel Rampl</del>
                   <!-- add/@method -->
                   <add method="intraline">Wenzel Rampl</add>
@@ -56,7 +56,7 @@
             <handList type="typeA">
               <head type="main">My Hand List</head>
               <head type="sub">Part the First</head>
-              <!-- value of resp must contain a valid xml:id reference -->
+              <!-- @resp must contain a valid xml:id reference -->
               <hand xml:id="lvb_brownInk1" medium="brown ink" resp="#LvB" initial="true"/>
               <hand xml:id="lvb_pencil1" medium="pencil" resp="#LvB"/>
               <hand xml:id="lvb_mind" medium="none" resp="#LvB"/>
@@ -413,6 +413,8 @@
     <body>
       <mdiv xml:id="edirom_mdiv_a6daa955-ce13-4e56-8aaf-fd706254bc60" label="Maestoso">
         <score>
+          <!-- @when and @plist must contain valid xml:id references -->
+          <annot when="#t1" plist="#LvB #P1"><p>test this</p></annot>
           <!-- new system.leftline attribute -->
           <scoreDef key.sig="3f" key.pname="c" key.accid="f" key.mode="minor" meter.count="4"
             meter.unit="4" meter.sym="common" system.leftline="true">
@@ -425,7 +427,8 @@
             <!-- @symbol="line" now indicates a heavy line joining the members of the group, not the system left line -->
             <!-- @key.sig.mixed supports use of quarter-tone accidentals -->
             <staffGrp barthru="true" symbol="line">
-              <!-- notationtype allows 2-level classification of the notation found on the staff. For more complex classification, use @decls to refer to <classification> in header. -->
+              <!-- notationtype allows 2-level classification of the notation found on the staff. For more complex 
+                classification, use @decls to refer to <classification> in header. -->
               <staffDef n="0" lines="5" key.sig="mixed" key.sig.mixed="as4 cn5 dts9"
                 notationtype="tab" notationsubtype="guitar"/>
               <staffDef xml:id="P1" n="1" clef.shape="G" clef.line="2" lines="5"/>
@@ -452,7 +455,7 @@
                   <!-- @rend reserved for CSS-like renditional info; use @form -->
                   <beam form="acc">
                     <!-- added @vel on note; added "scoop" to values of @artic -->
-                    <!-- value of altsym must contain a valid xml:id reference -->
+                    <!-- @altsym must contain a valid xml:id reference -->
                     <note xml:id="n1" pname="a" oct="5" dur="16" stem.dir="down" accid="1qf"
                       altsym="#mySymbol1" vel="127" artic="scoop">
                       <accid fontname="Leipzig" fontsize="12" fontweight="bold"/>
